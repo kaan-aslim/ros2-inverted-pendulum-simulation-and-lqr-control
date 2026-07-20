@@ -156,6 +156,7 @@ The cart is actuated by an external horizontal force, while the pendulum is free
 <i>3D Concept Model of the Cart–Pole Inverted Pendulum System.</i>
 </p>
 
+
 Although mechanically simple, this configuration captures the essential dynamics required to study nonlinear modeling, state-space control, and feedback stabilization.
 
 Unlike many educational examples that focus solely on the controller, this project begins with the physical definition of the system and develops every subsequent stage from first principles.
@@ -167,6 +168,7 @@ Unlike many educational examples that focus solely on the controller, this proje
 <p align="center">
 <i>Free Body Diagram of the Cart–Pole Inverted Pendulum System.</i>
 </p>
+
 
 ---
 
