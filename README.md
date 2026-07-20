@@ -153,7 +153,7 @@ Although mechanically simple, this configuration captures the essential dynamics
 Unlike many educational examples that focus solely on the controller, this project begins with the physical definition of the system and develops every subsequent stage from first principles.
 
 <p align="center">
-    <img src="images/system_model.png" alt="Cart Pole System" width="750">
+    <img src="images/system_model.png" alt="Cart Pole System" width="900">
 </p>
 
 ---
