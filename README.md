@@ -1,23 +1,5 @@
 # ROS2 Inverted Pendulum Simulation and LQR Control
 
-<p align="center">
-  <img src="images/inverted_pendulum_demo.gif" alt="ROS2 Inverted Pendulum Simulation" width="900">
-</p>
-
-<p align="center">
-  <strong>Dynamic Modeling • State-Space Representation • Optimal LQR Control • ROS2 • Gazebo</strong>
-</p>
-
-<p align="center">
-
-![ROS2](https://img.shields.io/badge/ROS2-Humble-22314E?logo=ros&logoColor=white)
-![Gazebo](https://img.shields.io/badge/Gazebo-Fortress-orange)
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Platform](https://img.shields.io/badge/Platform-Ubuntu%2022.04-E95420?logo=ubuntu&logoColor=white)
-
-</p>
-
 ---
 
 # Overview
@@ -275,3 +257,655 @@ Within this project, the URDF model serves as the digital representation of the 
 </p>
 
 ---
+
+# Dynamic Modeling
+
+The first step in controller development is obtaining a mathematical description of the system dynamics.
+
+For the cart–pole system, the cart translation and pendulum rotation are strongly coupled. Any force applied to the cart directly influences the pendulum motion, while the pendulum simultaneously affects the cart through inertial and gravitational interactions.
+
+To accurately describe this behavior, the equations of motion are derived using two independent analytical methods:
+
+- Newton–Euler mechanics
+- Lagrangian mechanics
+
+Although these methods originate from different physical principles, they produce the same nonlinear dynamic model. Using both approaches provides mathematical verification while also illustrating two of the most widely used modeling techniques in robotics.
+
+The complete derivations are provided in the documentation.
+
+---
+
+## Newton–Euler Formulation
+
+The Newton–Euler approach derives the equations of motion directly from force and moment balances.
+
+The translational dynamics of the cart are obtained using Newton's Second Law, while the rotational dynamics of the pendulum are derived by summing the moments acting about the pivot.
+
+This formulation provides clear physical insight into how gravity, inertia, and the applied control force contribute to the system dynamics.
+
+The complete derivation is available in:
+
+```text
+docs/03_newton_euler_derivation.md
+```
+
+---
+
+## Lagrangian Formulation
+
+The Lagrangian method derives the equations of motion using the system's energy rather than individual force balances.
+
+The total kinetic energy and potential energy of the system are first calculated and combined to form the Lagrangian.
+
+Euler–Lagrange equations are then applied to obtain the nonlinear equations of motion.
+
+Compared with the Newton–Euler formulation, the Lagrangian approach often becomes more convenient for systems containing multiple interconnected bodies and generalized coordinates.
+
+The complete derivation is available in:
+
+```text
+docs/04_lagrangian_derivation.md
+```
+
+---
+
+## Nonlinear Equations of Motion
+
+Both derivation methods lead to the same nonlinear dynamic model.
+
+The resulting equations describe the coupled translational and rotational dynamics of the cart–pendulum system.
+
+These equations include:
+
+- Nonlinear trigonometric terms
+- Dynamic coupling
+- Gravitational effects
+- Inertial interactions
+- External control input
+
+The nonlinear model accurately represents the physical behavior of the system and serves as the foundation for subsequent controller development.
+
+However, modern state-feedback techniques such as LQR require a linear system representation.
+
+Therefore, the nonlinear equations must first be linearized around the desired operating point.
+
+---
+
+# Linearization
+
+The nonlinear equations of motion cannot be used directly with classical linear optimal control methods.
+
+To obtain a model suitable for controller design, the nonlinear dynamics are linearized about the upright equilibrium configuration.
+
+The operating point is defined as the state in which:
+
+- the pendulum remains upright,
+- the cart is stationary,
+- all velocities are zero.
+
+Near this equilibrium, the pendulum angle remains sufficiently small that the nonlinear trigonometric functions can be approximated using the first-order terms of their Taylor series expansion.
+
+This approximation transforms the nonlinear equations into a linear model while preserving the local dynamic behavior around the equilibrium.
+
+The detailed derivation is provided in:
+
+```text
+docs/05_linearization_and_state_space.md
+```
+
+---
+
+# State-Space Representation
+
+Following linearization, the system is expressed in state-space form.
+
+This representation describes the system dynamics as a set of first-order differential equations, making it well suited for modern control design.
+
+The continuous-time state-space model is written as
+
+$$
+\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}
+$$
+
+where
+
+- **A** represents the system dynamics,
+- **B** represents the control-input matrix,
+- **x** is the state vector,
+- **u** is the applied cart force.
+
+The corresponding output equation is
+
+$$
+\mathbf{y}=C\mathbf{x}+D\mathbf{u}
+$$
+
+The state-space representation provides a compact mathematical description of the system and serves as the basis for controllability analysis, state-feedback control, and optimal controller design.
+
+Within this project, the state-space matrices are obtained directly from the linearized dynamic equations.
+
+The complete derivation of the state-space model, including the construction of the system matrices, is documented in:
+
+```text
+docs/05_linearization_and_state_space.md
+```
+
+---
+
+## Why State-Space?
+
+Unlike transfer-function methods, the state-space approach naturally describes multi-variable dynamic systems and provides direct access to the complete system state.
+
+For robotic systems, this representation offers several important advantages:
+
+- Compact representation of coupled dynamics
+- Support for multiple state variables
+- Straightforward implementation of state-feedback control
+- Compatibility with optimal control techniques
+- Scalability to higher-degree-of-freedom robotic systems
+
+Because of these advantages, state-space modeling has become one of the standard mathematical frameworks used throughout modern robotics and control engineering.
+
+---
+
+# LQR Controller Design
+
+Once the linear state-space model has been obtained, an optimal state-feedback controller can be designed.
+
+This project employs the **Linear Quadratic Regulator (LQR)**, one of the most widely used optimal control techniques for linear dynamic systems.
+
+Unlike classical controllers that independently tune proportional, integral, or derivative gains, LQR computes an optimal feedback law by minimizing a quadratic performance index that simultaneously considers:
+
+- State regulation accuracy
+- Control effort
+- Closed-loop stability
+
+The controller computes the required cart force using the state-feedback law
+
+$$
+u=-Kx
+$$
+
+where:
+
+- **u** is the control input (cart force)
+- **K** is the optimal feedback gain matrix
+- **x** is the system state vector
+
+The feedback gain matrix is obtained by solving the Continuous Algebraic Riccati Equation (CARE), allowing the controller to balance stabilization performance against actuator effort.
+
+Within this project, the weighting matrices are selected such that pendulum angle regulation receives the highest priority while minimizing unnecessary cart motion.
+
+The complete derivation, tuning procedure, and theoretical background are provided in:
+
+```text
+docs/06_lqr_controller_design.md
+```
+
+---
+
+## Why LQR?
+
+LQR was selected for this project because it offers several advantages that make it particularly suitable for balancing problems.
+
+- Optimal state-feedback control
+- Straightforward implementation
+- Excellent stabilization performance near equilibrium
+- Robust mathematical foundation
+- Computational efficiency
+- Widely adopted in robotics and aerospace applications
+
+Although the controller is designed using a linearized model, it provides excellent performance when the pendulum operates close to the upright equilibrium.
+
+For larger angular deviations, an energy-based swing-up controller can be integrated before switching to LQR.
+
+---
+
+# Control Pipeline
+
+The controller operates continuously in a closed-loop feedback cycle.
+
+At every control iteration, the current joint states are read from Gazebo, converted into the system state vector, processed by the LQR controller, and finally transformed into a force command applied to the cart.
+
+<p align="center">
+    <img src="images/control_pipeline.png" alt="Control Pipeline" width="900">
+</p>
+
+The overall control sequence is summarized below.
+
+```text
+Gazebo Simulation
+        │
+        ▼
+Joint State Feedback
+        │
+        ▼
+ROS2 Subscriber
+        │
+        ▼
+State Vector Construction
+        │
+        ▼
+LQR Controller
+        │
+        ▼
+Force Calculation
+        │
+        ▼
+ROS2 Publisher
+        │
+        ▼
+Gazebo Force Interface
+        │
+        ▼
+Cart Motion
+        │
+        ▼
+Updated Joint States
+        │
+        └────────────── Closed Loop
+```
+
+This feedback loop executes continuously throughout the simulation, allowing the controller to react to disturbances and stabilize the pendulum in real time.
+
+---
+
+# ROS2 Software Architecture
+
+The project is organized into modular ROS2 packages, each responsible for a dedicated task within the overall control system.
+
+<p align="center">
+    <img src="images/ros2_architecture.png" alt="ROS2 Architecture" width="900">
+</p>
+
+The interaction between the different components is illustrated below.
+
+```text
+                URDF/Xacro
+                     │
+                     ▼
+        robot_state_publisher
+                     │
+                     ▼
+             Gazebo Fortress
+          ┌──────────┴──────────┐
+          │                     │
+          ▼                     ▼
+ Joint State Feedback     Force Interface
+          │                     ▲
+          ▼                     │
+    ROS2 Control Node ──────────┘
+          │
+          ▼
+      LQR Controller
+```
+
+The software architecture consists of the following components.
+
+### Robot Description
+
+Responsible for defining:
+
+- Robot geometry
+- Links
+- Joints
+- Inertia
+- Collision models
+- Visual models
+
+---
+
+### Gazebo Simulation
+
+Provides:
+
+- Physics simulation
+- Gravity
+- Contact dynamics
+- Joint dynamics
+- Force application
+- Real-time simulation environment
+
+---
+
+### Control Node
+
+The Python ROS2 node performs the following tasks:
+
+- Receives joint-state feedback
+- Computes the system state vector
+- Executes the LQR controller
+- Calculates the required force
+- Publishes the force command
+
+---
+
+### ROS2 Communication
+
+Communication between the simulation and controller relies on standard ROS2 publish/subscribe mechanisms.
+
+The controller subscribes to joint-state messages while publishing force commands through the Gazebo interface, resulting in a modular and easily extensible architecture.
+
+---
+
+# Repository Structure
+
+The repository is organized according to standard ROS2 workspace conventions.
+
+```text
+ros2-inverted-pendulum-simulation-and-lqr-control/
+
+├── README.md
+├── LICENSE
+├── requirements.txt
+│
+├── docs/
+│   ├── 01_system_model.md
+│   ├── 02_dynamic_modeling.md
+│   ├── 03_newton_euler_derivation.md
+│   ├── 04_lagrangian_derivation.md
+│   ├── 05_linearization_and_state_space.md
+│   ├── 06_lqr_controller_design.md
+│   ├── 07_ros2_architecture.md
+│   ├── 08_control_node.md
+│   └── 09_simulation_results.md
+│
+├── images/
+│
+└── src/
+    ├── inverted_pendulum_description/
+    ├── inverted_pendulum_gazebo/
+    ├── inverted_pendulum_bringup/
+    ├── inverted_pendulum_control/
+    └── inverted_pendulum_interfaces/
+```
+
+Each package has a clearly defined responsibility, improving maintainability, modularity, and scalability.
+
+---
+
+# Software Packages
+
+## inverted_pendulum_description
+
+Contains the complete robot description:
+
+- URDF/Xacro files
+- Robot geometry
+- Materials
+- Inertial properties
+- RViz configuration
+
+---
+
+## inverted_pendulum_gazebo
+
+Contains:
+
+- Gazebo world
+- Simulation configuration
+- Physics parameters
+- Gazebo plugins
+
+---
+
+## inverted_pendulum_bringup
+
+Responsible for launching the complete simulation.
+
+This package starts:
+
+- Robot State Publisher
+- Gazebo
+- Robot spawning
+- ROS2 bridges
+- Control node
+
+---
+
+## inverted_pendulum_control
+
+Contains the complete controller implementation.
+
+Responsibilities include:
+
+- Reading joint states
+- Constructing the state vector
+- Computing the LQR control law
+- Publishing force commands
+
+---
+
+## inverted_pendulum_interfaces
+
+Reserved for future custom ROS2 interfaces if additional messages or services become necessary.
+
+At the current stage of the project, standard ROS2 message types are sufficient.
+
+---
+
+# Installation
+
+## Prerequisites
+
+Before building the project, make sure the following software is installed.
+
+| Software | Version |
+|-----------|---------|
+| Ubuntu | 22.04 LTS |
+| ROS2 | Humble Hawksbill |
+| Gazebo | Fortress |
+| Python | 3.10+ |
+| colcon | Latest |
+| Git | Latest |
+
+---
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/ros2-inverted-pendulum-simulation-and-lqr-control.git
+
+cd ros2-inverted-pendulum-simulation-and-lqr-control
+```
+
+---
+
+## Install Dependencies
+
+```bash
+source /opt/ros/humble/setup.bash
+
+rosdep install \
+    --from-paths src \
+    --ignore-src \
+    -r \
+    -y
+```
+
+---
+
+## Build the Workspace
+
+```bash
+colcon build --symlink-install
+```
+
+---
+
+## Source the Workspace
+
+```bash
+source install/setup.bash
+```
+
+---
+
+# Running the Simulation
+
+Launch the complete simulation using
+
+```bash
+ros2 launch inverted_pendulum_bringup inverted_pendulum.launch.xml
+```
+
+The launch file automatically starts
+
+- Robot State Publisher
+- Gazebo Fortress
+- Robot Spawner
+- ROS2–Gazebo Bridge
+- LQR Controller Node
+
+After startup, the cart–pole system is spawned into the simulation and the controller immediately begins stabilizing the pendulum around the upright equilibrium.
+
+---
+
+# Project Demonstration
+
+The following animation illustrates the complete closed-loop control system.
+
+<p align="center">
+<img src="images/inverted_pendulum_demo.gif" width="900">
+</p>
+
+The controller continuously receives the system state, computes the optimal control input, and applies the required force to stabilize the pendulum.
+
+---
+
+# Simulation Results
+
+The controller successfully stabilizes the pendulum around the unstable upright equilibrium while maintaining bounded cart motion.
+
+The simulation demonstrates:
+
+- Stable upright balancing
+- Continuous state-feedback control
+- Smooth cart motion
+- Closed-loop disturbance rejection
+- Real-time force control
+- Stable convergence toward equilibrium
+
+Future work will include quantitative performance evaluation using response plots such as:
+
+- Cart position
+- Cart velocity
+- Pendulum angle
+- Pendulum angular velocity
+- Control force
+
+These plots will allow direct analysis of:
+
+- Rise time
+- Settling time
+- Overshoot
+- Control effort
+- Closed-loop stability
+
+---
+
+# Documentation
+
+The mathematical derivations and implementation details are intentionally separated from this README to keep the project overview concise while still providing complete technical documentation.
+
+| Document | Description |
+|-----------|-------------|
+| 01 | System Model |
+| 02 | Dynamic Modeling |
+| 03 | Newton–Euler Derivation |
+| 04 | Lagrangian Derivation |
+| 05 | Linearization & State-Space |
+| 06 | LQR Controller Design |
+| 07 | ROS2 Software Architecture |
+| 08 | Control Node |
+| 09 | Simulation Results |
+
+Each document explains the engineering methodology used during the corresponding stage of the project.
+
+---
+
+# Future Work
+
+Several improvements can be incorporated in future versions of the project.
+
+## Control
+
+- Swing-Up Controller
+- Gain Scheduling
+- Pole Placement
+- Model Predictive Control (MPC)
+- Adaptive Control
+- Robust Control
+
+---
+
+## Estimation
+
+- Kalman Filter
+- Extended Kalman Filter
+- Unscented Kalman Filter
+- Disturbance Observer
+
+---
+
+## Simulation
+
+- Sensor noise
+- Joint friction
+- Actuator dynamics
+- External disturbances
+- Parameter uncertainty
+
+---
+
+## Software
+
+- C++ controller implementation
+- Lifecycle Nodes
+- Parameter Server
+- Dynamic parameter tuning
+- Unit testing
+- Continuous Integration
+
+---
+
+## Hardware
+
+- Real cart–pole prototype
+- Encoder integration
+- DC motor drive
+- Embedded controller
+- Real-time implementation
+
+---
+
+# References
+
+The following references were used throughout the development of this project.
+
+1. Richard M. Murray — Feedback Systems
+2. Franklin, Powell & Emami-Naeini — Feedback Control of Dynamic Systems
+3. Ogata — Modern Control Engineering
+4. Dorf & Bishop — Modern Control Systems
+5. Siciliano et al. — Robotics: Modelling, Planning and Control
+6. Spong, Hutchinson & Vidyasagar — Robot Modeling and Control
+7. ROS2 Documentation
+8. Gazebo Documentation
+
+---
+
+# License
+
+This project is released under the MIT License.
+
+You are free to use, modify, and distribute the source code for educational and research purposes under the terms of the license.
+
+See the LICENSE file for additional information.
+
+---
+
+# Acknowledgments
+
+This project was developed as part of a personal robotics learning journey focused on dynamic modeling, optimal control, and ROS2-based robotic software development.
+
+Its primary objective is to bridge the gap between theoretical control engineering and practical robotics implementation through a complete end-to-end engineering workflow.
