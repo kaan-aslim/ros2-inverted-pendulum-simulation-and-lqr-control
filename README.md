@@ -58,9 +58,9 @@ The primary goal of this repository is therefore not simply to balance a pendulu
 
 # Project Motivation
 
-Maintaining balance is one of the most fundamental challenges in robotics.
+**Maintaining balance** is **one of the most fundamental challenges in robotics.**
 
-Many robotic systems—including humanoid robots, bipedal platforms, quadruped robots, self-balancing mobile robots, and dynamically stabilized manipulators—must continuously regulate their motion to remain stable while interacting with their environment.
+Many robotic systems—including **humanoid robots**, **bipedal platforms**, **quadruped robots**, **self-balancing mobile robots**, and dynamically stabilized manipulators—must continuously regulate their motion to remain stable while interacting with their environment.
 
 Although these systems are mechanically complex, many of their balance-related behaviors can be approximated using variations of the inverted pendulum model. As a result, the inverted pendulum has become one of the most widely studied benchmark problems in robotics and modern control engineering.
 
@@ -704,7 +704,7 @@ Before building the project, make sure the following software is installed.
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/ros2-inverted-pendulum-simulation-and-lqr-control.git
+git clone https://github.com/kaan-aslim/ros2-inverted-pendulum-simulation-and-lqr-control.git
 
 cd ros2-inverted-pendulum-simulation-and-lqr-control
 ```
