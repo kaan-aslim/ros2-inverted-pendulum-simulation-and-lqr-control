@@ -157,7 +157,15 @@ Unlike many educational examples that focus solely on the controller, this proje
 </p>
 
 <p align="center">
+<i>3D Concept Model of the Cart–Pole Inverted Pendulum System.</i>
+</p>
+
+<p align="center">
     <img src="images/system_model_fbd.png" alt="FBD" width="1000">
+</p>
+
+<p align="center">
+<i>Free Body Diagram of the Cart–Pole Inverted Pendulum System.</i>
 </p>
 
 ---
