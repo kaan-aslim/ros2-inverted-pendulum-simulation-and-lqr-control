@@ -149,7 +149,7 @@ The simulated system consists of a cart moving along a horizontal rail with a ri
 The cart is actuated by an external horizontal force, while the pendulum is free to rotate under the influence of gravity. By appropriately controlling the cart motion, the pendulum can be stabilized around its naturally unstable upright equilibrium.
 
 <p align="center">
-    <img src="images/system_model_concept.png" alt="3D Concept System Model" width="900">
+    <img src="images/system_model_concept.png" alt="3D Concept System Model" width="1000">
 </p>
 
 <p align="center">
@@ -161,7 +161,7 @@ Although mechanically simple, this configuration captures the essential dynamics
 Unlike many educational examples that focus solely on the controller, this project begins with the physical definition of the system and develops every subsequent stage from first principles.
 
 <p align="center">
-    <img src="images/system_model_fbd.png" alt="FBD" width="900">
+    <img src="images/system_model_fbd.png" alt="FBD" width="1000">
 </p>
 
 <p align="center">
@@ -216,7 +216,7 @@ where
 This state-space representation forms the basis for both the linearized dynamic model and the subsequent controller design.
 
 <p align="center">
-    <img src="images/generalized_coordinates.png" alt="Generalized Coordinates" width="900">
+    <img src="images/generalized_coordinates.png" alt="Generalized Coordinates" width="1000">
 </p>
 
 <p align="center">
