@@ -1,0 +1,27 @@
+<launch>
+
+    <let name="world_path"
+         value="$(find-pkg-share inverted_pendulum_gazebo)/worlds/inverted_pendulum_world.sdf" />
+    <let name="urdf_path"
+         value="$(find-pkg-share inverted_pendulum_description)/urdf/inverted_pendulum.urdf.xacro" />
+
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
+        <arg name="gz_args" 
+             value="-r $(var world_path)" />
+    </include>
+
+    <node pkg="robot_state_publisher" 
+          exec="robot_state_publisher"
+          name="robot_state_publisher"
+          output="screen">
+            <param name="robot_description"
+                   value="$(command 'xacro $(var urdf_path)')" />
+    </node>
+
+    <node pkg="ros_gz_sim" 
+          exec="create"
+          name="spawn_inverted_pendulum"
+          output="screen" 
+          args="-name inverted_pendulum -topic robot_description" />
+
+</launch>

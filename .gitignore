@@ -1,0 +1,34 @@
+# ROS 2 build outputs
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Python packaging
+*.egg-info/
+.eggs/
+dist/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test and coverage outputs
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="rail_length" value="1.0" />
+    <xacro:property name="rail_width" value="0.1" />
+    <xacro:property name="rail_height" value="0.01" />
+    <xacro:property name="cart_length" value="0.15" />
+    <xacro:property name="cart_width" value="0.1" />
+    <xacro:property name="cart_height" value="0.03" />
+    <xacro:property name="pendulum_radius" value="0.01" />
+    <xacro:property name="pendulum_length" value="0.5" />
+
+    <link name="world" />
+
+    <link name="rail_link">
+        <visual>
+            <geometry>
+                <box size="${rail_length} ${rail_width} ${rail_height}" />
+            </geometry>
+            <origin xyz="0 0 ${rail_height / 2.0}" rpy="0 0 0" />
+            <material name="metalgrey" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${rail_length} ${rail_width} ${rail_height}" />
+            </geometry>
+            <origin xyz="0 0 ${rail_height / 2.0}" rpy="0 0 0" />
+        </collision>
+        <xacro:box_inertia m="5.0" x="${rail_length}" y="${rail_width}" z="${rail_height}"
+                           o_xyz="0 0 ${rail_height / 2.0}" o_rpy="0 0 0" />
+    </link>
+
+    <link name="cart_link">
+        <visual>
+            <geometry>
+                <box size="${cart_length} ${cart_width} ${cart_height}" />
+            </geometry>
+            <origin xyz="0 0 ${cart_height / 2.0}" rpy="0 0 0" />
+            <material name="metalgrey" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${cart_length} ${cart_width} ${cart_height}" />
+            </geometry>
+            <origin xyz="0 0 ${cart_height / 2.0}" rpy="0 0 0" />
+        </collision>
+        <xacro:box_inertia m="3.0" x="${cart_length}" y="${cart_width}" z="${cart_height}"
+                           o_xyz="0 0 ${cart_height / 2.0}" o_rpy="0 0 0" />
+    </link>
+
+    <link name="pendulum_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${pendulum_radius}" length="${pendulum_length}" />
+            </geometry>
+            <origin xyz="0 0 ${pendulum_length / 2.0}" rpy="0 0 0" />
+            <material name="metalgrey" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${pendulum_radius}" length="${pendulum_length}" />
+            </geometry>
+            <origin xyz="0 0 ${(pendulum_length / 2.0) + 0.03}" rpy="0 0 0" />
+        </collision>
+        <xacro:cylinder_inertia m="1.0" r="${pendulum_radius}" l="${pendulum_length}"
+                                    o_xyz="0 0 ${pendulum_length / 2.0}" o_rpy="0 0 0" />
+    </link>
+
+    <joint name="world_rail_joint" type="fixed">
+        <parent link="world" />
+        <child link="rail_link" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <joint name="cart_rail_joint" type="prismatic">
+        <parent link="rail_link" />
+        <child link="cart_link" />
+        <origin xyz="0 0 0.01" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit lower="-0.5" upper="0.5" effort="100.0" velocity="2.0"/>
+    </joint>
+
+    <joint name="pendulum_cart_joint" type="revolute">
+        <parent link="cart_link" />
+        <child link="pendulum_link" />
+        <origin xyz="0 0 ${cart_height}" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5" upper="1.5" effort="100.0" velocity="2.0"/>
+    </joint>
+
+</robot>
