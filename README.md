@@ -152,20 +152,12 @@ The cart is actuated by an external horizontal force, while the pendulum is free
     <img src="images/system_model_concept.png" alt="3D Concept System Model" width="1000">
 </p>
 
-<p align="center">
-<i>3D Concept Model of the Cart–Pole Inverted Pendulum System.</i>
-</p>
-
 Although mechanically simple, this configuration captures the essential dynamics required to study nonlinear modeling, state-space control, and feedback stabilization.
 
 Unlike many educational examples that focus solely on the controller, this project begins with the physical definition of the system and develops every subsequent stage from first principles.
 
 <p align="center">
     <img src="images/system_model_fbd.png" alt="FBD" width="1000">
-</p>
-
-<p align="center">
-<i>Free Body Diagram of the Cart–Pole Inverted Pendulum System.</i>
 </p>
 
 ---
@@ -219,10 +211,6 @@ This state-space representation forms the basis for both the linearized dynamic 
     <img src="images/generalized_coordinates.png" alt="Generalized Coordinates" width="1000">
 </p>
 
-<p align="center">
-<i>Generalized Coordinates of Cart–Pole Inverted Pendulum System.</i>
-</p>
-
 ---
 
 ## Modeling Assumptions
@@ -270,10 +258,6 @@ Within this project, the URDF model serves as the digital representation of the 
 
 <p align="center">
     <img src="images/urdf_xacro_model.png" alt="URDF/Xacro Model" width="1000">
-</p>
-
-<p align="center">
-<i>URDF/Xacro Model Visualized in RViz2.</i>
 </p>
 
 ---
