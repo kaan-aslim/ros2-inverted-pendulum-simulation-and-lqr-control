@@ -567,9 +567,9 @@ Because of these advantages, state-space modeling has become one of the standard
 
 Once the linear state-space model has been obtained, an optimal state-feedback controller can be designed.
 
-This project employs the Linear Quadratic Regulator (LQR), one of the most widely used optimal control techniques for linear dynamic systems.
+This project employs the **Linear Quadratic Regulator (LQR)**, one of the most widely used optimal control techniques for linear dynamic systems. LQR computes an optimal state-feedback gain matrix that minimizes a predefined performance objective while stabilizing the system.
 
-The optimal control law is
+The resulting control law is
 
 <p align="center">
 
@@ -585,7 +585,22 @@ where
 - **K** is the optimal state-feedback gain matrix,
 - **x** is the system state vector.
 
-The controller performance is determined by the weighting matrices **Q** and **R**.
+Rather than selecting the feedback gain **K** manually, LQR formulates the controller design as an optimization problem by minimizing the quadratic cost function
+
+<p align="center">
+
+$$
+J=\int_{0}^{\infty}\left(x^{T}Qx+u^{T}Ru\right)\,dt
+$$
+
+</p>
+
+where
+
+- **Q** penalizes deviations of the system states,
+- **R** penalizes excessive control effort.
+
+The weighting matrices are selected by the designer according to the desired control objectives. For this project, the following values are used:
 
 <p align="center">
 
@@ -606,14 +621,9 @@ $$
 
 </p>
 
-where
+The pendulum angle is assigned the largest weighting (**Q₃₃ = 100**) because maintaining the upright position is the primary control objective. The remaining weights are chosen to achieve smooth cart motion while avoiding unnecessarily aggressive control actions.
 
-- **Q** penalizes deviations of the system states,
-- **R** penalizes excessive control effort.
-
-Within this project, the pendulum angle is assigned the largest weighting (**Q₃₃ = 100**) because maintaining the upright position is the primary control objective. The remaining weights are selected to achieve smooth cart motion while avoiding unnecessarily large control inputs.
-
-Rather than selecting the feedback gains manually, the optimal gain matrix **K** is computed automatically by solving the Continuous Algebraic Riccati Equation (CARE) using numerical algorithms implemented in standard control software libraries.
+Using the selected weighting matrices, LQR solves the **Continuous Algebraic Riccati Equation (CARE)**
 
 <p align="center">
 
@@ -623,13 +633,33 @@ $$
 
 </p>
 
-where
+where **P** is the solution of the Riccati equation.
 
-- **P** is the solution of the Riccati equation.
+The optimal feedback gain matrix is then obtained from
+
+<p align="center">
+
+$$
+K=R^{-1}B^{T}P
+$$
+
+</p>
+
+Finally, the computed gain matrix is substituted into the control law
+
+<p align="center">
+
+$$
+u=-Kx
+$$
+
+</p>
+
+to generate the control force applied to the cart.
 
 In this project, both the Riccati equation and the optimal feedback gain matrix are computed automatically using the **Python Control Systems Library**, eliminating the need for manual calculations.
 
-The complete derivation and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
+The complete derivation, theoretical background, and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
 ---
 
