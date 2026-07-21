@@ -668,7 +668,7 @@ The controller operates continuously in a closed-loop feedback cycle.
 At every control iteration, the current joint states are read from Gazebo, converted into the system state vector, processed by the LQR controller, and finally transformed into a force command applied to the cart.
 
 <p align="center">
-    <img src="images/control_pipeline.png" alt="Control Pipeline" width="750">
+    <img src="images/control_pipeline.png" alt="Control Pipeline" width="600">
 </p>
 
 <p align="center">
