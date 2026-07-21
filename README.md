@@ -273,7 +273,7 @@ Within this project, the URDF model serves as the digital representation of the 
 </p>
 
 <p align="center">
-<i>URDF/Xacro model visualized in RViz2.</i>
+<i>URDF/Xacro Model Visualized in RViz2.</i>
 </p>
 
 ---
@@ -668,7 +668,11 @@ The controller operates continuously in a closed-loop feedback cycle.
 At every control iteration, the current joint states are read from Gazebo, converted into the system state vector, processed by the LQR controller, and finally transformed into a force command applied to the cart.
 
 <p align="center">
-    <img src="images/control_pipeline.png" alt="Control Pipeline" width="900">
+    <img src="images/control_pipeline.png" alt="Control Pipeline" width="1000">
+</p>
+
+<p align="center">
+<i>Control Pipeline of the System.</i>
 </p>
 
 The overall control sequence is summarized below.
@@ -715,7 +719,11 @@ This feedback loop executes continuously throughout the simulation, allowing the
 The project is organized into modular ROS2 packages, each responsible for a dedicated task within the overall control system.
 
 <p align="center">
-    <img src="images/ros2_architecture.png" alt="ROS2 Architecture" width="900">
+    <img src="images/software_architecture.png" alt="ROS2 Architecture" width="1000">
+</p>
+
+<p align="center">
+<i>ROS2 Software Architecture.</i>
 </p>
 
 The interaction between the different components is illustrated below.
