@@ -347,23 +347,11 @@ Applying these equations to the cart–pole system yields the nonlinear equation
 <p align="center">
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F
 $$
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0
 $$
 
 </p>
@@ -402,14 +390,7 @@ The equations of motion are obtained using the Euler–Lagrange equation
 <p align="center">
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial L}{\partial \dot{q}_i}
-\right)
--
-\frac{\partial L}{\partial q_i}
-=
-Q_i
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) - \frac{\partial L}{\partial q_i} = Q_i
 $$
 
 </p>
@@ -424,23 +405,11 @@ Applying the Euler–Lagrange formulation to the cart–pole system produces the
 <p align="center">
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F
 $$
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0
 $$
 
 </p>
