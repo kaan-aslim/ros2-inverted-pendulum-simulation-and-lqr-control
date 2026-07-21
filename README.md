@@ -549,13 +549,17 @@ The state vector is defined as
 <p align="center">
 
 $$
-x=
+\mathbf{x}=
 \begin{bmatrix}
-x & \dot{x} & \theta & \dot{\theta}
-\end{bmatrix}^{T}
+x\\
+\dot{x}\\
+\theta\\
+\dot{\theta}
+\end{bmatrix}
 $$
 
 </p>
+
 
 where
 
