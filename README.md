@@ -659,7 +659,7 @@ $$
 
 to generate the control force applied to the cart.
 
-In application, quadratic cost function **J**, the Riccati equation **P** and the optimal feedback gain matrix **K** are computed automatically using the **Python Control Systems Library**, eliminating the need for manual calculations.
+In practice, the optimization of the quadratic cost function **J**, the numerical solution of the Riccati equation **P**, and the computation of the optimal feedback gain matrix **K** are performed automatically by the computer using built-in numerical algorithms and library functions, eliminating the need for manual calculations.
 
 The complete derivation, theoretical background, and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
