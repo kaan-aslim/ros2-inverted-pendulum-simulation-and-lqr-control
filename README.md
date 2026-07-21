@@ -560,7 +560,6 @@ $$
 
 </p>
 
-
 where
 
 - **x** is the cart position,
@@ -599,10 +598,10 @@ $$
 where
 
 - **u** is the control input (cart force),
-- **K** is the optimal feedback gain matrix,
+- **K** is the optimal state-feedback gain matrix,
 - **x** is the system state vector.
 
-The optimal feedback gain is obtained by solving the Continuous Algebraic Riccati Equation
+Rather than selecting the feedback gains manually, the optimal gain matrix **K** is computed automatically by solving the Continuous Algebraic Riccati Equation (CARE) using numerical algorithms implemented in standard control software libraries.
 
 <p align="center">
 
@@ -618,7 +617,9 @@ where
 - **R** penalizes control effort,
 - **P** is the solution of the Riccati equation.
 
-Within this project, the weighting matrices are selected such that pendulum angle regulation receives the highest priority while minimizing unnecessary cart motion.
+In this project, the Riccati equation and the optimal feedback gain matrix are computed automatically using the **Python Control Systems Library**, eliminating the need for manual calculations.
+
+The weighting matrices are selected such that pendulum angle regulation receives the highest priority while minimizing unnecessary cart motion.
 
 The complete derivation and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
@@ -626,7 +627,7 @@ The complete derivation and tuning procedure are available in **[docs/06_lqr_con
 
 # Why LQR?
 
-LQR minimizes the quadratic cost function
+LQR determines the optimal control law by minimizing the quadratic performance index
 
 <p align="center">
 
@@ -640,6 +641,8 @@ where
 
 - **Q** penalizes state errors,
 - **R** penalizes control effort.
+
+The optimal value of the cost function **J** is evaluated internally by the optimization algorithm during the numerical solution of the Riccati equation. In practice, neither the cost function nor the Riccati equation is solved manually; both are handled automatically by the control library.
 
 This optimization provides an excellent balance between stabilization performance and actuator usage.
 
