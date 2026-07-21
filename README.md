@@ -284,26 +284,93 @@ The first step in controller development is obtaining a mathematical description
 
 For the cart–pole system, the cart translation and pendulum rotation are strongly coupled. Any force applied to the cart directly influences the pendulum motion, while the pendulum simultaneously affects the cart through inertial and gravitational interactions.
 
-To accurately describe this behavior, the equations of motion are derived using two independent analytical methods:
+In robotics, the nonlinear dynamics of a mechanical system are commonly expressed in the following generalized form:
+
+<p align="center">
+
+$$
+M(q)\ddot{q}+C(q,\dot{q})\dot{q}+g(q)=\tau
+$$
+
+</p>
+
+where
+
+- **M(q)** is the inertia (mass) matrix,
+- **C(q, q̇)** represents the Coriolis and centrifugal effects,
+- **g(q)** is the gravity vector,
+- **q** is the vector of generalized coordinates,
+- **τ** is the vector of generalized external forces.
+
+For the cart–pole system, this nonlinear dynamic model is derived using two independent analytical methods:
 
 - Newton–Euler mechanics
 - Lagrangian mechanics
 
-Although these methods originate from different physical principles, they produce the same nonlinear dynamic model. Using both approaches provides mathematical verification while also illustrating two of the most widely used modeling techniques in robotics.
+Although these methods originate from different physical principles, they produce the same nonlinear equations of motion. Using both approaches provides mathematical verification while also illustrating two of the most widely used modeling techniques in robotics.
 
 The complete derivations are provided in the documentation.
 
 ---
 
-## Newton–Euler Formulation
+# Newton–Euler Formulation
 
 The Newton–Euler approach derives the equations of motion directly from force and moment balances.
 
-The translational dynamics of the cart are obtained using Newton's Second Law, while the rotational dynamics of the pendulum are derived by summing the moments acting about the pivot.
+The translational dynamics of the cart are obtained using Newton's Second Law, while the rotational dynamics of the pendulum are derived from the rotational equation of motion about the pivot.
 
-This formulation provides clear physical insight into how gravity, inertia, and the applied control force contribute to the system dynamics.
+The governing equations are
 
-The complete derivation is available in:
+<p align="center">
+
+$$
+\sum F = ma
+$$
+
+$$
+\sum \tau = I\alpha
+$$
+
+</p>
+
+where
+
+- **ΣF** is the resultant external force,
+- **m** is the body mass,
+- **a** is the linear acceleration,
+- **Στ** is the resultant external moment,
+- **I** is the moment of inertia,
+- **α** is the angular acceleration.
+
+Applying these equations to the cart–pole system yields the nonlinear equations of motion
+
+<p align="center">
+
+$$
+(M+m)\ddot{x}
++
+ml\ddot{\theta}\cos\theta
+-
+ml\dot{\theta}^{2}\sin\theta
+=
+F
+$$
+
+$$
+l\ddot{\theta}
++
+\ddot{x}\cos\theta
+-
+g\sin\theta
+=
+0
+$$
+
+</p>
+
+This formulation provides clear physical insight into how inertia, gravity, and the applied control force influence the system dynamics.
+
+The complete derivation is documented in:
 
 ```text
 docs/03_newton_euler_derivation.md
@@ -311,22 +378,80 @@ docs/03_newton_euler_derivation.md
 
 ---
 
-## Lagrangian Formulation
+# Lagrangian Formulation
 
-The Lagrangian method derives the equations of motion using the system's energy rather than individual force balances.
+The Lagrangian approach derives the equations of motion from the system energy rather than individual force balances.
 
-The total kinetic energy and potential energy of the system are first calculated and combined to form the Lagrangian.
+The Lagrangian is defined as
 
-Euler–Lagrange equations are then applied to obtain the nonlinear equations of motion.
+<p align="center">
 
-Compared with the Newton–Euler formulation, the Lagrangian approach often becomes more convenient for systems containing multiple interconnected bodies and generalized coordinates.
+$$
+L = T - V
+$$
 
-The complete derivation is available in:
+</p>
+
+where
+
+- **T** is the total kinetic energy,
+- **V** is the total potential energy.
+
+The equations of motion are obtained using the Euler–Lagrange equation
+
+<p align="center">
+
+$$
+\frac{d}{dt}
+\left(
+\frac{\partial L}{\partial \dot{q}_i}
+\right)
+-
+\frac{\partial L}{\partial q_i}
+=
+Q_i
+$$
+
+</p>
+
+where
+
+- **qᵢ** represents a generalized coordinate,
+- **Qᵢ** is the generalized external force.
+
+Applying the Euler–Lagrange formulation to the cart–pole system produces the same nonlinear equations of motion obtained using the Newton–Euler approach.
+
+<p align="center">
+
+$$
+(M+m)\ddot{x}
++
+ml\ddot{\theta}\cos\theta
+-
+ml\dot{\theta}^{2}\sin\theta
+=
+F
+$$
+
+$$
+l\ddot{\theta}
++
+\ddot{x}\cos\theta
+-
+g\sin\theta
+=
+0
+$$
+
+</p>
+
+Compared with the Newton–Euler formulation, the Lagrangian method becomes particularly convenient for systems containing multiple interconnected rigid bodies and generalized coordinates.
+
+The complete derivation is documented in:
 
 ```text
 docs/04_lagrangian_derivation.md
 ```
-
 ---
 
 ## Nonlinear Equations of Motion
