@@ -667,37 +667,22 @@ The complete derivation, theoretical background, and tuning procedure are availa
 
 # Why LQR?
 
-LQR determines the optimal control law by minimizing the quadratic performance index
+The Linear Quadratic Regulator (LQR) was selected for this project because it provides an effective balance between control performance, implementation simplicity, and computational efficiency for linearized dynamic systems.
 
-<p align="center">
+By minimizing a quadratic cost function that balances state regulation and control effort, LQR automatically computes an optimal state-feedback controller without requiring manual gain tuning. This makes it particularly well suited for stabilization problems such as the inverted pendulum.
 
-$$
-J=\int_{0}^{\infty}\left(x^{T}Qx+u^{T}Ru\right)dt
-$$
-
-</p>
-
-where
-
-- **Q** penalizes state errors,
-- **R** penalizes control effort.
-
-The optimal value of the cost function **J** is evaluated internally by the optimization algorithm during the numerical solution of the Riccati equation. In practice, neither the cost function nor the Riccati equation is solved manually; both are handled automatically by the control library.
-
-This optimization provides an excellent balance between stabilization performance and actuator usage.
-
-LQR was selected for this project because it offers several advantages
+The main advantages of LQR include
 
 - Optimal state-feedback control
 - Straightforward implementation
-- Excellent stabilization performance near equilibrium
-- Robust mathematical foundation
-- Computational efficiency
-- Widely adopted in robotics and aerospace applications
+- Excellent stabilization performance near the equilibrium point
+- Strong mathematical foundation
+- Computational efficiency suitable for real-time applications
+- Widely adopted in robotics, aerospace, and control engineering
 
 Although the controller is designed using a linearized model, it provides excellent performance when the pendulum operates close to the upright equilibrium.
 
-For larger angular deviations, an energy-based swing-up controller can be integrated before switching to LQR.
+For larger angular deviations, an energy-based swing-up controller can first drive the pendulum toward the upright position before handing control over to the LQR stabilizer.
 
 ---
 
