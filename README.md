@@ -668,47 +668,12 @@ The controller operates continuously in a closed-loop feedback cycle.
 At every control iteration, the current joint states are read from Gazebo, converted into the system state vector, processed by the LQR controller, and finally transformed into a force command applied to the cart.
 
 <p align="center">
-    <img src="images/control_pipeline.png" alt="Control Pipeline" width="1000">
+    <img src="images/control_pipeline.png" alt="Control Pipeline" width="750">
 </p>
 
 <p align="center">
 <i>Control Pipeline of the System.</i>
 </p>
-
-The overall control sequence is summarized below.
-
-```text
-Gazebo Simulation
-        │
-        ▼
-Joint State Feedback
-        │
-        ▼
-ROS2 Subscriber
-        │
-        ▼
-State Vector Construction
-        │
-        ▼
-LQR Controller
-        │
-        ▼
-Force Calculation
-        │
-        ▼
-ROS2 Publisher
-        │
-        ▼
-Gazebo Force Interface
-        │
-        ▼
-Cart Motion
-        │
-        ▼
-Updated Joint States
-        │
-        └────────────── Closed Loop
-```
 
 This feedback loop executes continuously throughout the simulation, allowing the controller to react to disturbances and stabilize the pendulum in real time.
 
@@ -718,6 +683,8 @@ This feedback loop executes continuously throughout the simulation, allowing the
 
 The project is organized into modular ROS2 packages, each responsible for a dedicated task within the overall control system.
 
+The interaction between the different components is illustrated below.
+
 <p align="center">
     <img src="images/software_architecture.png" alt="ROS2 Architecture" width="1000">
 </p>
@@ -725,28 +692,6 @@ The project is organized into modular ROS2 packages, each responsible for a dedi
 <p align="center">
 <i>ROS2 Software Architecture.</i>
 </p>
-
-The interaction between the different components is illustrated below.
-
-```text
-                URDF/Xacro
-                     │
-                     ▼
-        robot_state_publisher
-                     │
-                     ▼
-             Gazebo Fortress
-          ┌──────────┴──────────┐
-          │                     │
-          ▼                     ▼
- Joint State Feedback     Force Interface
-          │                     ▲
-          ▼                     │
-    ROS2 Control Node ──────────┘
-          │
-          ▼
-      LQR Controller
-```
 
 The software architecture consists of the following components.
 
