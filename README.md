@@ -585,7 +585,7 @@ where
 - **K** is the optimal state-feedback gain matrix,
 - **x** is the system state vector.
 
-Rather than selecting the feedback gain **K** manually, LQR formulates the controller design as an optimization problem by minimizing the quadratic cost function
+Rather than selecting the feedback gain **K** manually, LQR formulates the controller design as an optimization problem by minimizing the quadratic cost function **J**
 
 <p align="center">
 
@@ -594,6 +594,8 @@ J=\int_{0}^{\infty}\left(x^{T}Qx+u^{T}Ru\right)\,dt
 $$
 
 </p>
+
+This cost function represents the overall control performance by balancing state regulation and control effort.
 
 where
 
@@ -657,7 +659,7 @@ $$
 
 to generate the control force applied to the cart.
 
-In this project, both the Riccati equation and the optimal feedback gain matrix are computed automatically using the **Python Control Systems Library**, eliminating the need for manual calculations.
+In application, quadratic cost function **J**, the Riccati equation **P** and the optimal feedback gain matrix **K** are computed automatically using the **Python Control Systems Library**, eliminating the need for manual calculations.
 
 The complete derivation, theoretical background, and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
