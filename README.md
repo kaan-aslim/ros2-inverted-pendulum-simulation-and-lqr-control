@@ -423,13 +423,36 @@ docs/04_lagrangian_derivation.md
 ```
 ---
 
-## Nonlinear Equations of Motion
+# Nonlinear Equations of Motion
 
 Both derivation methods lead to the same nonlinear dynamic model.
 
 The resulting equations describe the coupled translational and rotational dynamics of the cart–pendulum system.
 
-These equations include:
+The nonlinear equations of motion are
+
+<p align="center">
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^{2}\sin\theta=F
+$$
+
+$$
+l\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
+$$
+
+</p>
+
+where
+
+- **x** is the cart position,
+- **θ** is the pendulum angle,
+- **F** is the applied cart force,
+- **M** and **m** are the cart and pendulum masses,
+- **l** is the distance from the pivot to the pendulum center of mass,
+- **g** is the gravitational acceleration.
+
+These equations include
 
 - Nonlinear trigonometric terms
 - Dynamic coupling
@@ -439,9 +462,7 @@ These equations include:
 
 The nonlinear model accurately represents the physical behavior of the system and serves as the foundation for subsequent controller development.
 
-However, modern state-feedback techniques such as LQR require a linear system representation.
-
-Therefore, the nonlinear equations must first be linearized around the desired operating point.
+However, modern state-feedback techniques such as LQR require a linear system representation. Therefore, the nonlinear equations must first be linearized around the desired operating point.
 
 ---
 
@@ -451,21 +472,33 @@ The nonlinear equations of motion cannot be used directly with classical linear 
 
 To obtain a model suitable for controller design, the nonlinear dynamics are linearized about the upright equilibrium configuration.
 
-The operating point is defined as the state in which:
+The linearization is performed using the first-order Taylor series approximations
+
+<p align="center">
+
+$$
+\sin\theta \approx \theta
+$$
+
+$$
+\cos\theta \approx 1
+$$
+
+</p>
+
+where
+
+- **θ** is assumed to remain sufficiently small around the upright equilibrium.
+
+The operating point is defined as the state in which
 
 - the pendulum remains upright,
 - the cart is stationary,
 - all velocities are zero.
 
-Near this equilibrium, the pendulum angle remains sufficiently small that the nonlinear trigonometric functions can be approximated using the first-order terms of their Taylor series expansion.
+These approximations transform the nonlinear equations into a linear model while preserving the local dynamic behavior around the equilibrium.
 
-This approximation transforms the nonlinear equations into a linear model while preserving the local dynamic behavior around the equilibrium.
-
-The detailed derivation is provided in:
-
-```text
-docs/05_linearization_and_state_space.md
-```
+The complete derivation is available in **[docs/05_linearization_and_state_space.md](docs/05_linearization_and_state_space.md)**.
 
 ---
 
@@ -477,40 +510,61 @@ This representation describes the system dynamics as a set of first-order differ
 
 The continuous-time state-space model is written as
 
+<p align="center">
+
 $$
-\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}
+\dot{x}=Ax+Bu
 $$
+
+$$
+y=Cx+Du
+$$
+
+</p>
 
 where
 
 - **A** represents the system dynamics,
 - **B** represents the control-input matrix,
+- **C** represents the output matrix,
+- **D** represents the direct transmission matrix,
 - **x** is the state vector,
-- **u** is the applied cart force.
-
-The corresponding output equation is
-
-$$
-\mathbf{y}=C\mathbf{x}+D\mathbf{u}
-$$
+- **u** is the applied cart force,
+- **y** is the system output.
 
 The state-space representation provides a compact mathematical description of the system and serves as the basis for controllability analysis, state-feedback control, and optimal controller design.
 
 Within this project, the state-space matrices are obtained directly from the linearized dynamic equations.
 
-The complete derivation of the state-space model, including the construction of the system matrices, is documented in:
-
-```text
-docs/05_linearization_and_state_space.md
-```
+The complete derivation is available in **[docs/05_linearization_and_state_space.md](docs/05_linearization_and_state_space.md)**.
 
 ---
 
-## Why State-Space?
+# Why State-Space?
 
 Unlike transfer-function methods, the state-space approach naturally describes multi-variable dynamic systems and provides direct access to the complete system state.
 
-For robotic systems, this representation offers several important advantages:
+The state vector is defined as
+
+<p align="center">
+
+$$
+x=
+\begin{bmatrix}
+x & \dot{x} & \theta & \dot{\theta}
+\end{bmatrix}^{T}
+$$
+
+</p>
+
+where
+
+- **x** is the cart position,
+- **ẋ** is the cart velocity,
+- **θ** is the pendulum angle,
+- **θ̇** is the pendulum angular velocity.
+
+For robotic systems, this representation offers several important advantages
 
 - Compact representation of coupled dynamics
 - Support for multiple state variables
@@ -526,41 +580,66 @@ Because of these advantages, state-space modeling has become one of the standard
 
 Once the linear state-space model has been obtained, an optimal state-feedback controller can be designed.
 
-This project employs the **Linear Quadratic Regulator (LQR)**, one of the most widely used optimal control techniques for linear dynamic systems.
+This project employs the Linear Quadratic Regulator (LQR), one of the most widely used optimal control techniques for linear dynamic systems.
 
-Unlike classical controllers that independently tune proportional, integral, or derivative gains, LQR computes an optimal feedback law by minimizing a quadratic performance index that simultaneously considers:
+The optimal control law is
 
-- State regulation accuracy
-- Control effort
-- Closed-loop stability
-
-The controller computes the required cart force using the state-feedback law
+<p align="center">
 
 $$
 u=-Kx
 $$
 
-where:
+</p>
 
-- **u** is the control input (cart force)
-- **K** is the optimal feedback gain matrix
-- **x** is the system state vector
+where
 
-The feedback gain matrix is obtained by solving the Continuous Algebraic Riccati Equation (CARE), allowing the controller to balance stabilization performance against actuator effort.
+- **u** is the control input (cart force),
+- **K** is the optimal feedback gain matrix,
+- **x** is the system state vector.
+
+The optimal feedback gain is obtained by solving the Continuous Algebraic Riccati Equation
+
+<p align="center">
+
+$$
+A^{T}P+PA-PBR^{-1}B^{T}P+Q=0
+$$
+
+</p>
+
+where
+
+- **Q** penalizes state deviations,
+- **R** penalizes control effort,
+- **P** is the solution of the Riccati equation.
 
 Within this project, the weighting matrices are selected such that pendulum angle regulation receives the highest priority while minimizing unnecessary cart motion.
 
-The complete derivation, tuning procedure, and theoretical background are provided in:
-
-```text
-docs/06_lqr_controller_design.md
-```
+The complete derivation and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
 ---
 
-## Why LQR?
+# Why LQR?
 
-LQR was selected for this project because it offers several advantages that make it particularly suitable for balancing problems.
+LQR minimizes the quadratic cost function
+
+<p align="center">
+
+$$
+J=\int_{0}^{\infty}\left(x^{T}Qx+u^{T}Ru\right)dt
+$$
+
+</p>
+
+where
+
+- **Q** penalizes state errors,
+- **R** penalizes control effort.
+
+This optimization provides an excellent balance between stabilization performance and actuator usage.
+
+LQR was selected for this project because it offers several advantages
 
 - Optimal state-feedback control
 - Straightforward implementation
