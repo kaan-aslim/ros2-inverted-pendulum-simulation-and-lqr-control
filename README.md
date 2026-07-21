@@ -655,10 +655,6 @@ At every control iteration, the current joint states are read from Gazebo, conve
     <img src="images/control_pipeline.png" alt="Control Pipeline" width="600">
 </p>
 
-<p align="center">
-<i>Control Pipeline of the System.</i>
-</p>
-
 This feedback loop executes continuously throughout the simulation, allowing the controller to react to disturbances and stabilize the pendulum in real time.
 
 ---
@@ -671,10 +667,6 @@ The interaction between the different components is illustrated below.
 
 <p align="center">
     <img src="images/software_architecture.png" alt="ROS2 Architecture" width="1000">
-</p>
-
-<p align="center">
-<i>ROS2 Software Architecture.</i>
 </p>
 
 The software architecture consists of the following components.
