@@ -6,7 +6,7 @@
 
 This project presents the complete engineering workflow for modeling, simulating, and controlling an inverted pendulum using **ROS2 Humble**, **Gazebo Fortress**, **URDF/Xacro**, and **Python**.
 
-Rather than demonstrating only a balancing controller, the objective is to develop the entire control pipeline—from defining a conceptual mechanical system to deriving its mathematical model, designing an optimal controller, implementing the controller as a ROS2 node, and validating its behavior in a physics-based simulation.
+Rather than demonstrating only a balancing controller, the objective is to develop the entire control pipeline from defining a conceptual mechanical system to deriving its mathematical model, designing an optimal controller, implementing the controller as a ROS2 node, and validating its behavior in a physics-based simulation.
 
 The project follows the same sequence of steps commonly encountered during the development of robotic control systems:
 
@@ -269,7 +269,11 @@ Unlike CAD software, URDF is not intended to produce manufacturing-ready mechani
 Within this project, the URDF model serves as the digital representation of the conceptual mechanical system from which all subsequent simulation and control stages are developed.
 
 <p align="center">
-    <img src="images/urdf_model.png" alt="URDF Model" width="800">
+    <img src="images/urdf_xacro_model.png" alt="URDF/Xacro Model" width="1000">
+</p>
+
+<p align="center">
+<i>URDF/Xacro model visualized in RViz2.</i>
 </p>
 
 ---
