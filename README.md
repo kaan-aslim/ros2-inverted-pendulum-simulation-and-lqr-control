@@ -474,9 +474,71 @@ These equations describe the local dynamics around the upright equilibrium and f
 
 The complete derivation is available in `docs/05_linearization_and_state_space.md`.
 
+## Why State-Space?
+
+After linearization, the system dynamics can be represented using either transfer functions or the state-space formulation. For robotic systems, the state-space approach is generally preferred because it naturally describes coupled multi-variable dynamics and provides direct access to the complete system state.
+
+The state vector is defined as
+
+$$
+x =
+\begin{bmatrix}
+x & \dot{x} & \theta & \dot{\theta}
+\end{bmatrix}^{T}
+$$
+
+where
+
+- **x** is the cart position,
+- **ẋ** is the cart velocity,
+- **θ** is the pendulum angle,
+- **θ̇** is the pendulum angular velocity.
+
+For robotic systems, the state-space formulation offers several important advantages:
+
+- Compact representation of coupled dynamics
+- Support for multiple state variables
+- Straightforward implementation of state-feedback control
+- Compatibility with optimal control techniques
+- Scalability to higher-degree-of-freedom robotic systems
+
+Because of these advantages, state-space modeling has become one of the standard mathematical frameworks used throughout modern robotics and control engineering.
+
 ## State-Space Representation
 
-Following linearization, the system is expressed in state-space form.
+Using the defined state vector, the linearized system is expressed in continuous-time state-space form.
+
+The state-space model is written as
+
+$$
+\dot{x}=Ax+Bu
+$$
+
+$$
+y=Cx+Du
+$$
+
+where
+
+- **A** represents the system dynamics,
+- **B** represents the control-input matrix,
+- **C** represents the output matrix,
+- **D** represents the direct transmission matrix,
+- **x** is the state vector,
+- **u** is the applied cart force,
+- **y** is the system output.
+
+Within this project, the state-space matrices are obtained directly from the linearized dynamic equations.
+
+This mathematical representation serves as the foundation for controllability analysis, state-feedback control, and the LQR controller implemented in this project.
+
+The complete derivation is available in `docs/05_linearization_and_state_space.md`.
+
+---
+
+## State-Space Representation
+
+Following linearization, the system is expressed in state-space form (matrix representation).
 
 This representation describes the system dynamics as a set of first-order differential equations, making it well suited for modern control design.
 
