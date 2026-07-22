@@ -924,19 +924,39 @@ After startup, the cart–pole system is spawned into the simulation and the con
 
 ---
 
-## Controller Validation
+# Controller Validation
 
 The LQR controller can be evaluated by introducing external disturbances into the simulation. Three different disturbance scenarios are available for validating the controller performance.
 
 > **Expected behavior:** After each disturbance, the cart should move to stabilize the pendulum while keeping the system within the rail limits before returning toward its equilibrium position.
 
-### 1. Collision Disturbance
+## Collision Disturbance
 
 Drop an external object (e.g., a sphere) onto the pendulum to generate an impulse disturbance. The controller should reject the disturbance and restore the pendulum to the upright equilibrium.
 
 ---
 
-### 2. Continuous Torque Disturbance
+## Impulse Torque Disturbance
+
+A short-duration disturbance can be generated using the disturbance node.
+
+```bash
+ros2 run inverted_pendulum_control disturbance_test \
+  --ros-args \
+  -p torque:=0.5 \
+  -p duration:=0.05
+```
+
+Parameters:
+
+- `torque` – Disturbance torque (N·m)
+- `duration` – Torque application time (s)
+
+The disturbance node automatically removes the applied torque after the specified duration, creating an impulse-like disturbance for evaluating the controller response.
+
+---
+
+## Continuous Torque Disturbance
 
 A constant external torque can be applied using the dedicated ROS topic.
 
@@ -957,26 +977,6 @@ ros2 topic pub --once \
 std_msgs/msg/Float64 \
 "{data: 0.0}"
 ```
-
----
-
-### 3. Impulse Torque Disturbance
-
-A short-duration disturbance can be generated using the disturbance node.
-
-```bash
-ros2 run inverted_pendulum_control disturbance_test \
-  --ros-args \
-  -p torque:=0.5 \
-  -p duration:=0.05
-```
-
-Parameters:
-
-- `torque` – Disturbance torque (N·m)
-- `duration` – Torque application time (s)
-
-The disturbance node automatically removes the applied torque after the specified duration, creating an impulse-like disturbance for evaluating the controller response.
 
 ---
 
