@@ -787,7 +787,6 @@ ros2-inverted-pendulum-simulation-and-lqr-control/
     ├── inverted_pendulum_gazebo/
     ├── inverted_pendulum_bringup/
     ├── inverted_pendulum_control/
-    └── inverted_pendulum_interfaces/
 ```
 
 Each package has a clearly defined responsibility, improving maintainability, modularity, and scalability.
