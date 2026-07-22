@@ -444,13 +444,13 @@ To obtain a model suitable for controller design, the nonlinear dynamics are lin
 
 The linearization is performed using the first-order Taylor series approximations
 
-\[
+$$
 \sin\theta \approx \theta
-\]
+$$
 
-\[
+$$
 \cos\theta \approx 1
-\]
+$$
 
 where **θ** is assumed to remain sufficiently small around the upright equilibrium.
 
@@ -462,13 +462,13 @@ The operating point is defined as the state in which
 
 Applying these approximations to the nonlinear equations of motion yields the following linearized system:
 
-\[
+$$
 (M+m)\ddot{x}+ml\ddot{\theta}=F
-\]
+$$
 
-\[
+$$
 l\ddot{\theta}+\ddot{x}-g\theta=0
-\]
+$$
 
 These equations describe the local dynamics around the upright equilibrium and form the basis for the state-space representation used in the LQR controller design.
 
