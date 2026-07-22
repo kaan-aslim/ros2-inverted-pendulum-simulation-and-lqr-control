@@ -941,7 +941,7 @@ std_msgs/msg/Float64 \
 
 The following animation illustrates the complete closed-loop control system.
 
-https://github.com/user-attachments/assets/079aa68d-7fe5-41cf-8751-8d475cc456b1
+https://github.com/user-attachments/assets/d0604abc-ca9e-400f-a0c8-673da7067610
 
 The controller continuously receives the system state, computes the optimal control input, and applies the required force to stabilize the pendulum.
 
