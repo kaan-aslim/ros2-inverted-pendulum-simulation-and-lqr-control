@@ -161,8 +161,6 @@ Unlike many educational examples that focus solely on the controller, this proje
     <img src="images/system_model_fbd.png" alt="FBD" width="1000">
 </p>
 
----
-
 ## System Parameters
 
 The conceptual mechanical system is defined using the following physical parameters.
@@ -177,8 +175,6 @@ The conceptual mechanical system is defined using the following physical paramet
 | **θ** | Pendulum angle | Variable |
 
 These values are intentionally selected to create a realistic yet computationally efficient simulation model suitable for controller development.
-
----
 
 ## Coordinate System
 
@@ -212,8 +208,6 @@ This state-space representation forms the basis for both the linearized dynamic 
     <img src="images/generalized_coordinates.png" alt="Generalized Coordinates" width="1000">
 </p>
 
----
-
 ## Modeling Assumptions
 
 To focus on the fundamental dynamics of the inverted pendulum while keeping the mathematical model tractable, the following assumptions are adopted throughout the project.
@@ -233,8 +227,6 @@ To focus on the fundamental dynamics of the inverted pendulum while keeping the 
 These assumptions simplify the analytical model while preserving the essential characteristics required for controller design.
 
 Many practical robotic systems introduce additional effects such as friction, backlash, actuator dynamics, compliance, and measurement noise. These effects can be incorporated in future extensions of the project after establishing the nominal system behavior.
-
----
 
 ## URDF/Xacro Model
 
@@ -296,9 +288,7 @@ Although these methods originate from different physical principles, they produc
 
 The complete derivations are provided in the documentation.
 
----
-
-# Newton–Euler Formulation
+## Newton–Euler Formulation
 
 The Newton–Euler approach derives the equations of motion directly from force and moment balances.
 
@@ -349,9 +339,7 @@ The complete derivation is documented in:
 docs/03_newton_euler_derivation.md
 ```
 
----
-
-# Lagrangian Formulation
+## Lagrangian Formulation
 
 The Lagrangian approach derives the equations of motion from the system energy rather than individual force balances.
 
@@ -406,9 +394,8 @@ The complete derivation is documented in:
 ```text
 docs/04_lagrangian_derivation.md
 ```
----
 
-# Nonlinear Equations of Motion
+## Nonlinear Equations of Motion
 
 Both derivation methods lead to the same nonlinear dynamic model.
 
@@ -449,9 +436,7 @@ The nonlinear model accurately represents the physical behavior of the system an
 
 However, modern state-feedback techniques such as LQR require a linear system representation. Therefore, the nonlinear equations must first be linearized around the desired operating point.
 
----
-
-# Linearization
+## Linearization
 
 The nonlinear equations of motion cannot be used directly with classical linear optimal control methods.
 
@@ -485,9 +470,7 @@ These approximations transform the nonlinear equations into a linear model while
 
 The complete derivation is available in **[docs/05_linearization_and_state_space.md](docs/05_linearization_and_state_space.md)**.
 
----
-
-# State-Space Representation
+## State-Space Representation
 
 Following linearization, the system is expressed in state-space form.
 
@@ -523,9 +506,7 @@ Within this project, the state-space matrices are obtained directly from the lin
 
 The complete derivation is available in **[docs/05_linearization_and_state_space.md](docs/05_linearization_and_state_space.md)**.
 
----
-
-# Why State-Space?
+## Why State-Space?
 
 Unlike transfer-function methods, the state-space approach naturally describes multi-variable dynamic systems and provides direct access to the complete system state.
 
@@ -790,7 +771,7 @@ Each package has a clearly defined responsibility, improving maintainability, mo
 
 # Software Packages
 
-## inverted_pendulum_description
+### inverted_pendulum_description
 
 Contains the complete robot description:
 
@@ -801,7 +782,7 @@ Contains the complete robot description:
 - Gazebo plugin definitions
 - RViz configuration & launch
 
-## inverted_pendulum_gazebo
+### inverted_pendulum_gazebo
 
 Contains:
 
@@ -809,7 +790,7 @@ Contains:
 - Physics parameters
 - Simulation configuration & launch
 
-## inverted_pendulum_bringup
+### inverted_pendulum_bringup
 
 Responsible for launching the complete simulation.
 
@@ -822,7 +803,7 @@ This package starts:
 - Control node
 - RViz
 
-## inverted_pendulum_control
+### inverted_pendulum_control
 
 Contains the complete controller implementation.
 
@@ -910,11 +891,11 @@ The LQR controller can be evaluated by introducing external disturbances into th
 
 > **Expected behavior:** After each disturbance, the cart should move to stabilize the pendulum while keeping the system within the rail limits before returning toward its equilibrium position.
 
-## Collision Disturbance
+### Collision Disturbance
 
 Drop an external object (e.g., a sphere) onto the pendulum to generate an impulse disturbance. The controller should reject the disturbance and restore the pendulum to the upright equilibrium.
 
-## Impulse Torque Disturbance
+### Impulse Torque Disturbance
 
 A short-duration disturbance can be generated using the disturbance node.
 
@@ -932,7 +913,7 @@ Parameters:
 
 The disturbance node automatically removes the applied torque after the specified duration, creating an impulse-like disturbance for evaluating the controller response.
 
-## Continuous Torque Disturbance
+### Continuous Torque Disturbance
 
 A constant external torque can be applied using the dedicated ROS topic.
 
@@ -1021,7 +1002,7 @@ Each document explains the engineering methodology used during the corresponding
 
 Several improvements can be incorporated in future versions of the project.
 
-## Control
+### Control
 
 - Swing-Up Controller
 - Gain Scheduling
@@ -1032,7 +1013,7 @@ Several improvements can be incorporated in future versions of the project.
 
 ---
 
-## Estimation
+### Estimation
 
 - Kalman Filter
 - Extended Kalman Filter
@@ -1041,7 +1022,7 @@ Several improvements can be incorporated in future versions of the project.
 
 ---
 
-## Simulation
+### Simulation
 
 - Sensor noise
 - Joint friction
@@ -1051,7 +1032,7 @@ Several improvements can be incorporated in future versions of the project.
 
 ---
 
-## Software
+### Software
 
 - C++ controller implementation
 - Lifecycle Nodes
@@ -1062,7 +1043,7 @@ Several improvements can be incorporated in future versions of the project.
 
 ---
 
-## Hardware
+### Hardware
 
 - Real cart–pole prototype
 - Encoder integration
