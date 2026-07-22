@@ -724,8 +724,6 @@ Responsible for defining:
 - Collision models
 - Visual models
 
----
-
 ### Gazebo Simulation
 
 Provides:
@@ -737,8 +735,6 @@ Provides:
 - Force application
 - Real-time simulation environment
 
----
-
 ### Control Node
 
 The Python ROS2 node performs the following tasks:
@@ -748,8 +744,6 @@ The Python ROS2 node performs the following tasks:
 - Executes the LQR controller
 - Calculates the required force
 - Publishes the force command
-
----
 
 ### ROS2 Communication
 
@@ -807,8 +801,6 @@ Contains the complete robot description:
 - Gazebo plugin definitions
 - RViz configuration & launch
 
----
-
 ## inverted_pendulum_gazebo
 
 Contains:
@@ -816,8 +808,6 @@ Contains:
 - Gazebo world
 - Physics parameters
 - Simulation configuration & launch
-
----
 
 ## inverted_pendulum_bringup
 
@@ -831,8 +821,6 @@ This package starts:
 - ROS2 bridges
 - Control node
 - RViz
-
----
 
 ## inverted_pendulum_control
 
@@ -862,8 +850,6 @@ Before building the project, make sure the following software is installed.
 | colcon | Latest |
 | Git | Latest |
 
----
-
 ## Clone the Repository
 
 ```bash
@@ -871,8 +857,6 @@ git clone https://github.com/kaan-aslim/ros2-inverted-pendulum-simulation-and-lq
 
 cd ros2-inverted-pendulum-simulation-and-lqr-control
 ```
-
----
 
 ## Install Dependencies
 
@@ -886,15 +870,11 @@ rosdep install \
     -y
 ```
 
----
-
 ## Build the Workspace
 
 ```bash
 colcon build --symlink-install
 ```
-
----
 
 ## Source the Workspace
 
@@ -934,8 +914,6 @@ The LQR controller can be evaluated by introducing external disturbances into th
 
 Drop an external object (e.g., a sphere) onto the pendulum to generate an impulse disturbance. The controller should reject the disturbance and restore the pendulum to the upright equilibrium.
 
----
-
 ## Impulse Torque Disturbance
 
 A short-duration disturbance can be generated using the disturbance node.
@@ -953,8 +931,6 @@ Parameters:
 - `duration` – Torque application time (s)
 
 The disturbance node automatically removes the applied torque after the specified duration, creating an impulse-like disturbance for evaluating the controller response.
-
----
 
 ## Continuous Torque Disturbance
 
