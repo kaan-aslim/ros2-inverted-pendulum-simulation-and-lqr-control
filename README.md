@@ -513,7 +513,7 @@ Because of these advantages, state-space modeling has become one of the standard
 
 ## State-Space Representation
 
-Using the defined state vector, the linearized system is expressed in continuous-time state-space form (matrix representation).
+Using the defined state vector, the linearized system is represented in continuous-time state-space form using the matrices A, B, C, and D.
 
 The continuous-time state-space model is written as
 
