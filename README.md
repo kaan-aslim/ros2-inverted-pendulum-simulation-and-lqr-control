@@ -645,9 +645,7 @@ In practice, the optimization of the quadratic cost function **J**, the numerica
 
 The complete derivation, theoretical background, and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
 
----
-
-# Why LQR?
+## Why LQR?
 
 The Linear Quadratic Regulator (LQR) was selected for this project because it provides an effective balance between control performance, implementation simplicity, and computational efficiency for linearized dynamic systems.
 
@@ -1011,16 +1009,12 @@ Several improvements can be incorporated in future versions of the project.
 - Adaptive Control
 - Robust Control
 
----
-
 ### Estimation
 
 - Kalman Filter
 - Extended Kalman Filter
 - Unscented Kalman Filter
 - Disturbance Observer
-
----
 
 ### Simulation
 
@@ -1030,8 +1024,6 @@ Several improvements can be incorporated in future versions of the project.
 - External disturbances
 - Parameter uncertainty
 
----
-
 ### Software
 
 - C++ controller implementation
@@ -1040,8 +1032,6 @@ Several improvements can be incorporated in future versions of the project.
 - Dynamic parameter tuning
 - Unit testing
 - Continuous Integration
-
----
 
 ### Hardware
 
