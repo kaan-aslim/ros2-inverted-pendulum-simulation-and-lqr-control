@@ -10,7 +10,6 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/inverted_pendulum_control']),
         ('share/inverted_pendulum_control', ['package.xml']),
-        ('share/inverted_pendulum_control/launch', ['launch/control.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'control_node = inverted_pendulum_control.control_node:main',
+            'disturbance_test = inverted_pendulum_control.disturbance_test:main',
         ],
     },
 )
