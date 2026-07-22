@@ -927,9 +927,7 @@ After startup, the cart–pole system is spawned into the simulation and the con
 
 The following animation illustrates the complete closed-loop control system.
 
-<p align="center">
-<img src="images/inverted_pendulum_demo.gif" width="900">
-</p>
+https://github.com/user-attachments/assets/079aa68d-7fe5-41cf-8751-8d475cc456b1
 
 The controller continuously receives the system state, computes the optimal control input, and applies the required force to stabilize the pendulum.
 
