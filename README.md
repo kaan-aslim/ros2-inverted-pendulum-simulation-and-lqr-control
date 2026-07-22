@@ -444,21 +444,15 @@ To obtain a model suitable for controller design, the nonlinear dynamics are lin
 
 The linearization is performed using the first-order Taylor series approximations
 
-<p align="center">
-
-$$
+\[
 \sin\theta \approx \theta
-$$
+\]
 
-$$
+\[
 \cos\theta \approx 1
-$$
+\]
 
-</p>
-
-where
-
-- **θ** is assumed to remain sufficiently small around the upright equilibrium.
+where **θ** is assumed to remain sufficiently small around the upright equilibrium.
 
 The operating point is defined as the state in which
 
@@ -466,9 +460,19 @@ The operating point is defined as the state in which
 - the cart is stationary,
 - all velocities are zero.
 
-These approximations transform the nonlinear equations into a linear model while preserving the local dynamic behavior around the equilibrium.
+Applying these approximations to the nonlinear equations of motion yields the following linearized system:
 
-The complete derivation is available in **[docs/05_linearization_and_state_space.md](docs/05_linearization_and_state_space.md)**.
+\[
+(M+m)\ddot{x}+ml\ddot{\theta}=F
+\]
+
+\[
+l\ddot{\theta}+\ddot{x}-g\theta=0
+\]
+
+These equations describe the local dynamics around the upright equilibrium and form the basis for the state-space representation used in the LQR controller design.
+
+The complete derivation is available in `docs/05_linearization_and_state_space.md`.
 
 ## State-Space Representation
 
