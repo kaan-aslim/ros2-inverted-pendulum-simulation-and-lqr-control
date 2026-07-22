@@ -804,7 +804,8 @@ Contains the complete robot description:
 - Robot geometry
 - Materials
 - Inertial properties
-- RViz configuration
+- Gazebo plugin definitions
+- RViz configuration & launch
 
 ---
 
@@ -813,9 +814,8 @@ Contains the complete robot description:
 Contains:
 
 - Gazebo world
-- Simulation configuration
 - Physics parameters
-- Gazebo plugins
+- Simulation configuration & launch
 
 ---
 
@@ -830,6 +830,7 @@ This package starts:
 - Robot spawning
 - ROS2 bridges
 - Control node
+- RViz
 
 ---
 
@@ -843,14 +844,6 @@ Responsibilities include:
 - Constructing the state vector
 - Computing the LQR control law
 - Publishing force commands
-
----
-
-## inverted_pendulum_interfaces
-
-Reserved for future custom ROS2 interfaces if additional messages or services become necessary.
-
-At the current stage of the project, standard ROS2 message types are sufficient.
 
 ---
 
