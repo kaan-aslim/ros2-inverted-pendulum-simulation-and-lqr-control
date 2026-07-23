@@ -331,13 +331,15 @@ $$
 Their first derivatives are:
 
 $$ 
-\dot{q} = \begin{bmatrix} \dot{x} \\ \dot{\theta} \end{bmatrix}
+\dot{q} = \begin{bmatrix} \dot{x} \\
+\dot{\theta} \end{bmatrix}
 $$
 
 and their second derivatives are:
 
 $$ 
-\ddot{q} = \begin{bmatrix} \ddot{x} \\ \ddot{\theta} \end{bmatrix}
+\ddot{q} = \begin{bmatrix} \ddot{x} \\
+\ddot{\theta} \end{bmatrix}
 $$
 
 where:
@@ -665,7 +667,8 @@ and acts vertically downward through the pendulum centre of mass.
 In vector form:
 
 $$
-\mathbf{W}_p = \begin{bmatrix} 0 \\ -mg \end{bmatrix}
+\mathbf{W}_p = \begin{bmatrix} 0 \\
+-mg \end{bmatrix}
 $$
 
 Gravity is responsible for the instability of the upright equilibrium.
@@ -1497,7 +1500,8 @@ After applying the modelling assumptions and definitions, the inverted pendulum 
 The generalized-coordinate vector is:
 
 $$
-q = \begin{bmatrix} x \\ \theta \end{bmatrix}
+q = \begin{bmatrix} x \\
+\theta \end{bmatrix}
 $$
 
 The centre-of-mass position is:
