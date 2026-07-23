@@ -289,7 +289,8 @@ $$
 Therefore, the configuration of the system can be written as:
 
 $$
-q = \begin{bmatrix} x \\ \theta \end{bmatrix}
+q = \begin{bmatrix} x \\
+\theta \end{bmatrix}
 $$
 
 where \(q\) is the vector of generalized coordinates.
