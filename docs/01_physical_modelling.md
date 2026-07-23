@@ -289,11 +289,7 @@ $$
 Therefore, the configuration of the system can be written as:
 
 $$
-q =
-\begin{bmatrix}
-x \\
-\theta
-\end{bmatrix}
+q = \begin{bmatrix} x \\ \theta \end{bmatrix}
 $$
 
 where \(q\) is the vector of generalized coordinates.
@@ -325,37 +321,20 @@ $$
 
 The generalized-coordinate vector is therefore:
 
-$$
-q =
-\begin{bmatrix}
-q_1 \\
-q_2
-\end{bmatrix}
-=
-\begin{bmatrix}
-x \\
-\theta
-\end{bmatrix}
+$$ 
+q = \begin{bmatrix} q_1 \\ q_2 \end{bmatrix} = \begin{bmatrix} x \\ \theta \end{bmatrix}
 $$
 
 Their first derivatives are:
 
-$$
-\dot{q} =
-\begin{bmatrix}
-\dot{x} \\
-\dot{\theta}
-\end{bmatrix}
+$$ 
+\dot{q} = \begin{bmatrix} \dot{x} \\ \dot{\theta} \end{bmatrix}
 $$
 
 and their second derivatives are:
 
-$$
-\ddot{q} =
-\begin{bmatrix}
-\ddot{x} \\
-\ddot{\theta}
-\end{bmatrix}
+$$ 
+\ddot{q} = \begin{bmatrix} \ddot{x} \\ \ddot{\theta} \end{bmatrix}
 $$
 
 where:
@@ -465,13 +444,8 @@ The Gazebo joint position depends on:
 
 Therefore, the software may require a transformation such as:
 
-$$
-\theta_{\text{model}}
-=
-s_\theta
-\left(
-\theta_{\text{joint}}-\theta_{\text{offset}}
-\right)
+$$ 
+\theta_{\text{model}} = s_\theta \left( \theta_{\text{joint}}-\theta_{\text{offset}} \right)
 $$
 
 where:
@@ -559,11 +533,7 @@ $$
 differentiate with respect to time:
 
 $$
-\dot{x}_p
-=
-\dot{x}
-+
-l\dot{\theta}\cos\theta
+\dot{x}_p = \dot{x} + l\dot{\theta}\cos\theta
 $$
 
 Similarly:
@@ -575,9 +545,7 @@ $$
 therefore:
 
 $$
-\dot{y}_p
-=
--l\dot{\theta}\sin\theta
+\dot{y}_p = -l\dot{\theta}\sin\theta
 $$
 
 These expressions are required when calculating the pendulum kinetic energy.
@@ -585,37 +553,19 @@ These expressions are required when calculating the pendulum kinetic energy.
 The squared centre-of-mass speed is:
 
 $$
-v_p^2
-=
-\dot{x}_p^2+\dot{y}_p^2
+v_p^2 = \dot{x}_p^2+\dot{y}_p^2
 $$
 
 Substituting the velocity components:
 
 $$
-v_p^2
-=
-\left(
-\dot{x}
-+
-l\dot{\theta}\cos\theta
-\right)^2
-+
-\left(
--l\dot{\theta}\sin\theta
-\right)^2
+v_p^2 = \left( \dot{x} + l\dot{\theta}\cos\theta \right)^2 + \left( -l\dot{\theta}\sin\theta \right)^2
 $$
 
 After expansion:
 
 $$
-v_p^2
-=
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2
+v_p^2 = \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2
 $$
 
 because:
@@ -635,23 +585,13 @@ The centre-of-mass acceleration is obtained by differentiating the velocity equa
 From:
 
 $$
-\dot{x}_p
-=
-\dot{x}
-+
-l\dot{\theta}\cos\theta
+\dot{x}_p = \dot{x} + l\dot{\theta}\cos\theta
 $$
 
 the horizontal acceleration becomes:
 
 $$
-\ddot{x}_p
-=
-\ddot{x}
-+
-l\ddot{\theta}\cos\theta
--
-l\dot{\theta}^2\sin\theta
+\ddot{x}_p = \ddot{x} + l\ddot{\theta}\cos\theta - l\dot{\theta}^2\sin\theta
 $$
 
 The three terms represent:
@@ -663,19 +603,13 @@ The three terms represent:
 From:
 
 $$
-\dot{y}_p
-=
--l\dot{\theta}\sin\theta
+\dot{y}_p = -l\dot{\theta}\sin\theta
 $$
 
 the vertical acceleration becomes:
 
 $$
-\ddot{y}_p
-=
--l\ddot{\theta}\sin\theta
--
-l\dot{\theta}^2\cos\theta
+\ddot{y}_p = -l\ddot{\theta}\sin\theta - l\dot{\theta}^2\cos\theta
 $$
 
 The centre-of-mass acceleration expressions are required when applying Newton's second law directly to the pendulum.
@@ -728,11 +662,7 @@ and acts vertically downward through the pendulum centre of mass.
 In vector form:
 
 $$
-\mathbf{W}_p =
-\begin{bmatrix}
-0 \\
--mg
-\end{bmatrix}
+\mathbf{W}_p = \begin{bmatrix} 0 \\ -mg \end{bmatrix}
 $$
 
 Gravity is responsible for the instability of the upright equilibrium.
@@ -790,10 +720,7 @@ for the vertical reaction.
 The forces acting on the pendulum at the pivot are equal and opposite to the forces acting on the cart:
 
 $$
-\mathbf{F}_{\text{cart on pendulum}}
-=
--
-\mathbf{F}_{\text{pendulum on cart}}
+\mathbf{F}_{\text{cart on pendulum}} = - \mathbf{F}_{\text{pendulum on cart}}
 $$
 
 These are internal forces for the complete cart–pendulum system.
@@ -1014,19 +941,13 @@ A force produces a moment about a point when its line of action does not pass th
 The moment is:
 
 $$
-\boldsymbol{\tau}
-=
-\mathbf{r}
-\times
-\mathbf{F}
+\boldsymbol{\tau} = \mathbf{r} \times \mathbf{F}
 $$
 
 For planar motion, the scalar moment can be written as:
 
 $$
-\tau_z
-=
-r_xF_y-r_yF_x
+\tau_z = r_xF_y-r_yF_x
 $$
 
 where:
@@ -1057,35 +978,25 @@ A rigid body's resistance to angular acceleration is described by its mass momen
 For a uniform slender rod of total length \(L\), the moment of inertia about its centre of mass is:
 
 $$
-I_{\text{COM}}
-=
-\frac{1}{12}mL^2
+I_{\text{COM}} = \frac{1}{12}mL^2
 $$
 
 Using the parallel-axis theorem, the moment of inertia about one end is:
 
 $$
-I_{\text{pivot}}
-=
-I_{\text{COM}}
-+
-m\left(\frac{L}{2}\right)^2
+I_{\text{pivot}} = I_{\text{COM}} + m\left(\frac{L}{2}\right)^2
 $$
 
 Therefore:
 
 $$
-I_{\text{pivot}}
-=
-\frac{1}{3}mL^2
+I_{\text{pivot}} = \frac{1}{3}mL^2
 $$
 
 If the pendulum is approximated as a point mass located at distance \(l\), then:
 
 $$
-I_{\text{pivot}}
-=
-ml^2
+I_{\text{pivot}} = ml^2
 $$
 
 These models are not identical.
@@ -1378,9 +1289,7 @@ $$
 Its position and velocity provide:
 
 $$
-x
-\quad\text{and}\quad
-\dot{x}
+x \quad\text{and}\quad \dot{x}
 $$
 
 ### 27.3 Revolute Joint
@@ -1396,9 +1305,7 @@ $$
 Its position and velocity provide the raw joint measurements used to determine:
 
 $$
-\theta
-\quad\text{and}\quad
-\dot{\theta}
+\theta \quad\text{and}\quad \dot{\theta}
 $$
 
 ### 27.4 Inertial Properties
@@ -1494,9 +1401,7 @@ $$
 has units:
 
 $$
-\text{N}
-=
-\text{kg}\cdot\frac{\text{m}}{\text{s}^2}
+\text{N} = \text{kg}\cdot\frac{\text{m}}{\text{s}^2}
 $$
 
 The term:
@@ -1508,9 +1413,7 @@ $$
 has units:
 
 $$
-\text{kg}\cdot\text{m}\cdot\frac{1}{\text{s}^2}
-=
-\text{N}
+\text{kg}\cdot\text{m}\cdot\frac{1}{\text{s}^2} = \text{N}
 $$
 
 because angular acceleration in radians per second squared is dimensionally treated as \(1/\text{s}^2\).
@@ -1524,9 +1427,7 @@ $$
 has units:
 
 $$
-\text{kg}\cdot\frac{\text{m}}{\text{s}^2}\cdot\text{m}
-=
-\text{N}\cdot\text{m}
+\text{kg}\cdot\frac{\text{m}}{\text{s}^2}\cdot\text{m} = \text{N}\cdot\text{m}
 $$
 
 which is torque.
@@ -1593,11 +1494,7 @@ After applying the modelling assumptions and definitions, the inverted pendulum 
 The generalized-coordinate vector is:
 
 $$
-q =
-\begin{bmatrix}
-x \\
-\theta
-\end{bmatrix}
+q = \begin{bmatrix} x \\ \theta \end{bmatrix}
 $$
 
 The centre-of-mass position is:
