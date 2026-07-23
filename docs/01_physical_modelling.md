@@ -1039,17 +1039,17 @@ For this project, the nominal physical parameters are listed below.
 
 | Symbol | Description | Project Value |
 |---------|-------------|---------------|
-| M | Cart mass | 3.0 kg |
-| m | Pendulum mass | 1.0 kg |
-| L | Total pendulum length | 0.5 m |
-| l | Pivot-to-centre-of-mass distance | 0.25 m (assuming a uniform rod) |
-| g | Gravitational acceleration | 9.81 m/s² |
-| Rail length | Total rail length | 1.0 m |
-| Cart travel limit | Prismatic joint travel range | Approximately −0.5 m to +0.5 m |
+| $M$ | Cart mass | 3.0 kg |
+| $m$ | Pendulum mass | 1.0 kg |
+| $L$ | Total pendulum length | 0.5 m |
+| $l$ | Pivot-to-centre-of-mass distance | 0.25 m (assuming a uniform rod) |
+| $g$ | Gravitational acceleration | 9.81 m/s² |
+| — | Rail length | 1.0 m |
+| — | Cart travel limit | Approximately −0.5 m to +0.5 m |
 
 The values listed above correspond to the physical parameters defined in the URDF/Xacro model used throughout this project.
 
-> **Note:** The value of **l** (pivot-to-centre-of-mass distance) must match the location of the pendulum's inertial origin specified in the URDF/Xacro model. If the analytical model and the URDF use different centre-of-mass locations, the simulated dynamics will differ from the mathematical model, resulting in model mismatch.
+> **Note:** The value of **$l$** (pivot-to-centre-of-mass distance) must match the location of the pendulum's inertial origin specified in the URDF/Xacro model. If the analytical model and the URDF use different centre-of-mass locations, the simulated dynamics will differ from the mathematical model, resulting in model mismatch.
 
 ---
 
