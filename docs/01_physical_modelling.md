@@ -323,7 +323,11 @@ $$
 The generalized-coordinate vector is therefore:
 
 $$ 
-q = \begin{bmatrix} q_1 \\ q_2 \end{bmatrix} = \begin{bmatrix} x \\ \theta \end{bmatrix}
+q = \begin{bmatrix} q_1 \\
+q_2 \end{bmatrix} 
+= 
+\begin{bmatrix} x \\
+ \theta \end{bmatrix}
 $$
 
 Their first derivatives are:
