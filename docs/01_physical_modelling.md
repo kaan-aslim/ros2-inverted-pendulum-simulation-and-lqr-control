@@ -1024,16 +1024,16 @@ The control-oriented equations used in this project employ a simplified pendulum
 The principal physical parameters are:
 
 | Symbol | Description | Unit |
-|---|---|---:|
-| \(M\) | Cart mass | kg |
-| \(m\) | Pendulum mass | kg |
-| \(L\) | Total pendulum length | m |
-| \(l\) | Pivot-to-centre-of-mass distance | m |
-| \(I\) | Pendulum mass moment of inertia | kg·m² |
-| \(g\) | Gravitational acceleration | m/s² |
-| \(F\) | Horizontal control force | N |
-| \(x\) | Cart position | m |
-| \(\theta\) | Pendulum angular displacement | rad |
+|---------|-------------|------|
+| $M$ | Cart mass | kg |
+| $m$ | Pendulum mass | kg |
+| $L$ | Total pendulum length | m |
+| $l$ | Pivot-to-centre-of-mass distance | m |
+| $I$ | Pendulum mass moment of inertia | kg·m² |
+| $g$ | Gravitational acceleration | m/s² |
+| $F$ | Horizontal control force | N |
+| $x$ | Cart position | m |
+| $\theta$ | Pendulum angular displacement | rad |
 
 For this project, the nominal physical parameters are listed below.
 
