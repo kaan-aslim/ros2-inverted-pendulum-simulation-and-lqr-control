@@ -1243,22 +1243,22 @@ This distinction is essential:
 
 ## 26. Mapping the Mathematical Model to the ROS 2–Gazebo Model
 
-The mathematical variables correspond to project components as follows:
+The mathematical variables correspond to the project components as follows:
 
-| Mathematical quantity | Physical meaning | Project representation |
-|---|---|---|
-| \(M\) | Cart mass | Mass of `cart_link` |
-| \(m\) | Pendulum mass | Mass of `pendulum_link` |
-| \(L\) | Total pendulum length | Pendulum cylinder length |
-| \(l\) | Pivot-to-COM distance | Distance from joint origin to pendulum inertial origin |
-| \(I\) | Pendulum inertia | URDF/Xacro inertia of `pendulum_link` |
-| \(x\) | Cart position | Position of `cart_rail_joint` |
-| \(\dot{x}\) | Cart velocity | Velocity of `cart_rail_joint` |
-| \(\theta\) | Pendulum angle | Mapped position of `pendulum_cart_joint` |
-| \(\dot{\theta}\) | Angular velocity | Mapped velocity of `pendulum_cart_joint` |
-| \(F\) | Horizontal control force | Cart joint force command |
-| Rail constraint | Horizontal motion only | `cart_rail_joint` prismatic constraint |
-| Pivot constraint | Pendulum rotation | `pendulum_cart_joint` revolute constraint |
+| Mathematical Quantity | Physical Meaning | Project Representation |
+|-----------------------|------------------|------------------------|
+| $M$ | Cart mass | Mass of `cart_link` |
+| $m$ | Pendulum mass | Mass of `pendulum_link` |
+| $L$ | Total pendulum length | Length of `pendulum_link` |
+| $l$ | Pivot-to-centre-of-mass distance | Distance from the joint origin to the inertial origin of `pendulum_link` |
+| $I$ | Pendulum mass moment of inertia | Inertia tensor of `pendulum_link` defined in the URDF/Xacro model |
+| $x$ | Cart position | Position of `cart_rail_joint` |
+| $\dot{x}$ | Cart velocity | Velocity of `cart_rail_joint` |
+| $\theta$ | Pendulum angular displacement | Position of `pendulum_cart_joint` |
+| $\dot{\theta}$ | Pendulum angular velocity | Velocity of `pendulum_cart_joint` |
+| $F$ | Horizontal control force | Force command applied to `cart_rail_joint` |
+| - | Rail constraint | Prismatic motion of `cart_rail_joint` along the x-axis |
+| - | Pivot constraint | Revolute motion of `pendulum_cart_joint` about the y-axis |
 
 ---
 
