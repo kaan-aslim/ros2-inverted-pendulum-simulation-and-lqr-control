@@ -189,9 +189,9 @@ Its horizontal position changes according to:
 
 In the mathematical model, the cart mass is represented by:
 
-\[
+$$
 M
-\]
+$$
 
 In the project, the cart is represented by `cart_link`.
 
@@ -207,39 +207,39 @@ This coupling between cart translation and pendulum rotation is the central phys
 
 In the mathematical model, the pendulum mass is represented by:
 
-\[
+$$
 m
-\]
+$$
 
 The total physical pendulum length is represented by:
 
-\[
+$$
 L
-\]
+$$
 
 The distance between the pivot and the pendulum centre of mass is represented by:
 
-\[
+$$
 l
-\]
+$$
 
 For a uniform rod whose pivot is located at one end:
 
-\[
+$$
 l = \frac{L}{2}
-\]
+$$
 
 In this project:
 
-\[
+$$
 L = 0.5\ \text{m}
-\]
+$$
 
 and, under the uniform-rod assumption:
 
-\[
+$$
 l = 0.25\ \text{m}
-\]
+$$
 
 The distinction between \(L\) and \(l\) is important. The equations of motion usually use the pivot-to-centre-of-mass distance \(l\), not necessarily the full geometric length \(L\).
 
@@ -276,25 +276,25 @@ The inverted pendulum has two independent degrees of freedom:
 
 The cart translation is described by:
 
-\[
+$$
 x
-\]
+$$
 
 The pendulum rotation is described by:
 
-\[
+$$
 \theta
-\]
+$$
 
 Therefore, the configuration of the system can be written as:
 
-\[
+$$
 q =
 \begin{bmatrix}
 x \\
 \theta
 \end{bmatrix}
-\]
+$$
 
 where \(q\) is the vector of generalized coordinates.
 
@@ -315,17 +315,17 @@ Generalized coordinates do not have to be Cartesian coordinates. They may be:
 
 For the inverted pendulum:
 
-\[
+$$
 q_1 = x
-\]
+$$
 
-\[
+$$
 q_2 = \theta
-\]
+$$
 
 The generalized-coordinate vector is therefore:
 
-\[
+$$
 q =
 \begin{bmatrix}
 q_1 \\
@@ -336,27 +336,27 @@ q_2
 x \\
 \theta
 \end{bmatrix}
-\]
+$$
 
 Their first derivatives are:
 
-\[
+$$
 \dot{q} =
 \begin{bmatrix}
 \dot{x} \\
 \dot{\theta}
 \end{bmatrix}
-\]
+$$
 
 and their second derivatives are:
 
-\[
+$$
 \ddot{q} =
 \begin{bmatrix}
 \ddot{x} \\
 \ddot{\theta}
 \end{bmatrix}
-\]
+$$
 
 where:
 
@@ -414,9 +414,9 @@ The pendulum angle must be defined relative to a specific reference direction.
 
 In this project, the controller model uses the upright position as the equilibrium:
 
-\[
+$$
 \theta = 0
-\]
+$$
 
 Therefore:
 
@@ -465,14 +465,14 @@ The Gazebo joint position depends on:
 
 Therefore, the software may require a transformation such as:
 
-\[
+$$
 \theta_{\text{model}}
 =
 s_\theta
 \left(
 \theta_{\text{joint}}-\theta_{\text{offset}}
 \right)
-\]
+$$
 
 where:
 
@@ -496,13 +496,13 @@ Let:
 
 Using the chosen coordinate convention, the centre-of-mass coordinates can be written as:
 
-\[
+$$
 x_p = x + l\sin\theta
-\]
+$$
 
-\[
+$$
 y_p = l\cos\theta
-\]
+$$
 
 where:
 
@@ -516,31 +516,31 @@ These equations show that the centre of mass moves because of two effects:
 
 The horizontal centre-of-mass position contains both effects:
 
-\[
+$$
 x_p = x + l\sin\theta
-\]
+$$
 
 The vertical centre-of-mass position depends only on the pendulum angle:
 
-\[
+$$
 y_p = l\cos\theta
-\]
+$$
 
 At the upright position:
 
-\[
+$$
 \theta = 0
-\]
+$$
 
 therefore:
 
-\[
+$$
 x_p = x
-\]
+$$
 
-\[
+$$
 y_p = l
-\]
+$$
 
 This means the centre of mass is directly above the pivot by the distance \(l\).
 
@@ -552,47 +552,47 @@ The centre-of-mass velocity is obtained by differentiating the position equation
 
 Starting with:
 
-\[
+$$
 x_p = x + l\sin\theta
-\]
+$$
 
 differentiate with respect to time:
 
-\[
+$$
 \dot{x}_p
 =
 \dot{x}
 +
 l\dot{\theta}\cos\theta
-\]
+$$
 
 Similarly:
 
-\[
+$$
 y_p = l\cos\theta
-\]
+$$
 
 therefore:
 
-\[
+$$
 \dot{y}_p
 =
 -l\dot{\theta}\sin\theta
-\]
+$$
 
 These expressions are required when calculating the pendulum kinetic energy.
 
 The squared centre-of-mass speed is:
 
-\[
+$$
 v_p^2
 =
 \dot{x}_p^2+\dot{y}_p^2
-\]
+$$
 
 Substituting the velocity components:
 
-\[
+$$
 v_p^2
 =
 \left(
@@ -604,11 +604,11 @@ l\dot{\theta}\cos\theta
 \left(
 -l\dot{\theta}\sin\theta
 \right)^2
-\]
+$$
 
 After expansion:
 
-\[
+$$
 v_p^2
 =
 \dot{x}^2
@@ -616,13 +616,13 @@ v_p^2
 2l\dot{x}\dot{\theta}\cos\theta
 +
 l^2\dot{\theta}^2
-\]
+$$
 
 because:
 
-\[
+$$
 \sin^2\theta+\cos^2\theta=1
-\]
+$$
 
 This result later appears in the kinetic-energy expression used in the Lagrange method.
 
@@ -634,17 +634,17 @@ The centre-of-mass acceleration is obtained by differentiating the velocity equa
 
 From:
 
-\[
+$$
 \dot{x}_p
 =
 \dot{x}
 +
 l\dot{\theta}\cos\theta
-\]
+$$
 
 the horizontal acceleration becomes:
 
-\[
+$$
 \ddot{x}_p
 =
 \ddot{x}
@@ -652,7 +652,7 @@ the horizontal acceleration becomes:
 l\ddot{\theta}\cos\theta
 -
 l\dot{\theta}^2\sin\theta
-\]
+$$
 
 The three terms represent:
 
@@ -662,21 +662,21 @@ The three terms represent:
 
 From:
 
-\[
+$$
 \dot{y}_p
 =
 -l\dot{\theta}\sin\theta
-\]
+$$
 
 the vertical acceleration becomes:
 
-\[
+$$
 \ddot{y}_p
 =
 -l\ddot{\theta}\sin\theta
 -
 l\dot{\theta}^2\cos\theta
-\]
+$$
 
 The centre-of-mass acceleration expressions are required when applying Newton's second law directly to the pendulum.
 
@@ -700,9 +700,9 @@ Depending on the modelling detail, friction may also be included.
 
 The controller generates a horizontal force:
 
-\[
+$$
 F
-\]
+$$
 
 This force acts on the cart along the rail direction.
 
@@ -719,21 +719,21 @@ In the project, this force is sent to the Gazebo joint-force interface associate
 
 The gravitational force acting on the pendulum is:
 
-\[
+$$
 W_p = mg
-\]
+$$
 
 and acts vertically downward through the pendulum centre of mass.
 
 In vector form:
 
-\[
+$$
 \mathbf{W}_p =
 \begin{bmatrix}
 0 \\
 -mg
 \end{bmatrix}
-\]
+$$
 
 Gravity is responsible for the instability of the upright equilibrium.
 
@@ -745,9 +745,9 @@ When the pendulum deviates from the upright position, gravity produces a moment 
 
 The gravitational force acting on the cart is:
 
-\[
+$$
 W_c = Mg
-\]
+$$
 
 The cart cannot move vertically because the rail constrains it. Therefore, the cart weight is balanced by the vertical reaction force from the rail.
 
@@ -775,26 +775,26 @@ When the cart and pendulum are analysed separately, the pivot exerts reaction fo
 
 They may be written as:
 
-\[
+$$
 H
-\]
+$$
 
 for the horizontal reaction and:
 
-\[
+$$
 V
-\]
+$$
 
 for the vertical reaction.
 
 The forces acting on the pendulum at the pivot are equal and opposite to the forces acting on the cart:
 
-\[
+$$
 \mathbf{F}_{\text{cart on pendulum}}
 =
 -
 \mathbf{F}_{\text{pendulum on cart}}
-\]
+$$
 
 These are internal forces for the complete cart–pendulum system.
 
@@ -903,15 +903,15 @@ where:
 
 Since the cart has no vertical acceleration:
 
-\[
+$$
 \sum F_y = 0
-\]
+$$
 
 The horizontal equation is related to:
 
-\[
+$$
 \sum F_x = M\ddot{x}
-\]
+$$
 
 The exact sign of \(H\) depends on the chosen direction for the reaction force.
 
@@ -940,19 +940,19 @@ A conceptual pendulum FBD is:
 
 The translational equations of the pendulum centre of mass are:
 
-\[
+$$
 \sum F_x = m\ddot{x}_p
-\]
+$$
 
-\[
+$$
 \sum F_y = m\ddot{y}_p
-\]
+$$
 
 The rotational equation about the centre of mass or pivot may be written using:
 
-\[
+$$
 \sum \tau = I\alpha
-\]
+$$
 
 where:
 
@@ -969,9 +969,9 @@ In that case, the pivot reaction forces are internal and do not appear in the co
 
 The principal external horizontal force is:
 
-\[
+$$
 F
-\]
+$$
 
 The total horizontal momentum depends on both:
 
@@ -1013,21 +1013,21 @@ A force produces a moment about a point when its line of action does not pass th
 
 The moment is:
 
-\[
+$$
 \boldsymbol{\tau}
 =
 \mathbf{r}
 \times
 \mathbf{F}
-\]
+$$
 
 For planar motion, the scalar moment can be written as:
 
-\[
+$$
 \tau_z
 =
 r_xF_y-r_yF_x
-\]
+$$
 
 where:
 
@@ -1038,9 +1038,9 @@ For the pendulum, gravity acts through the centre of mass and produces a moment 
 
 The magnitude of this gravitational moment is proportional to:
 
-\[
+$$
 mgl\sin\theta
-\]
+$$
 
 The sign depends on the angular convention.
 
@@ -1056,37 +1056,37 @@ A rigid body's resistance to angular acceleration is described by its mass momen
 
 For a uniform slender rod of total length \(L\), the moment of inertia about its centre of mass is:
 
-\[
+$$
 I_{\text{COM}}
 =
 \frac{1}{12}mL^2
-\]
+$$
 
 Using the parallel-axis theorem, the moment of inertia about one end is:
 
-\[
+$$
 I_{\text{pivot}}
 =
 I_{\text{COM}}
 +
 m\left(\frac{L}{2}\right)^2
-\]
+$$
 
 Therefore:
 
-\[
+$$
 I_{\text{pivot}}
 =
 \frac{1}{3}mL^2
-\]
+$$
 
 If the pendulum is approximated as a point mass located at distance \(l\), then:
 
-\[
+$$
 I_{\text{pivot}}
 =
 ml^2
-\]
+$$
 
 These models are not identical.
 
@@ -1196,9 +1196,9 @@ Gazebo may still contain numerical damping or joint properties depending on the 
 
 Gravity is assumed constant:
 
-\[
+$$
 g = 9.81\ \text{m/s}^2
-\]
+$$
 
 and acts vertically downward.
 
@@ -1224,9 +1224,9 @@ A rail inclination would introduce an additional component of gravity along the 
 
 The control input is assumed to be a direct horizontal force acting on the cart:
 
-\[
+$$
 u = F
-\]
+$$
 
 The analytical model does not initially include:
 
@@ -1250,9 +1250,9 @@ In a real system, these values may contain uncertainty.
 
 The controller-oriented model is developed around the upright equilibrium:
 
-\[
+$$
 \theta = 0
-\]
+$$
 
 This is the unstable equilibrium point that the LQR controller attempts to stabilize.
 
@@ -1371,17 +1371,17 @@ This implements the analytical assumption that the support structure does not mo
 
 It represents the generalized coordinate:
 
-\[
+$$
 x
-\]
+$$
 
 Its position and velocity provide:
 
-\[
+$$
 x
 \quad\text{and}\quad
 \dot{x}
-\]
+$$
 
 ### 27.3 Revolute Joint
 
@@ -1389,17 +1389,17 @@ x
 
 It represents the generalized coordinate:
 
-\[
+$$
 \theta
-\]
+$$
 
 Its position and velocity provide the raw joint measurements used to determine:
 
-\[
+$$
 \theta
 \quad\text{and}\quad
 \dot{\theta}
-\]
+$$
 
 ### 27.4 Inertial Properties
 
@@ -1443,9 +1443,9 @@ Move the pendulum in the mathematically positive direction and verify:
 
 Place the pendulum in the upright position and verify whether the joint position is:
 
-\[
+$$
 0\ \text{rad}
-\]
+$$
 
 If not, determine the required angular offset.
 
@@ -1455,9 +1455,9 @@ Verify that the pendulum inertial origin is located at the intended centre of ma
 
 For a uniform rod:
 
-\[
+$$
 l = \frac{L}{2}
-\]
+$$
 
 ### 28.5 Inertia Check
 
@@ -1487,47 +1487,47 @@ Every physical equation must be dimensionally consistent.
 
 For example:
 
-\[
+$$
 F = ma
-\]
+$$
 
 has units:
 
-\[
+$$
 \text{N}
 =
 \text{kg}\cdot\frac{\text{m}}{\text{s}^2}
-\]
+$$
 
 The term:
 
-\[
+$$
 ml\ddot{\theta}
-\]
+$$
 
 has units:
 
-\[
+$$
 \text{kg}\cdot\text{m}\cdot\frac{1}{\text{s}^2}
 =
 \text{N}
-\]
+$$
 
 because angular acceleration in radians per second squared is dimensionally treated as \(1/\text{s}^2\).
 
 The term:
 
-\[
+$$
 mgl
-\]
+$$
 
 has units:
 
-\[
+$$
 \text{kg}\cdot\frac{\text{m}}{\text{s}^2}\cdot\text{m}
 =
 \text{N}\cdot\text{m}
-\]
+$$
 
 which is torque.
 
@@ -1543,9 +1543,9 @@ The full pendulum length and the centre-of-mass distance are not always the same
 
 For a uniform rod:
 
-\[
+$$
 l=\frac{L}{2}
-\]
+$$
 
 ### 30.2 Using an Inconsistent Angle Reference
 
@@ -1592,35 +1592,35 @@ After applying the modelling assumptions and definitions, the inverted pendulum 
 
 The generalized-coordinate vector is:
 
-\[
+$$
 q =
 \begin{bmatrix}
 x \\
 \theta
 \end{bmatrix}
-\]
+$$
 
 The centre-of-mass position is:
 
-\[
+$$
 x_p = x+l\sin\theta
-\]
+$$
 
-\[
+$$
 y_p = l\cos\theta
-\]
+$$
 
 The control input is:
 
-\[
+$$
 u=F
-\]
+$$
 
 The upright equilibrium is:
 
-\[
+$$
 \theta=0
-\]
+$$
 
 This physical model provides the foundation for deriving the nonlinear equations of motion.
 
