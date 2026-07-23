@@ -1044,8 +1044,8 @@ For this project, the nominal physical parameters are listed below.
 | $L$ | Total pendulum length | 0.5 m |
 | $l$ | Pivot-to-centre-of-mass distance | 0.25 m (assuming a uniform rod) |
 | $g$ | Gravitational acceleration | 9.81 m/s² |
-| — | Rail length | 1.0 m |
-| — | Cart travel limit | Approximately −0.5 m to +0.5 m |
+| - | Rail length | 1.0 m |
+| - | Cart travel limit | Approximately −0.5 m to +0.5 m |
 
 The values listed above correspond to the physical parameters defined in the URDF/Xacro model used throughout this project.
 
