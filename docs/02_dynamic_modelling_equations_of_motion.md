@@ -557,6 +557,10 @@ $$
 
 There is no direct actuator torque applied to the pendulum.
 
+<p align="center">
+    <img src="images/lagrangian.png" alt="Lagrangian Derivation" width="1000">
+</p>
+
 ---
 
 ## 15. Kinetic Energy of the Cart
