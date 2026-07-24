@@ -38,7 +38,7 @@ These equations later form the basis for:
 The dynamic modelling process used in this project follows the sequence below:
 
 <p align="center">
-    <img src="images/dynamic_modelling_workflow.png" alt="Dynamic Modelling Workflow" width="1000">
+    <img src="images/dynamic_modelling_workflow.png" alt="Dynamic Modelling Workflow" width="600">
 </p>
 
 The two derivation methods are presented separately so that the physical meaning of the equations can be understood from both force-based and energy-based perspectives.
