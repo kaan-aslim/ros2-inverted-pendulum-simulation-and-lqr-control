@@ -222,7 +222,7 @@ The generalized coordinate vector is therefore:
 $$
 q =
 \begin{bmatrix}
-x \
+x \\
 \theta
 \end{bmatrix}
 $$
@@ -232,7 +232,7 @@ Its first and second time derivatives are:
 $$
 \dot{q} =
 \begin{bmatrix}
-\dot{x} \
+\dot{x} \\
 \dot{\theta}
 \end{bmatrix}
 $$
@@ -242,7 +242,7 @@ and
 $$
 \ddot{q} =
 \begin{bmatrix}
-\ddot{x} \
+\ddot{x} \\
 \ddot{\theta}
 \end{bmatrix}
 $$
