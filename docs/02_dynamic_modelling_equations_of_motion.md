@@ -37,23 +37,9 @@ These equations later form the basis for:
 
 The dynamic modelling process used in this project follows the sequence below:
 
-```text
-Physical System Model
-        ↓
-Define Generalised Coordinates
-        ↓
-Identify Velocities and Accelerations
-        ↓
-Identify External and Interaction Forces
-        ↓
-Apply Newton–Euler Equations
-        ↓
-Apply Lagrange's Equations
-        ↓
-Obtain Nonlinear Equations of Motion
-        ↓
-Prepare the Model for Linearisation
-```
+<p align="center">
+    <img src="dynamic_modelling_workflow.png" alt="Dynamic Modelling Workflow" width="1000">
+</p>
 
 The two derivation methods are presented separately so that the physical meaning of the equations can be understood from both force-based and energy-based perspectives.
 
