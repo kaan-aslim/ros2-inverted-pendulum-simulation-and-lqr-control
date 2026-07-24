@@ -92,7 +92,7 @@ Rather than treating the inverted pendulum as an isolated academic example, this
 
 This repository demonstrates the complete development of a modern control system using ROS2, from physical modeling to closed-loop simulation.
 
-### Modeling
+### Modelling
 
 - Conceptual cart–pole mechanical system
 - URDF/Xacro robot description
