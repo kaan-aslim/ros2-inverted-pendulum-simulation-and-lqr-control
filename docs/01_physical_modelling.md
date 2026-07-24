@@ -523,8 +523,8 @@ For this project, the nominal values are:
 | $L$    | Total pendulum length            | 0.5 m                          |
 | $l$    | Pivot-to-centre-of-mass distance | 0.25 m                         |
 | $g$    | Gravitational acceleration       | 9.81 m/s²                      |
-| —      | Rail length                      | 1.0 m                          |
-| —      | Cart travel limit                | Approximately −0.5 m to +0.5 m |
+| -      | Rail length                      | 1.0 m                          |
+| -      | Cart travel limit                | Approximately −0.5 m to +0.5 m |
 
 ---
 
@@ -629,8 +629,8 @@ The analytical model and the simulation model must describe the same physical sy
 | $\theta$              | Pendulum angle                   | Position of `pendulum_cart_joint`                                |
 | $\dot{\theta}$        | Angular velocity                 | Velocity of `pendulum_cart_joint`                                |
 | $F$                   | Horizontal control force         | Force command applied to `cart_rail_joint`                       |
-| —                     | Rail constraint                  | Prismatic motion along the x-axis                                |
-| —                     | Pivot constraint                 | Revolute motion about the y-axis                                 |
+| -                     | Rail constraint                  | Prismatic motion along the x-axis                                |
+| -                     | Pivot constraint                 | Revolute motion about the y-axis                                 |
 
 The following checks are especially important:
 
@@ -710,7 +710,7 @@ The generalized coordinate vector is:
 $$
 q =
 \begin{bmatrix}
-x \
+x \\
 \theta
 \end{bmatrix}
 $$
