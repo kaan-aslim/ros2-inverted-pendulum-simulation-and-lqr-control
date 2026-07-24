@@ -133,21 +133,9 @@ This indirect actuation is the central feature of the inverted pendulum problem.
 
 ## Physical System Structure
 
-The simplified physical structure is:
-
-```text
-Fixed world
-    │
-    └── Fixed rail
-            │
-            └── Prismatic joint
-                    │
-                    └── Cart
-                            │
-                            └── Revolute joint
-                                    │
-                                    └── Pendulum
-```
+<p align="center">
+    <img src="images/physical_system_structure.png" alt="Physical System Structure" width="1000">
+</p>
 
 This structure immediately shows that only the cart and pendulum contribute independent motion to the model.
 
