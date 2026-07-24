@@ -202,6 +202,10 @@ For the inverted pendulum system, the cart and the pendulum are first analysed a
 
 The interaction forces between them are introduced at the pivot and later eliminated to obtain equations containing only the generalised coordinates $x$ and $\theta$.
 
+<p align="center">
+    <img src="images/newton_euler.png" alt="Newton-Euler Derivation" width="1000">
+</p>
+
 ---
 
 ## 5. Position of the Pendulum Centre of Mass
