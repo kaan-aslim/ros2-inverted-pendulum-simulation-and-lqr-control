@@ -961,23 +961,9 @@ Instead, they define the physical dynamics from which the controller model is de
 
 The project uses the equations through the following sequence:
 
-```text
-Nonlinear Equations of Motion
-        ↓
-Select Upright Equilibrium
-        ↓
-Apply Small-Angle Approximations
-        ↓
-Obtain Linear Differential Equations
-        ↓
-Define State Variables
-        ↓
-Construct A and B Matrices
-        ↓
-Calculate the LQR Gain Matrix
-        ↓
-Implement u = -Kx in the ROS 2 Control Node
-```
+<p align="center">
+    <img src="images/dynamic_model_to_control_workflow.png" alt="Dynamic Model to Control Workflow" width="600">
+</p>
 
 The nonlinear equations are also useful for checking whether the signs, parameters, and coupling relationships used in the controller are physically correct.
 
