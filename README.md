@@ -36,7 +36,7 @@ The primary goal of this repository is therefore not simply to balance a pendulu
 - [Project Motivation](#project-motivation)
 - [Project Highlights](#project-highlights)
 - [Engineering Workflow](#engineering-workflow)
-- [System Model](#system-model)
+- [Physical System Model](#physical-system-model)
   - [System Parameters](#system-parameters)
   - [Coordinate System](#coordinate-system)
   - [Modeling Assumptions](#modeling-assumptions)
@@ -143,9 +143,9 @@ This repository demonstrates the complete development of a modern control system
 
 ---
 
-# System Model
+# Physical System Model
 
-The simulated system consists of a cart moving along a horizontal rail with a rigid pendulum attached through a revolute joint.
+The simulated physical system consists of a cart moving along a horizontal rail with a rigid pendulum attached through a revolute joint.
 
 The cart is actuated by an external horizontal force, while the pendulum is free to rotate under the influence of gravity. By appropriately controlling the cart motion, the pendulum can be stabilized around its naturally unstable upright equilibrium.
 
@@ -161,7 +161,7 @@ Unlike many educational examples that focus solely on the controller, this proje
     <img src="images/system_model_fbd.png" alt="FBD" width="1000">
 </p>
 
-## System Parameters
+## Physical System Parameters
 
 The conceptual mechanical system is defined using the following physical parameters.
 
