@@ -977,7 +977,7 @@ The mathematical derivations and implementation details are intentionally separa
 | Document | Description |
 |-----------|-------------|
 | 01 | Physical Modelling |
-| 02 | Dynamic Modeling |
+| 02 | Dynamic Modelling |
 | 03 | Newton–Euler Derivation |
 | 04 | Lagrangian Derivation |
 | 05 | Linearization & State-Space |
