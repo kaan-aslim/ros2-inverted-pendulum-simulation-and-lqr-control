@@ -67,6 +67,10 @@ The inverted pendulum system consists of:
 - a pendulum rotating about a pivot attached to the cart,
 - and a horizontal control force applied to the cart.
 
+<p align="center">
+    <img src="images/physical_model.png" alt="Physical System Model" width="1000">
+</p>
+
 The system has two degrees of freedom:
 
 - cart translation,
