@@ -241,9 +241,7 @@ $$
 The vertical velocity is
 
 $$
-\dot{y}_p
-=
--l\dot{\theta}\sin\theta.
+\dot{y}_p = -l\dot{\theta}\sin\theta.
 $$
 
 These equations show that the pendulum centre of mass has two sources of motion:
@@ -260,23 +258,13 @@ Differentiating once more gives the acceleration components.
 The horizontal acceleration is
 
 $$
-\ddot{x}_p
-=
-\ddot{x}
-+
-l\ddot{\theta}\cos\theta
--
-l\dot{\theta}^{2}\sin\theta.
+\ddot{x}_p = \ddot{x} + l\ddot{\theta}\cos\theta - l\dot{\theta}^{2}\sin\theta.
 $$
 
 The vertical acceleration is
 
 $$
-\ddot{y}_p
-=
--l\ddot{\theta}\sin\theta
--
-l\dot{\theta}^{2}\cos\theta.
+\ddot{y}_p = -l\ddot{\theta}\sin\theta - l\dot{\theta}^{2}\cos\theta.
 $$
 
 The horizontal acceleration contains three terms:
@@ -316,28 +304,13 @@ $$
 Substituting the horizontal acceleration of the pendulum centre of mass:
 
 $$
-H
-=
-m
-\left(
-\ddot{x}
-+
-l\ddot{\theta}\cos\theta
--
-l\dot{\theta}^{2}\sin\theta
-\right).
+H = m \left( \ddot{x} + l\ddot{\theta}\cos\theta - l\dot{\theta}^{2}\sin\theta \right).
 $$
 
 Therefore,
 
 $$
-H
-=
-m\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta.
+H = m\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta.
 $$
 
 ---
@@ -358,29 +331,13 @@ $$
 Substituting the expression for $H$:
 
 $$
-F
--
-\left(
-m\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-\right)
-=
-M\ddot{x}.
+F - \left( m\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta \right) = M\ddot{x}.
 $$
 
 Rearranging the terms gives
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F.
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F.
 $$
 
 This is the first nonlinear equation of motion.
@@ -394,13 +351,7 @@ It describes the horizontal dynamics of the complete cart–pendulum system.
 The first equation is
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F.
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F.
 $$
 
 Each term has a physical meaning.
@@ -472,13 +423,7 @@ under the sign convention used in this project.
 Combining these components gives
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 This is the second nonlinear equation of motion for the simplified point-mass pendulum model.
@@ -490,13 +435,7 @@ This is the second nonlinear equation of motion for the simplified point-mass pe
 The second equation is
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 ### Pendulum Angular Acceleration
@@ -538,39 +477,19 @@ Near the upright position, gravity drives the pendulum away from equilibrium, ma
 If the rotational inertia of the pendulum is retained, the rotational equation becomes
 
 $$
-\left(I + ml^2\right)\ddot{\theta}
-+
-ml\ddot{x}\cos\theta
--
-mgl\sin\theta
-=
-0.
+\left(I + ml^2\right)\ddot{\theta} + ml\ddot{x}\cos\theta - mgl\sin\theta = 0.
 $$
 
 Dividing by $ml$ gives
 
 $$
-\left(
-l+\frac{I}{ml}
-\right)\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+\left( l+\frac{I}{ml} \right)\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 The simplified project equation
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0
 $$
 
 is obtained when the separate inertia term $I$ is neglected.
@@ -599,14 +518,7 @@ where:
 For each generalised coordinate $q_i$, Lagrange's equation is
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial \mathcal{L}}{\partial \dot{q}_i}
-\right)
--
-\frac{\partial \mathcal{L}}{\partial q_i}
-=
-Q_i
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = Q_i
 $$
 
 where $Q_i$ is the generalised external force associated with $q_i$.
@@ -646,9 +558,7 @@ The cart moves only in the horizontal direction.
 Its kinetic energy is
 
 $$
-T_c
-=
-\frac{1}{2}M\dot{x}^{2}.
+T_c = \frac{1}{2}M\dot{x}^{2}.
 $$
 
 ---
@@ -658,59 +568,31 @@ $$
 The velocity components of the pendulum centre of mass are
 
 $$
-\dot{x}_p
-=
-\dot{x}
-+
-l\dot{\theta}\cos\theta
+\dot{x}_p = \dot{x} + l\dot{\theta}\cos\theta
 $$
 
 and
 
 $$
-\dot{y}_p
-=
--l\dot{\theta}\sin\theta.
+\dot{y}_p = -l\dot{\theta}\sin\theta.
 $$
 
 The squared centre-of-mass velocity is
 
 $$
-v_p^2
-=
-\dot{x}_p^2
-+
-\dot{y}_p^2.
+v_p^2 = \dot{x}_p^2 + \dot{y}_p^2.
 $$
 
 Substituting the velocity components:
 
 $$
-v_p^2
-=
-\left(
-\dot{x}
-+
-l\dot{\theta}\cos\theta
-\right)^2
-+
-\left(
--l\dot{\theta}\sin\theta
-\right)^2.
+v_p^2 = \left( \dot{x} + l\dot{\theta}\cos\theta \right)^2 + \left( -l\dot{\theta}\sin\theta \right)^2.
 $$
 
 Expanding:
 
 $$
-v_p^2
-=
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2\cos^2\theta
-+
-l^2\dot{\theta}^2\sin^2\theta.
+v_p^2 = \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2\cos^2\theta + l^2\dot{\theta}^2\sin^2\theta.
 $$
 
 Using
@@ -722,53 +604,25 @@ $$
 the expression becomes
 
 $$
-v_p^2
-=
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2.
+v_p^2 = \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2.
 $$
 
 The translational kinetic energy of the pendulum is therefore
 
 $$
-T_{p,\text{trans}}
-=
-\frac{1}{2}m
-\left(
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2
-\right).
+T_{p,\text{trans}} = \frac{1}{2}m \left( \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2 \right).
 $$
 
 If the rotational inertia of the pendulum is included, its rotational kinetic energy is
 
 $$
-T_{p,\text{rot}}
-=
-\frac{1}{2}I\dot{\theta}^2.
+T_{p,\text{rot}} = \frac{1}{2}I\dot{\theta}^2.
 $$
 
 The total pendulum kinetic energy is
 
 $$
-T_p
-=
-\frac{1}{2}m
-\left(
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2
-\right)
-+
-\frac{1}{2}I\dot{\theta}^2.
+T_p = \frac{1}{2}m \left( \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2 \right) + \frac{1}{2}I\dot{\theta}^2.
 $$
 
 ---
@@ -784,48 +638,19 @@ $$
 Therefore,
 
 $$
-T
-=
-\frac{1}{2}M\dot{x}^2
-+
-\frac{1}{2}m
-\left(
-\dot{x}^2
-+
-2l\dot{x}\dot{\theta}\cos\theta
-+
-l^2\dot{\theta}^2
-\right)
-+
-\frac{1}{2}I\dot{\theta}^2.
+T = \frac{1}{2}M\dot{x}^2 + \frac{1}{2}m \left( \dot{x}^2 + 2l\dot{x}\dot{\theta}\cos\theta + l^2\dot{\theta}^2 \right) + \frac{1}{2}I\dot{\theta}^2.
 $$
 
 Collecting terms:
 
 $$
-T
-=
-\frac{1}{2}(M+m)\dot{x}^2
-+
-ml\dot{x}\dot{\theta}\cos\theta
-+
-\frac{1}{2}
-\left(
-ml^2+I
-\right)
-\dot{\theta}^2.
+T = \frac{1}{2}(M+m)\dot{x}^2 + ml\dot{x}\dot{\theta}\cos\theta + \frac{1}{2} \left( ml^2+I \right) \dot{\theta}^2.
 $$
 
 For the simplified point-mass model, $I$ is neglected:
 
 $$
-T
-=
-\frac{1}{2}(M+m)\dot{x}^2
-+
-ml\dot{x}\dot{\theta}\cos\theta
-+
-\frac{1}{2}ml^2\dot{\theta}^2.
+T = \frac{1}{2}(M+m)\dot{x}^2 + ml\dot{x}\dot{\theta}\cos\theta + \frac{1}{2}ml^2\dot{\theta}^2.
 $$
 
 ---
@@ -869,33 +694,13 @@ $$
 For the rigid-body model:
 
 $$
-\mathcal{L}
-=
-\frac{1}{2}(M+m)\dot{x}^2
-+
-ml\dot{x}\dot{\theta}\cos\theta
-+
-\frac{1}{2}
-\left(
-ml^2+I
-\right)
-\dot{\theta}^2
--
-mgl\cos\theta.
+\mathcal{L} = \frac{1}{2}(M+m)\dot{x}^2 + ml\dot{x}\dot{\theta}\cos\theta + \frac{1}{2} \left( ml^2+I \right) \dot{\theta}^2 - mgl\cos\theta.
 $$
 
 For the simplified point-mass model:
 
 $$
-\mathcal{L}
-=
-\frac{1}{2}(M+m)\dot{x}^2
-+
-ml\dot{x}\dot{\theta}\cos\theta
-+
-\frac{1}{2}ml^2\dot{\theta}^2
--
-mgl\cos\theta.
+\mathcal{L} = \frac{1}{2}(M+m)\dot{x}^2 + ml\dot{x}\dot{\theta}\cos\theta + \frac{1}{2}ml^2\dot{\theta}^2 - mgl\cos\theta.
 $$
 
 ---
@@ -905,39 +710,19 @@ $$
 For the cart coordinate $x$:
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial\mathcal{L}}{\partial\dot{x}}
-\right)
--
-\frac{\partial\mathcal{L}}{\partial x}
-=
-F.
+\frac{d}{dt} \left( \frac{\partial\mathcal{L}}{\partial\dot{x}} \right) - \frac{\partial\mathcal{L}}{\partial x} = F.
 $$
 
 First,
 
 $$
-\frac{\partial\mathcal{L}}{\partial\dot{x}}
-=
-(M+m)\dot{x}
-+
-ml\dot{\theta}\cos\theta.
+\frac{\partial\mathcal{L}}{\partial\dot{x}} = (M+m)\dot{x} + ml\dot{\theta}\cos\theta.
 $$
 
 Taking the time derivative:
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial\mathcal{L}}{\partial\dot{x}}
-\right)
-=
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta.
+\frac{d}{dt} \left( \frac{\partial\mathcal{L}}{\partial\dot{x}} \right) = (M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta.
 $$
 
 The Lagrangian does not explicitly depend on $x$, therefore
@@ -949,13 +734,7 @@ $$
 Substituting into Lagrange's equation:
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F.
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F.
 $$
 
 This is the same horizontal equation obtained using the Newton–Euler method.
@@ -967,123 +746,55 @@ This is the same horizontal equation obtained using the Newton–Euler method.
 For the pendulum coordinate $\theta$:
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial\mathcal{L}}{\partial\dot{\theta}}
-\right)
--
-\frac{\partial\mathcal{L}}{\partial\theta}
-=
-0.
+\frac{d}{dt} \left( \frac{\partial\mathcal{L}}{\partial\dot{\theta}} \right) - \frac{\partial\mathcal{L}}{\partial\theta} = 0.
 $$
 
 First,
 
 $$
-\frac{\partial\mathcal{L}}{\partial\dot{\theta}}
-=
-ml\dot{x}\cos\theta
-+
-\left(
-ml^2+I
-\right)\dot{\theta}.
+\frac{\partial\mathcal{L}}{\partial\dot{\theta}} = ml\dot{x}\cos\theta + \left( ml^2+I \right)\dot{\theta}.
 $$
 
 Taking the time derivative:
 
 $$
-\frac{d}{dt}
-\left(
-\frac{\partial\mathcal{L}}{\partial\dot{\theta}}
-\right)
-=
-ml\ddot{x}\cos\theta
--
-ml\dot{x}\dot{\theta}\sin\theta
-+
-\left(
-ml^2+I
-\right)\ddot{\theta}.
+\frac{d}{dt} \left( \frac{\partial\mathcal{L}}{\partial\dot{\theta}} \right) = ml\ddot{x}\cos\theta - ml\dot{x}\dot{\theta}\sin\theta + \left( ml^2+I \right)\ddot{\theta}.
 $$
 
 Next,
 
 $$
-\frac{\partial\mathcal{L}}{\partial\theta}
-=
--ml\dot{x}\dot{\theta}\sin\theta
-+
-mgl\sin\theta.
+\frac{\partial\mathcal{L}}{\partial\theta} = -ml\dot{x}\dot{\theta}\sin\theta + mgl\sin\theta.
 $$
 
 Substituting into Lagrange's equation:
 
 $$
-ml\ddot{x}\cos\theta
--
-ml\dot{x}\dot{\theta}\sin\theta
-+
-\left(
-ml^2+I
-\right)\ddot{\theta}
--
-\left(
--ml\dot{x}\dot{\theta}\sin\theta
-+
-mgl\sin\theta
-\right)
-=
-0.
+ml\ddot{x}\cos\theta - ml\dot{x}\dot{\theta}\sin\theta + \left( ml^2+I \right)\ddot{\theta} - \left( -ml\dot{x}\dot{\theta}\sin\theta + mgl\sin\theta \right) = 0.
 $$
 
 The velocity-coupling terms cancel:
 
 $$
--ml\dot{x}\dot{\theta}\sin\theta
-+
-ml\dot{x}\dot{\theta}\sin\theta
-=
-0.
+-ml\dot{x}\dot{\theta}\sin\theta + ml\dot{x}\dot{\theta}\sin\theta = 0.
 $$
 
 The equation becomes
 
 $$
-\left(
-ml^2+I
-\right)\ddot{\theta}
-+
-ml\ddot{x}\cos\theta
--
-mgl\sin\theta
-=
-0.
+\left( ml^2+I \right)\ddot{\theta} + ml\ddot{x}\cos\theta - mgl\sin\theta = 0.
 $$
 
 Dividing by $ml$:
 
 $$
-\left(
-l+\frac{I}{ml}
-\right)\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+\left( l+\frac{I}{ml} \right)\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 For the simplified point-mass model, $I=0$:
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 This is the same pendulum equation obtained using the Newton–Euler method.
@@ -1097,25 +808,13 @@ This is the same pendulum equation obtained using the Newton–Euler method.
 The simplified nonlinear dynamic model used for controller development is
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F
 $$
 
 and
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 These equations describe the coupled nonlinear motion of the cart and pendulum.
@@ -1133,41 +832,22 @@ The equations can also be written in a compact coupled form.
 Starting from
 
 $$
-(M+m)\ddot{x}
-+
-ml\cos\theta\,\ddot{\theta}
-=
-F
-+
-ml\dot{\theta}^{2}\sin\theta
+(M+m)\ddot{x} + ml\cos\theta\,\ddot{\theta} = F + ml\dot{\theta}^{2}\sin\theta
 $$
 
 and
 
 $$
-\cos\theta\,\ddot{x}
-+
-l\ddot{\theta}
-=
-g\sin\theta,
+\cos\theta\,\ddot{x} + l\ddot{\theta} = g\sin\theta,
 $$
 
 the acceleration terms can be grouped as
 
 $$
-\begin{bmatrix}
-M+m & ml\cos\theta \\
-\cos\theta & l
-\end{bmatrix}
-\begin{bmatrix}
-\ddot{x} \\
-\ddot{\theta}
-\end{bmatrix}
-=
-\begin{bmatrix}
-F+ml\dot{\theta}^{2}\sin\theta \\
-g\sin\theta
-\end{bmatrix}.
+\begin{bmatrix} M+m & ml\cos\theta \\
+\cos\theta & l \end{bmatrix} \begin{bmatrix} \ddot{x} \\
+\ddot{\theta} \end{bmatrix} = \begin{bmatrix} F+ml\dot{\theta}^{2}\sin\theta \\
+g\sin\theta \end{bmatrix}.
 $$
 
 This form shows that $\ddot{x}$ and $\ddot{\theta}$ must be solved together.
@@ -1183,23 +863,13 @@ This coupling is the central feature of the inverted pendulum dynamics.
 From the pendulum equation:
 
 $$
-l\ddot{\theta}
-=
-g\sin\theta
--
-\ddot{x}\cos\theta.
+l\ddot{\theta} = g\sin\theta - \ddot{x}\cos\theta.
 $$
 
 Therefore,
 
 $$
-\ddot{\theta}
-=
-\frac{
-g\sin\theta
--
-\ddot{x}\cos\theta
-}{l}.
+\ddot{\theta} = \frac{ g\sin\theta - \ddot{x}\cos\theta }{l}.
 $$
 
 Substituting this expression into the cart equation gives an explicit expression for cart acceleration.
@@ -1207,53 +877,25 @@ Substituting this expression into the cart equation gives an explicit expression
 After rearrangement:
 
 $$
-\ddot{x}
-=
-\frac{
-F
-+
-ml\dot{\theta}^{2}\sin\theta
--
-mg\sin\theta\cos\theta
-}{
-M+m-m\cos^{2}\theta
-}.
+\ddot{x} = \frac{ F + ml\dot{\theta}^{2}\sin\theta - mg\sin\theta\cos\theta }{ M+m-m\cos^{2}\theta }.
 $$
 
 Since
 
 $$
-M+m-m\cos^{2}\theta
-=
-M+m\sin^{2}\theta,
+M+m-m\cos^{2}\theta = M+m\sin^{2}\theta,
 $$
 
 the cart acceleration can be written as
 
 $$
-\ddot{x}
-=
-\frac{
-F
-+
-ml\dot{\theta}^{2}\sin\theta
--
-mg\sin\theta\cos\theta
-}{
-M+m\sin^{2}\theta
-}.
+\ddot{x} = \frac{ F + ml\dot{\theta}^{2}\sin\theta - mg\sin\theta\cos\theta }{ M+m\sin^{2}\theta }.
 $$
 
 The angular acceleration is then
 
 $$
-\ddot{\theta}
-=
-\frac{
-g\sin\theta
--
-\ddot{x}\cos\theta
-}{l}.
+\ddot{\theta} = \frac{ g\sin\theta - \ddot{x}\cos\theta }{l}.
 $$
 
 These explicit acceleration equations are useful for:
@@ -1450,25 +1092,13 @@ The joint angle reported by Gazebo must be converted or offset if the URDF joint
 The dynamic modelling stage produces the coupled nonlinear equations
 
 $$
-(M+m)\ddot{x}
-+
-ml\ddot{\theta}\cos\theta
--
-ml\dot{\theta}^{2}\sin\theta
-=
-F
+(M+m)\ddot{x} + ml\ddot{\theta}\cos\theta - ml\dot{\theta}^{2}\sin\theta = F
 $$
 
 and
 
 $$
-l\ddot{\theta}
-+
-\ddot{x}\cos\theta
--
-g\sin\theta
-=
-0.
+l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0.
 $$
 
 These equations capture:
