@@ -253,6 +253,8 @@ Within this project, the URDF model serves as the digital representation of the 
     <img src="images/urdf_xacro_model.png" alt="URDF/Xacro Model" width="1000">
 </p>
 
+To see detailed [Physical System Modelling](docs/01_physical_modelling.md)
+
 ---
 
 # Dynamic Modeling
