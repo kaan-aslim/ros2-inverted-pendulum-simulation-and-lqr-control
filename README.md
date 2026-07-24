@@ -986,7 +986,7 @@ The mathematical derivations and implementation details are intentionally separa
 
 | Document | Description |
 |-----------|-------------|
-| 01 | System Model |
+| 01 | Physical Modelling |
 | 02 | Dynamic Modeling |
 | 03 | Newton–Euler Derivation |
 | 04 | Lagrangian Derivation |
