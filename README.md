@@ -39,9 +39,9 @@ The primary goal of this repository is therefore not simply to balance a pendulu
 - [Physical System Model](#physical-system-model)
   - [System Parameters](#system-parameters)
   - [Coordinate System](#coordinate-system)
-  - [Modeling Assumptions](#modeling-assumptions)
+  - [Modelling Assumptions](#modelling-assumptions)
   - [URDF/Xacro Model](#urdfxacro-model)
-- [Dynamic Modeling](#dynamic-modeling)
+- [Dynamic Modelling](#dynamic-modelling)
 - [Linearization and State-Space Representation](#linearization-and-state-space-representation)
 - [LQR Controller Design](#lqr-controller-design)
 - [Control Pipeline](#control-pipeline)
@@ -335,12 +335,6 @@ $$
 
 This formulation provides clear physical insight into how inertia, gravity, and the applied control force influence the system dynamics.
 
-The complete derivation is documented in:
-
-```text
-docs/03_newton_euler_derivation.md
-```
-
 ## Lagrangian Formulation
 
 The Lagrangian approach derives the equations of motion from the system energy rather than individual force balances.
@@ -391,12 +385,6 @@ $$
 
 Compared with the Newton–Euler formulation, the Lagrangian method becomes particularly convenient for systems containing multiple interconnected rigid bodies and generalized coordinates.
 
-The complete derivation is documented in:
-
-```text
-docs/04_lagrangian_derivation.md
-```
-
 ## Nonlinear Equations of Motion
 
 Both derivation methods lead to the same nonlinear dynamic model.
@@ -437,6 +425,8 @@ These equations include
 The nonlinear model accurately represents the physical behavior of the system and serves as the foundation for subsequent controller development.
 
 However, modern state-feedback techniques such as LQR require a linear system representation. Therefore, the nonlinear equations must first be linearized around the desired operating point.
+
+The complete derivations of equation of motions are documented in: [Dynamic Modelling: Equations of Motion](docs/02_dynamic_modelling_equations_of_motion.md)
 
 ## Linearization
 
