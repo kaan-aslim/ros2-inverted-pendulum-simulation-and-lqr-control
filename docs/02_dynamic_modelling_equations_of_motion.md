@@ -104,13 +104,13 @@ $$
 \begin{bmatrix}
 \ddot{x} \\
 \ddot{\theta}
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
 The horizontal force applied to the cart is represented by
 
 $$
-F.
+F
 $$
 
 ---
@@ -130,7 +130,7 @@ For this project:
 The upright equilibrium position is therefore
 
 $$
-\theta = 0.
+\theta = 0
 $$
 
 This definition becomes particularly important during linearisation and state-space modelling.
@@ -185,13 +185,13 @@ It combines:
 Newton's second law is
 
 $$
-\sum F = ma.
+\sum F = ma
 $$
 
 Euler's rotational equation is
 
 $$
-\sum \tau = I\alpha.
+\sum \tau = I\alpha
 $$
 
 For the inverted pendulum system, the cart and the pendulum are first analysed as separate bodies.
@@ -204,7 +204,7 @@ The interaction forces between them are introduced at the pivot and later elimin
 
 The pendulum pivot moves together with the cart.
 
-The horizontal and vertical coordinates of the pendulum centre of mass are
+The horizontal and vertical coordinates of the pendulum center of mass are
 
 $$
 x_p = x + l\sin\theta
@@ -213,7 +213,7 @@ $$
 and
 
 $$
-y_p = l\cos\theta.
+y_p = l\cos\theta
 $$
 
 The vertical coordinate is measured relative to the pivot level.
@@ -221,7 +221,7 @@ The vertical coordinate is measured relative to the pivot level.
 When
 
 $$
-\theta = 0,
+\theta = 0
 $$
 
 the pendulum is upright and its centre of mass is directly above the pivot.
@@ -235,11 +235,7 @@ Differentiating the position equations gives the velocity components.
 The horizontal velocity is
 
 $$
-\dot{x}_p
-=
-\dot{x}
-+
-l\dot{\theta}\cos\theta.
+\dot{x}_p = \dot{x} + l\dot{\theta}\cos\theta.
 $$
 
 The vertical velocity is
