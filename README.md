@@ -977,10 +977,8 @@ The mathematical derivations and implementation details are intentionally separa
 | Document | Description |
 |-----------|-------------|
 | 01 | Physical Modelling |
-| 02 | Dynamic Modelling |
-| 03 | Newton–Euler Derivation |
-| 04 | Lagrangian Derivation |
-| 05 | Linearization & State-Space |
+| 02 | Dynamic Modelling: Equation of Motions |
+| 03 | Dynamic Modelling: Linearization & State-Space |
 | 06 | LQR Controller Design |
 | 07 | ROS2 Software Architecture |
 | 08 | Control Node |
