@@ -1,5 +1,11 @@
 # Physical Modelling
 
+The inverted pendulum system considered in this project consists of a cart that translates along a horizontal rail and a pendulum connected to the cart through a revolute joint. The cart is actuated by a horizontal force, while the pendulum is indirectly stabilised by the cart's motion. The following figure illustrates the physical system and its main components before any mathematical modelling is performed.
+
+<p align="center">
+    <img src="images/system_model_concept.png" alt="Overview of the Inverted Pendulum System" width="1000">
+</p>
+
 ## Purpose
 
 Before deriving the equations of motion or designing a controller, the real system must be converted into a simplified engineering model.
@@ -437,6 +443,10 @@ For this project, two separate free-body diagrams are required:
 
 A third combined-system diagram can also be useful for understanding internal-force cancellation.
 
+<p align="center">
+    <img src="images/system_fbd.png" alt="Inverted Pendulum System FBD" width="1000">
+</p>
+
 ---
 
 ## 9.1 Cart Free-Body Diagram
@@ -458,6 +468,10 @@ $$
 $$
 
 The pivot force must initially be included because the pendulum acts on the cart through the joint.
+
+<p align="center">
+    <img src="images/cart_fbd.png" alt="Cart FBD" width="1000">
+</p>
 
 ---
 
@@ -483,6 +497,10 @@ $$
 $$
 
 The cart acceleration also affects the pendulum dynamics because the pivot itself is accelerating.
+
+<p align="center">
+    <img src="images/pendulum_fbd.png" alt="Pendulum FBD" width="1000">
+</p>
 
 ---
 
@@ -722,6 +740,10 @@ u = F
 $$
 
 This model contains the minimum information required to derive the nonlinear equations of motion.
+
+<p align="center">
+    <img src="images/physical_model.png" alt="Physical Model of Inverted Pendulum System" width="1000">
+</p>
 
 ---
 
