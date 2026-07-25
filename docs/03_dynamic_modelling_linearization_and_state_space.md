@@ -830,6 +830,18 @@ $$
 -\frac{1}{Ml} \end{bmatrix} F
 $$
 
+$$
+\dot{\mathbf{x}}
+\qquad\qquad
+A
+\qquad\qquad
+\mathbf{x}
+\qquad\qquad
+B
+\qquad
+u
+$$
+
 The **output equation** can be written explicitly as
 
 $$
@@ -846,6 +858,18 @@ y_4 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & 0 \\
 0 \\
 0 \\
 0 \end{bmatrix} F
+$$
+
+$$
+\mathbf{y}
+\qquad\qquad
+C
+\qquad\qquad
+\mathbf{x}
+\qquad\qquad
+D
+\qquad
+u
 $$
 
 The resulting state-space model provides a compact representation of the linearised system and serves as the mathematical foundation for the controller developed in the next chapter.
