@@ -924,17 +924,10 @@ $$
 The first row is
 
 $$
-\begin{bmatrix}
-0 & 1 & 0 & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1\\
+\begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
-x_4
-\end{bmatrix}
-=
-0x_1+1x_2+0x_3+0x_4
+x_4 \end{bmatrix} = 0x_1+1x_2+0x_3+0x_4
 $$
 
 Therefore,
@@ -962,17 +955,10 @@ which states that the time derivative of cart position is the cart velocity.
 The second row is
 
 $$
-\begin{bmatrix}
-0 & 0 & -\frac{mg}{M} & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1\\
+\begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
-x_4
-\end{bmatrix}
-=
-0x_1+0x_2-\frac{mg}{M}x_3+0x_4
+x_4 \end{bmatrix} = 0x_1+0x_2-\frac{mg}{M}x_3+0x_4
 $$
 
 Therefore,
@@ -1008,17 +994,10 @@ represents the gravitational coupling from the pendulum angle to the cart accele
 The third row is
 
 $$
-\begin{bmatrix}
-0 & 0 & 0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-x_1\\
+\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
-x_4
-\end{bmatrix}
-=
-0x_1+0x_2+0x_3+1x_4
+x_4 \end{bmatrix} = 0x_1+0x_2+0x_3+1x_4
 $$
 
 Therefore,
@@ -1046,17 +1025,10 @@ which states that the time derivative of the pendulum angle is its angular veloc
 The fourth row is
 
 $$
-\begin{bmatrix}
-0 & 0 & \frac{(M+m)g}{Ml} & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1\\
+\begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
-x_4
-\end{bmatrix}
-=
-0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
+x_4 \end{bmatrix} = 0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
 $$
 
 Therefore,
