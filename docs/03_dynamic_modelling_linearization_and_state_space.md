@@ -921,7 +921,23 @@ $$
 
 ### First Row
 
-The first row produces
+The first row is
+
+$$
+\begin{bmatrix}
+0 & 1 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{bmatrix}
+=
+0x_1+1x_2+0x_3+0x_4
+$$
+
+Therefore,
 
 $$
 \dot{x}_1=x_2
@@ -930,20 +946,36 @@ $$
 Since
 
 $$
-x_1=x
+x_1=x,\qquad x_2=\dot{x}
 $$
 
-and
+this becomes
 
 $$
-x_2=\dot{x}
+\dot{x}=\dot{x}
 $$
 
-this equation states that the time derivative of cart position is cart velocity.
+which states that the time derivative of cart position is the cart velocity.
 
 ### Second Row
 
-The second row produces
+The second row is
+
+$$
+\begin{bmatrix}
+0 & 0 & -\frac{mg}{M} & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{bmatrix}
+=
+0x_1+0x_2-\frac{mg}{M}x_3+0x_4
+$$
+
+Therefore,
 
 $$
 \dot{x}_2=-\frac{mg}{M}x_3
@@ -952,13 +984,7 @@ $$
 Since
 
 $$
-x_2=\dot{x}
-$$
-
-and
-
-$$
-x_3=\theta
+x_2=\dot{x},\qquad x_3=\theta
 $$
 
 this becomes
@@ -979,7 +1005,23 @@ represents the gravitational coupling from the pendulum angle to the cart accele
 
 ### Third Row
 
-The third row produces
+The third row is
+
+$$
+\begin{bmatrix}
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{bmatrix}
+=
+0x_1+0x_2+0x_3+1x_4
+$$
+
+Therefore,
 
 $$
 \dot{x}_3=x_4
@@ -988,20 +1030,36 @@ $$
 Since
 
 $$
-x_3=\theta
+x_3=\theta,\qquad x_4=\dot{\theta}
 $$
 
-and
+this becomes
 
 $$
-x_4=\dot{\theta}
+\dot{\theta}=\dot{\theta}
 $$
 
-this equation states that the time derivative of pendulum angle is pendulum angular velocity.
+which states that the time derivative of the pendulum angle is its angular velocity.
 
 ### Fourth Row
 
-The fourth row produces
+The fourth row is
+
+$$
+\begin{bmatrix}
+0 & 0 & \frac{(M+m)g}{Ml} & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{bmatrix}
+=
+0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
+$$
+
+Therefore,
 
 $$
 \dot{x}_4=\frac{(M+m)g}{Ml}x_3
@@ -1010,13 +1068,7 @@ $$
 Since
 
 $$
-x_4=\dot{\theta}
-$$
-
-and
-
-$$
-x_3=\theta
+x_4=\dot{\theta},\qquad x_3=\theta
 $$
 
 this becomes
