@@ -20,9 +20,9 @@ The state-space model obtained in this chapter forms the mathematical foundation
 
 ---
 
-# Linearisation Workflow
+# Linearization Workflow
 
-The linearisation process used in this project follows the sequence below.
+The linearization process used in this project follows the sequence below.
 
 ```text
 Nonlinear Equations of Motion
@@ -40,7 +40,7 @@ Prepare for State-Space Representation
 
 ---
 
-# 1. Why Linearisation Is Required
+# 1. Why Linearization Is Required
 
 The equations derived using Newton–Euler and Lagrangian mechanics are nonlinear.
 
@@ -85,7 +85,7 @@ Since LQR requires a linear state-space model, the nonlinear equations must firs
 
 # 2. Local Linear Approximation
 
-Linearisation does not replace the nonlinear model.
+Linearization does not replace the nonlinear model.
 
 Instead, it creates a local approximation that accurately represents the system behaviour only near a chosen operating point.
 
@@ -103,7 +103,7 @@ Large-angle swing-up control requires the original nonlinear model.
 
 # 3. Selecting the Operating Point
 
-Linearisation must always be performed around a specific operating point.
+Linearization must always be performed around a specific operating point.
 
 An operating point is a system condition where all state variables remain constant if no disturbance occurs.
 
@@ -161,7 +161,7 @@ This operating point represents the desired equilibrium around which the control
 
 # 4. Taylor Series Expansion
 
-The mathematical basis of linearisation is the Taylor series expansion.
+The mathematical basis of linearization is the Taylor series expansion.
 
 For a general nonlinear function
 
@@ -299,7 +299,7 @@ If the pendulum angle becomes large, the nonlinear equations must be used instea
 
 ---
 
-# 7. Linearisation of the First Equation of Motion
+# 7. Linearization of the First Equation of Motion
 
 The original nonlinear cart equation is
 
@@ -331,7 +331,7 @@ The nonlinear centripetal term has disappeared because it is negligible near the
 
 ---
 
-# 8. Linearisation of the Second Equation of Motion
+# 8. Linearization of the Second Equation of Motion
 
 The original nonlinear pendulum equation is
 
@@ -383,7 +383,7 @@ This makes them suitable for conversion into state-space form.
 
 ---
 
-# 10. How Linearisation Is Used in This Project
+# 10. How Linearization Is Used in This Project
 
 The analytical model developed in the previous chapter represents the complete nonlinear dynamics of the inverted pendulum.
 
