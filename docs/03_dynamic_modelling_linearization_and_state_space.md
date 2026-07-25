@@ -385,10 +385,6 @@ The next stage converts the second-order differential equations into a first-ord
 
 ---
 
----
-
----
-
 # State-Space Representation
 
 ## 11. Why State-Space Representation Is Needed
@@ -413,7 +409,7 @@ Once the system is expressed in state-space form, it can be directly used for co
 
 ---
 
-# 12. Solving the Coupled Linear Equations
+## 12. Solving the Coupled Linear Equations
 
 The two linear equations are coupled because both contain the unknown accelerations
 
@@ -429,9 +425,7 @@ $$
 
 Before constructing the state-space model, these accelerations must be written explicitly as functions of the system states and the control input.
 
----
-
-## Solving for the Pendulum Angular Acceleration
+### Solving for the Pendulum Angular Acceleration
 
 Starting from the second equation
 
@@ -453,9 +447,7 @@ $$
 
 This expression is substituted into the first equation.
 
----
-
-## Solving for the Cart Acceleration
+### Solving for the Cart Acceleration
 
 The first equation is
 
@@ -495,9 +487,7 @@ $$
 
 This equation describes the horizontal acceleration of the cart.
 
----
-
-## Completing the Pendulum Equation
+### Completing the Pendulum Equation
 
 The previously derived expression
 
@@ -533,7 +523,7 @@ At this point, both accelerations have been expressed explicitly in terms of the
 
 ---
 
-# 13. Choosing the State Variables
+## 13. Choosing the State Variables
 
 The system has two degrees of freedom.
 
@@ -563,7 +553,7 @@ These variables completely describe the instantaneous state of the inverted pend
 
 ---
 
-# 14. State Vector
+## 14. State Vector
 
 The four state variables are grouped into a single vector
 
@@ -581,7 +571,7 @@ This vector contains all information required to predict the future motion of th
 
 ---
 
-# 15. Input Variable
+## 15. Input Variable
 
 The only external control input is the horizontal force applied to the cart.
 
@@ -606,7 +596,7 @@ Instead, it is stabilised indirectly through the cart motion.
 
 ---
 
-# 16. Converting to First-Order Differential Equations
+## 16. Converting to First-Order Differential Equations
 
 State-space models are always expressed as first-order differential equations.
 
@@ -682,9 +672,9 @@ $$
 
 ---
 
-# 17. Constructing the State-Space Model
+## 17. Constructing the State-Space Model
 
-The four equations can now be written in matrix form
+The four equations can now be written in matrix form as the state-space model
 
 $$
 \dot{x}=Ax+Bu
@@ -732,7 +722,7 @@ describes how the control force influences those dynamics.
 
 ---
 
-# 18. Output Equation
+## 18. Output Equation
 
 The general state-space representation also includes an output equation
 
@@ -768,7 +758,7 @@ $$
 
 ---
 
-# 19. Final State-Space Representation
+## 19. Final State-Space Representation
 
 The complete continuous-time model used throughout this project is
 
