@@ -24,19 +24,9 @@ The state-space model obtained in this chapter forms the mathematical foundation
 
 The linearization process used in this project follows the sequence below.
 
-```text
-Nonlinear Equations of Motion
-        ↓
-Select Operating Point
-        ↓
-Apply Taylor Series Expansion
-        ↓
-Apply Small-Angle Approximations
-        ↓
-Obtain Linear Differential Equations
-        ↓
-Prepare for State-Space Representation
-```
+<p align="center">
+    <img src="images/linearization_workflow.png" alt="Linearization Workflow" width="600">
+</p>
 
 ---
 
