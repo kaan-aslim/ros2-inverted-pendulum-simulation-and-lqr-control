@@ -895,41 +895,77 @@ If all four state variables are known at a particular instant together with the 
 
 ## 22. Physical Meaning of the A Matrix
 
-The system matrix
+The linearised state equation is written as
+
+$$
+\dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u}
+$$
+
+The system matrix is
 
 $$
 A=
 \begin{bmatrix}
-0&1&0&0\\
-0&0&-\frac{mg}{M}&0\\
-0&0&0&1\\
-0&0&\frac{(M+m)g}{Ml}&0
+0 & 1 & 0 & 0 \\
+0 & 0 & -\frac{mg}{M} & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & \frac{(M+m)g}{Ml} & 0
 \end{bmatrix}
 $$
-
-describes the natural dynamics of the linearised inverted pendulum when no external control force is applied
-
-$$
-u=0
-$$
-
-Each row of the matrix corresponds to one state equation.
 
 The state vector is defined as
 
 $$
-x= \begin{bmatrix} x_1\\
-x_2\\
-x_3\\
-x_4 \end{bmatrix} = \begin{bmatrix} x\\
-\dot{x}\\
-\theta\\
-\dot{\theta} \end{bmatrix}
+\mathbf{x}=
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+x \\
+\dot{x} \\
+\theta \\
+\dot{\theta}
+\end{bmatrix}
 $$
 
-### Relationship Between the States and Their Derivatives
+Therefore, the derivative of the state vector is
 
-The state variables are defined as
+$$
+\dot{\mathbf{x}}=
+\begin{bmatrix}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3 \\
+\dot{x}_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+\dot{x} \\
+\ddot{x} \\
+\dot{\theta} \\
+\ddot{\theta}
+\end{bmatrix}
+$$
+
+The original equations of motion contain the second derivatives
+
+$$
+\ddot{x}
+$$
+
+and
+
+$$
+\ddot{\theta}
+$$
+
+However, the standard state-space representation is written as a system of first-order differential equations.
+
+For this reason, the cart position and velocity are defined as separate states
 
 $$
 x_1=x
@@ -938,6 +974,8 @@ $$
 $$
 x_2=\dot{x}
 $$
+
+and the pendulum angle and angular velocity are defined as separate states
 
 $$
 x_3=\theta
@@ -947,33 +985,175 @@ $$
 x_4=\dot{\theta}
 $$
 
-These definitions distinguish the state variables from their time derivatives.
+This converts each second-order differential equation into two first-order state equations.
 
-For the first state,
+The rows of the \(A\) matrix therefore have two different functions:
 
-$$
-x_1=x
-$$
+- the first and third rows describe kinematic relationships between position and velocity states
+- the second and fourth rows describe dynamic relationships that determine the accelerations of the system
 
-Taking the time derivative of both sides gives
-
-$$
-\dot{x}_1=\frac{d}{dt}(x)=\dot{x}
-$$
-
-Since the cart velocity is defined as
+When no external control force is applied,
 
 $$
-x_2=\dot{x}
+u=F=0
 $$
 
-it follows that
+the state equation becomes
+
+$$
+\dot{\mathbf{x}}=A\mathbf{x}
+$$
+
+Each row of the \(A\) matrix determines the time derivative of one state variable.
+
+### First Row: Cart Position Kinematics
+
+The first row determines the time derivative of the cart position state
+
+$$
+\begin{bmatrix}
+\dot{x}_1 & \circ & \circ & \circ
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 1 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=0x_1+1x_2+0x_3+0x_4
+$$
+
+Therefore,
 
 $$
 \dot{x}_1=x_2
 $$
 
-Similarly, for the third state,
+The first state is the cart position
+
+$$
+x_1=x
+$$
+
+Taking its time derivative gives
+
+$$
+\dot{x}_1=\frac{d}{dt}(x_1)=\frac{d}{dt}(x)=\dot{x}
+$$
+
+The second state is defined as the cart velocity
+
+$$
+x_2=\dot{x}
+$$
+
+Therefore,
+
+$$
+\dot{x}_1=x_2
+$$
+
+This row does not introduce a new dynamic relationship. It expresses the kinematic relationship between the cart position and cart velocity in first-order state-space form.
+
+It allows the cart position state to be updated using the cart velocity state.
+
+### Second Row: Cart Dynamics
+
+The second row determines the time derivative of the cart velocity state
+
+$$
+\begin{bmatrix}
+\circ & \dot{x}_2 & \circ & \circ
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & -\frac{mg}{M} & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=0x_1+0x_2-\frac{mg}{M}x_3+0x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_2=-\frac{mg}{M}x_3
+$$
+
+The second state is the cart velocity
+
+$$
+x_2=\dot{x}
+$$
+
+Taking its time derivative gives
+
+$$
+\dot{x}_2=\frac{d}{dt}(x_2)=\frac{d}{dt}(\dot{x})=\ddot{x}
+$$
+
+The third state is the pendulum angle
+
+$$
+x_3=\theta
+$$
+
+Substituting these state definitions gives
+
+$$
+\ddot{x}=-\frac{mg}{M}\theta
+$$
+
+Unlike the first row, this row represents a dynamic relationship obtained from the linearised equations of motion.
+
+It shows that, in the absence of an external control force, the pendulum angle produces a horizontal acceleration of the cart.
+
+The coefficient
+
+$$
+-\frac{mg}{M}
+$$
+
+represents the gravitational coupling from the pendulum angle to the cart acceleration.
+
+The negative sign indicates that, according to the selected coordinate and angle conventions, a positive pendulum angle produces cart acceleration in the negative \(x\)-direction.
+
+### Third Row: Pendulum Angle Kinematics
+
+The third row determines the time derivative of the pendulum angle state
+
+$$
+\begin{bmatrix}
+\circ & \circ & \dot{x}_3 & \circ
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=0x_1+0x_2+0x_3+1x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_3=x_4
+$$
+
+The third state is the pendulum angle
 
 $$
 x_3=\theta
@@ -982,215 +1162,13 @@ $$
 Taking its time derivative gives
 
 $$
-\dot{x}_3=\frac{d}{dt}(\theta)=\dot{\theta}
-$$
-
-Since the pendulum angular velocity is defined as
-
-$$
-x_4=\dot{\theta}
-$$
-
-it follows that
-
-$$
-\dot{x}_3=x_4
-$$
-
-The derivatives of the velocity states represent accelerations
-
-$$
-\dot{x}_2=\frac{d}{dt}(\dot{x})=\ddot{x}
-$$
-
-$$
-\dot{x}_4=\frac{d}{dt}(\dot{\theta})=\ddot{\theta}
-$$
-
-Therefore, the derivative of the state vector is
-
-$$
-\dot{\mathbf{x}}= \begin{bmatrix} \dot{x}_1 \\
-\dot{x}_2 \\
-\dot{x}_3 \\
-\dot{x}_4 \end{bmatrix} = \begin{bmatrix} \dot{x} \\
-\ddot{x} \\
-\dot{\theta} \\
-\ddot{\theta} \end{bmatrix}
-$$
-
-### First Row
-
-The first row of the state equation determines the derivative of the first state
-
-$$
-\dot{x}_1
-$$
-
-The corresponding matrix operation is
-
-$$
-\begin{bmatrix} \dot{x}_1 \\
-\circ \\
-\circ \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
-x_2 \\
-x_3 \\
-x_4 \end{bmatrix}
-$$
-
-Expanding the row-by-column multiplication gives
-
-$$
-\dot{x}_1=0x_1+1x_2+0x_3+0x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_1=x_2
-$$
-
-Using the state definitions,
-
-$$
-x_1=x
-$$
-
-and
-
-$$
-x_2=\dot{x}
-$$
-
-the left-hand side becomes
-
-$$
-\dot{x}_1=\frac{d}{dt}(x_1)=\frac{d}{dt}(x)=\dot{x}
-$$
-
-while the right-hand side is
-
-$$
-x_2=\dot{x}
-$$
-
-Thus,
-
-$$
-\dot{x}_1=x_2
-$$
-
-means that the time derivative of the cart position state is equal to the cart velocity state.
-
-### Second Row
-
-The second row determines the derivative of the second state
-
-$$
-\dot{x}_2
-$$
-
-Since the second state is defined as
-
-$$
-x_2=\dot{x}
-$$
-
-its time derivative is
-
-$$
-\dot{x}_2=\frac{d}{dt}(x_2)=\frac{d}{dt}(\dot{x})=\ddot{x}
-$$
-
-The corresponding matrix operation is
-
-$$
-\begin{bmatrix} \circ \\
-\dot{x}_2 \\
-\circ \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
-x_2 \\
-x_3 \\
-x_4 \end{bmatrix}
-$$
-
-Expanding the row-by-column multiplication gives
-
-$$
-\dot{x}_2=0x_1+0x_2-\frac{mg}{M}x_3+0x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_2=-\frac{mg}{M}x_3
-$$
-
-Using
-
-$$
-\dot{x}_2=\ddot{x}
-$$
-
-and
-
-$$
-x_3=\theta
-$$
-
-the equation becomes
-
-$$
-\ddot{x}=-\frac{mg}{M}\theta
-$$
-
-This equation shows that, in the absence of a control input, the pendulum angle influences the horizontal acceleration of the cart.
-
-The coefficient
-
-$$
--\frac{mg}{M}
-$$
-
-represents the gravitational coupling from the pendulum angle to the cart acceleration.
-
-### Third Row
-
-The third row determines the derivative of the third state
-
-$$
-\dot{x}_3
-$$
-
-Since
-
-$$
-x_3=\theta
-$$
-
-its time derivative is
-
-$$
 \dot{x}_3=\frac{d}{dt}(x_3)=\frac{d}{dt}(\theta)=\dot{\theta}
 $$
 
-The corresponding matrix operation is
+The fourth state is defined as the pendulum angular velocity
 
 $$
-\begin{bmatrix} \circ \\
-\circ \\
-\dot{x}_3 \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\
-x_2 \\
-x_3 \\
-x_4 \end{bmatrix}
-$$
-
-Expanding the row-by-column multiplication gives
-
-$$
-\dot{x}_3=0x_1+0x_2+0x_3+1x_4
+x_4=\dot{\theta}
 $$
 
 Therefore,
@@ -1199,223 +1177,45 @@ $$
 \dot{x}_3=x_4
 $$
 
-Using
+This row does not introduce a new dynamic relationship. It expresses the kinematic relationship between the pendulum angle and pendulum angular velocity in first-order state-space form.
+
+It is required because the original pendulum equation contains the second derivative
 
 $$
-\dot{x}_3=\dot{\theta}
+\ddot{\theta}
 $$
 
-and
+The second-order pendulum equation is therefore separated into two first-order state equations
 
 $$
-x_4=\dot{\theta}
+\dot{x}_3=x_4
 $$
-
-this equation states that the time derivative of the pendulum angle state is equal to the pendulum angular velocity state.
-
-### Fourth Row
-
-The fourth row determines the derivative of the fourth state
-
-$$
-\dot{x}_4
-$$
-
-Since
-
-$$
-x_4=\dot{\theta}
-$$
-
-its time derivative is
-
-$$
-\dot{x}_4=\frac{d}{dt}(x_4)=\frac{d}{dt}(\dot{\theta})=\ddot{\theta}
-$$
-
-The corresponding matrix operation is
-
-$$
-\begin{bmatrix} \circ \\
-\circ \\
-\circ \\
-\dot{x}_4 \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
-x_2 \\
-x_3 \\
-x_4 \end{bmatrix}
-$$
-
-Expanding the row-by-column multiplication gives
-
-$$
-\dot{x}_4=0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_4=\frac{(M+m)g}{Ml}x_3
-$$
-
-Using
 
 $$
 \dot{x}_4=\ddot{\theta}
 $$
 
-and
+The third row allows the pendulum angle state to be updated using the angular velocity state, while the fourth row determines how the angular velocity changes according to the system dynamics.
+
+### Fourth Row: Pendulum Dynamics
+
+The fourth row determines the time derivative of the pendulum angular velocity state
 
 $$
-x_3=\theta
-$$
-
-the equation becomes
-
-$$
-\ddot{\theta}=\frac{(M+m)g}{Ml}\theta
-$$
-
-The positive coefficient means that a small angular displacement from the upright equilibrium causes an angular acceleration in the same direction.
-
-Therefore, the pendulum naturally moves farther away from the upright position.
-
-This term represents the unstable open-loop dynamics of the inverted pendulum.
-
----
-
----
-
-### First Row
-
-The first row is
-
-$$
-\begin{bmatrix} \dot{x} \\
-\circ \\
-\circ \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
-x_2\\
-x_3\\
-x_4 \end{bmatrix} = 0x_1+1x_2+0x_3+0x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_1=x_2
-$$
-
-Since
-
-$$
-x_1=x,\qquad x_2=\dot{x}
-$$
-
-this becomes
-
-$$
-\begin{bmatrix} \dot{x} \\
-\circ \\
-\circ \\
-\circ \end{bmatrix} = \dot{x}
-$$
-
-which states that the time derivative of cart position is the cart velocity.
-
-### Second Row
-
-The second row is
-
-$$
-\begin{bmatrix} \circ \\
-\ddot{x} \\
-\circ \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
-x_2\\
-x_3\\
-x_4 \end{bmatrix} = 0x_1+0x_2-\frac{mg}{M}x_3+0x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_2=-\frac{mg}{M}x_3
-$$
-
-Since
-
-$$
-x_2=\dot{x},\qquad x_3=\theta
-$$
-
-this becomes
-
-$$
-\begin{bmatrix} \circ \\
-\ddot{x} \\
-\circ \\
-\circ \end{bmatrix} = -\frac{mg}{M}\theta
-$$
-
-This equation shows that, in the absence of a control input, the pendulum angle influences the horizontal acceleration of the cart.
-
-The coefficient
-
-$$
--\frac{mg}{M}
-$$
-
-represents the gravitational coupling from the pendulum angle to the cart acceleration.
-
-### Third Row
-
-The third row is
-
-$$
-\begin{bmatrix} \circ \\
-\circ \\
-\dot{\theta} \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1\\
-x_2\\
-x_3\\
-x_4 \end{bmatrix} = 0x_1+0x_2+0x_3+1x_4
-$$
-
-Therefore,
-
-$$
-\dot{x}_3=x_4
-$$
-
-Since
-
-$$
-x_3=\theta,\qquad x_4=\dot{\theta}
-$$
-
-this becomes
-
-$$
-\begin{bmatrix} \circ \\
-\circ \\
-\dot{\theta} \\
-\circ \end{bmatrix} = \dot{\theta}
-$$
-
-which states that the time derivative of the pendulum angle is its angular velocity.
-
-### Fourth Row
-
-The fourth row is
-
-$$
-\begin{bmatrix} \circ \\
-\circ \\
-\circ \\
-\ddot{\theta} \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
-x_2\\
-x_3\\
-x_4 \end{bmatrix} = 0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
+\begin{bmatrix}
+\circ & \circ & \circ & \dot{x}_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & \frac{(M+m)g}{Ml} & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
 $$
 
 Therefore,
@@ -1424,26 +1224,90 @@ $$
 \dot{x}_4=\frac{(M+m)g}{Ml}x_3
 $$
 
-Since
+The fourth state is the pendulum angular velocity
 
 $$
-x_4=\dot{\theta},\qquad x_3=\theta
+x_4=\dot{\theta}
 $$
 
-this becomes
+Taking its time derivative gives
 
 $$
-\begin{bmatrix} \circ \\
-\circ \\
-\circ \\
-\ddot{\theta} \end{bmatrix} = \frac{(M+m)g}{Ml}\theta
+\dot{x}_4=\frac{d}{dt}(x_4)=\frac{d}{dt}(\dot{\theta})=\ddot{\theta}
 $$
 
-The positive coefficient means that a small angular displacement from the upright equilibrium causes an angular acceleration in the same direction.
+The third state is the pendulum angle
 
-Therefore, the pendulum naturally moves farther away from the upright position.
+$$
+x_3=\theta
+$$
 
-This term represents the unstable open-loop dynamics of the inverted pendulum.
+Substituting these state definitions gives
+
+$$
+\ddot{\theta}=\frac{(M+m)g}{Ml}\theta
+$$
+
+This row represents the rotational dynamics of the pendulum.
+
+The positive coefficient
+
+$$
+\frac{(M+m)g}{Ml}
+$$
+
+means that a small angular displacement from the upright equilibrium produces an angular acceleration in the same direction as the displacement.
+
+For example, when
+
+$$
+\theta>0
+$$
+
+the angular acceleration is also positive
+
+$$
+\ddot{\theta}>0
+$$
+
+As a result, the pendulum moves farther away from the upright equilibrium instead of returning to it naturally.
+
+This relationship represents the unstable open-loop dynamics of the inverted pendulum.
+
+### Interpretation of the Four Rows
+
+The four rows of the \(A\) matrix can be summarised as
+
+$$
+\begin{aligned}
+\dot{x}_1 &= x_2 \\
+\dot{x}_2 &= -\frac{mg}{M}x_3 \\
+\dot{x}_3 &= x_4 \\
+\dot{x}_4 &= \frac{(M+m)g}{Ml}x_3
+\end{aligned}
+$$
+
+Using the physical state variables, these equations become
+
+$$
+\begin{aligned}
+\dot{x} &= \dot{x} \\
+\ddot{x} &= -\frac{mg}{M}\theta \\
+\dot{\theta} &= \dot{\theta} \\
+\ddot{\theta} &= \frac{(M+m)g}{Ml}\theta
+\end{aligned}
+$$
+
+The first and third equations are kinematic state definitions introduced when the original second-order equations are converted into first-order form.
+
+The second and fourth equations contain the actual system dynamics and describe how the cart and pendulum accelerations depend on the current state.
+
+Therefore, the \(A\) matrix combines:
+
+- the kinematic relationships required by the first-order state-space representation
+- the linearised dynamic relationships obtained from the equations of motion
+- the gravitational coupling between the pendulum angle and the cart acceleration
+- the unstable angular dynamics of the upright inverted pendulum
 
 ---
 
