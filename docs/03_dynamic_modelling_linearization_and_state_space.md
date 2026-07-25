@@ -874,20 +874,13 @@ Each row of the matrix corresponds to one state equation.
 The state vector is defined as
 
 $$
-x=
-\begin{bmatrix}
-x_1\\
+x= \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
-x_4
-\end{bmatrix}
-=
-\begin{bmatrix}
-x\\
+x_4 \end{bmatrix} = \begin{bmatrix} x\\
 \dot{x}\\
 \theta\\
-\dot{\theta}
-\end{bmatrix}
+\dot{\theta} \end{bmatrix}
 $$
 
 ### First Row
