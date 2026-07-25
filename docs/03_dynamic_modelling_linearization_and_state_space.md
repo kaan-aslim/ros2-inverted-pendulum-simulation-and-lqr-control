@@ -119,8 +119,6 @@ $$
 
 This configuration is naturally stable because gravity restores the pendulum after a small disturbance.
 
----
-
 ### Unstable Equilibrium
 
 The pendulum balanced upright
@@ -227,8 +225,6 @@ $$
 \sin\theta\approx\theta
 $$
 
----
-
 ### Approximation of Cosine
 
 The Taylor expansion of the cosine function is
@@ -242,8 +238,6 @@ Near the upright equilibrium,
 $$
 \cos\theta\approx1
 $$
-
----
 
 ### Approximation of the Centripetal Term
 
@@ -399,7 +393,7 @@ The next stage converts the second-order differential equations into a first-ord
 
 ## 11. Why State-Space Representation Is Needed
 
-The linearised equations derived in the previous section are
+The linearized equations derived in the previous section are
 
 $$
 (M+m)\ddot{x}+ml\ddot{\theta}=F
