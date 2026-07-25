@@ -1145,6 +1145,16 @@ $$
 \ddot{x}=-\frac{mg}{M}\theta
 $$
 
+This equation shows that, in the absence of a control input, the pendulum angle influences the horizontal acceleration of the cart.
+
+The coefficient
+
+$$
+-\frac{mg}{M}
+$$
+
+represents the gravitational coupling from the pendulum angle to the cart acceleration.
+
 ### Third Row
 
 The third row determines the derivative of the third state
