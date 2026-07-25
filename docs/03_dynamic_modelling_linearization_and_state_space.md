@@ -69,7 +69,7 @@ Because of these nonlinear terms:
 
 Although nonlinear controllers can be designed for these equations, the objective of this project is to stabilise the pendulum around its upright equilibrium using an LQR controller.
 
-Since LQR requires a linear state-space model, the nonlinear equations must first be linearised.
+Since LQR requires a linear state-space model, the nonlinear equations must first be linearized.
 
 ---
 
