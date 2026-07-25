@@ -853,15 +853,7 @@ y_4 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & 0 \\
 $$
 
 $$
-\mathbf{y}
-\qquad\qquad
-C
-\qquad\qquad
-\mathbf{x}
-\qquad\qquad
-D
-\qquad
-u
+\dot{\mathbf{(y)}} \qquad\qquad\quad \ \ (C) \qquad\qquad \ \ \mathbf{(x)} \qquad \ \ (D) \ \ (u)
 $$
 
 The resulting state-space model provides a compact representation of the linearised system and serves as the mathematical foundation for the controller developed in the next chapter.
