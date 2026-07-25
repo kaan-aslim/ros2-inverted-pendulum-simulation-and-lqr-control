@@ -1158,7 +1158,10 @@ The third row allows the pendulum angle state to be updated using the angular ve
 The fourth row determines the time derivative of the pendulum angular velocity state
 
 $$
-\begin{bmatrix} \circ & \circ & \circ & \dot{x}_4 \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
+\begin{bmatrix} \circ \\
+\circ \\
+\circ \\
+\dot{x}_4 \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
 x_4 \end{bmatrix} =0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
