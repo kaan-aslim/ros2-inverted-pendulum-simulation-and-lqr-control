@@ -849,55 +849,158 @@ If all four state variables are known at a particular instant together with the 
 
 ---
 
-# 22. Physical Meaning of the A Matrix
+## 22. Physical Meaning of the A Matrix
 
 The system matrix
 
 $$
-A
+A=
+\begin{bmatrix}
+0&1&0&0\\
+0&0&-\frac{mg}{M}&0\\
+0&0&0&1\\
+0&0&\frac{(M+m)g}{Ml}&0
+\end{bmatrix}
 $$
 
-describes the natural behaviour of the inverted pendulum when no external force is applied.
+describes the natural dynamics of the linearised inverted pendulum when no external control force is applied
 
-Each row corresponds to one state equation.
+$$
+u=0
+$$
+
+Each row of the matrix corresponds to one state equation.
+
+The state vector is defined as
+
+$$
+x=
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+x\\
+\dot{x}\\
+\theta\\
+\dot{\theta}
+\end{bmatrix}
+$$
 
 ### First Row
 
+The first row produces
+
 $$
-\dot{x}= \dot{x}
+\dot{x}_1=x_2
 $$
 
-The first row simply states that the derivative of the cart position is its velocity.
+Since
 
----
+$$
+x_1=x
+$$
+
+and
+
+$$
+x_2=\dot{x}
+$$
+
+this equation states that the time derivative of cart position is cart velocity.
 
 ### Second Row
 
-The second row describes the horizontal acceleration of the cart.
+The second row produces
 
-It shows that the cart acceleration depends on the pendulum angle.
+$$
+\dot{x}_2=-\frac{mg}{M}x_3
+$$
 
-As the pendulum begins to fall, gravity produces a horizontal acceleration of the cart even when no control input is applied.
+Since
 
----
+$$
+x_2=\dot{x}
+$$
+
+and
+
+$$
+x_3=\theta
+$$
+
+this becomes
+
+$$
+\ddot{x}=-\frac{mg}{M}\theta
+$$
+
+This equation shows that, in the absence of a control input, the pendulum angle influences the horizontal acceleration of the cart.
+
+The coefficient
+
+$$
+-\frac{mg}{M}
+$$
+
+represents the gravitational coupling from the pendulum angle to the cart acceleration.
 
 ### Third Row
 
+The third row produces
+
 $$
-\dot{\theta}=\dot{\theta}
+\dot{x}_3=x_4
 $$
 
-The third row states that the derivative of the pendulum angle is its angular velocity.
+Since
 
----
+$$
+x_3=\theta
+$$
+
+and
+
+$$
+x_4=\dot{\theta}
+$$
+
+this equation states that the time derivative of pendulum angle is pendulum angular velocity.
 
 ### Fourth Row
 
-The fourth row describes the angular acceleration of the pendulum.
+The fourth row produces
 
-It shows how gravity naturally causes the pendulum to rotate away from the upright equilibrium.
+$$
+\dot{x}_4=\frac{(M+m)g}{Ml}x_3
+$$
 
-This row contains the unstable dynamics that make the inverted pendulum a challenging control problem.
+Since
+
+$$
+x_4=\dot{\theta}
+$$
+
+and
+
+$$
+x_3=\theta
+$$
+
+this becomes
+
+$$
+\ddot{\theta}=\frac{(M+m)g}{Ml}\theta
+$$
+
+The positive coefficient means that a small angular displacement from the upright equilibrium causes an angular acceleration in the same direction.
+
+Therefore, the pendulum naturally moves farther away from the upright position.
+
+This term represents the unstable open-loop dynamics of the inverted pendulum.
 
 ---
 
