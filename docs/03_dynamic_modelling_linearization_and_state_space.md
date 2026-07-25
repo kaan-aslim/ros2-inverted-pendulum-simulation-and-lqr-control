@@ -927,22 +927,6 @@ $$
 \begin{bmatrix} \dot{x} \\
 \circ \\
 \circ \\
-\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \\
-0 & 0 & -\frac{mg}{M} & 0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x \\
-\dot{x} \\
-\theta \\
-\dot{\theta} \end{bmatrix} + \begin{bmatrix} 0 \\
-\frac{1}{M} \\
-0 \\
--\frac{1}{Ml} \end{bmatrix} F
-$$
-
-$$
-\begin{bmatrix} \dot{x} \\
-\circ \\
-\circ \\
 \circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
@@ -964,7 +948,10 @@ $$
 this becomes
 
 $$
-\dot{x}=\dot{x}
+\begin{bmatrix} \dot{x} \\
+\circ \\
+\circ \\
+\circ \end{bmatrix} = \dot{x}
 $$
 
 which states that the time derivative of cart position is the cart velocity.
@@ -974,7 +961,10 @@ which states that the time derivative of cart position is the cart velocity.
 The second row is
 
 $$
-\begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
+\begin{bmatrix} \circ \\
+\ddot{x} \\
+\circ \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
 x_4 \end{bmatrix} = 0x_1+0x_2-\frac{mg}{M}x_3+0x_4
