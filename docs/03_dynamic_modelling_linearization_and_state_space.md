@@ -924,6 +924,22 @@ $$
 The first row is
 
 $$
+\begin{bmatrix} \dot{x} \\
+\{-} \\
+\dot{\theta} \\
+\ddot{\theta} \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \\
+0 & 0 & -\frac{mg}{M} & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x \\
+\dot{x} \\
+\theta \\
+\dot{\theta} \end{bmatrix} + \begin{bmatrix} 0 \\
+\frac{1}{M} \\
+0 \\
+-\frac{1}{Ml} \end{bmatrix} F
+$$
+
+$$
 \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
