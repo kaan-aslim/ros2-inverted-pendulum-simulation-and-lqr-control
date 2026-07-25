@@ -30,7 +30,7 @@ The linearization process used in this project follows the sequence below.
 
 ---
 
-# 1. Why Linearization Is Required
+## 1. Why Linearization Is Required
 
 The equations derived using Newton–Euler and Lagrangian mechanics are nonlinear.
 
@@ -73,7 +73,7 @@ Since LQR requires a linear state-space model, the nonlinear equations must firs
 
 ---
 
-# 2. Local Linear Approximation
+## 2. Local Linear Approximation
 
 Linearization does not replace the nonlinear model.
 
@@ -95,7 +95,7 @@ Large-angle swing-up control requires the original nonlinear model.
 
 ---
 
-# 3. Selecting the Operating Point
+## 3. Selecting the Operating Point
 
 Linearization must always be performed around a specific operating point.
 
@@ -103,7 +103,7 @@ An operating point is a system condition where all state variables remain consta
 
 For the inverted pendulum, two equilibrium positions exist.
 
-## Stable Equilibrium
+### Stable Equilibrium
 
 The pendulum hanging downward
 
@@ -121,7 +121,7 @@ This configuration is naturally stable because gravity restores the pendulum aft
 
 ---
 
-## Unstable Equilibrium
+### Unstable Equilibrium
 
 The pendulum balanced upright
 
@@ -153,7 +153,7 @@ This operating point represents the desired equilibrium around which the control
 
 ---
 
-# 4. Taylor Series Expansion
+## 4. Taylor Series Expansion
 
 The mathematical basis of linearization is the Taylor series expansion.
 
@@ -193,7 +193,7 @@ This approximation converts nonlinear functions into linear expressions that are
 
 ---
 
-# 5. Small-Angle Approximation
+## 5. Small-Angle Approximation
 
 Since the controller operates only near the upright equilibrium,
 
@@ -205,7 +205,7 @@ the pendulum angle remains very small during normal operation.
 
 Therefore, several standard approximations can be applied.
 
-## Approximation of Sine
+### Approximation of Sine
 
 The Taylor expansion of the sine function is
 
@@ -229,7 +229,7 @@ $$
 
 ---
 
-## Approximation of Cosine
+### Approximation of Cosine
 
 The Taylor expansion of the cosine function is
 
@@ -245,7 +245,7 @@ $$
 
 ---
 
-## Approximation of the Centripetal Term
+### Approximation of the Centripetal Term
 
 The nonlinear equations also contain
 
@@ -277,7 +277,7 @@ $$
 
 ---
 
-# 6. Summary of the Small-Angle Approximations
+## 6. Summary of the Small-Angle Approximations
 
 The following approximations are used throughout this project.
 
@@ -293,7 +293,7 @@ If the pendulum angle becomes large, the nonlinear equations must be used instea
 
 ---
 
-# 7. Linearization of the First Equation of Motion
+## 7. Linearization of the First Equation of Motion
 
 The original nonlinear cart equation is
 
@@ -325,7 +325,7 @@ The nonlinear centripetal term has disappeared because it is negligible near the
 
 ---
 
-# 8. Linearization of the Second Equation of Motion
+## 8. Linearization of the Second Equation of Motion
 
 The original nonlinear pendulum equation is
 
@@ -357,7 +357,7 @@ The gravitational term is now proportional to the pendulum angle, which makes th
 
 ---
 
-# 9. Final Linear Differential Equations
+## 9. Final Linear Differential Equations
 
 After linearisation, the nonlinear model becomes
 
@@ -377,7 +377,7 @@ This makes them suitable for conversion into state-space form.
 
 ---
 
-# 10. How Linearization Is Used in This Project
+## 10. How Linearization Is Used in This Project
 
 The analytical model developed in the previous chapter represents the complete nonlinear dynamics of the inverted pendulum.
 
