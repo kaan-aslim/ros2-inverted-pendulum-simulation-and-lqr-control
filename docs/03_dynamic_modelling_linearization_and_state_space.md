@@ -925,9 +925,9 @@ The first row is
 
 $$
 \begin{bmatrix} \dot{x} \\
-\vphantom \\
-\vphantom  \\
-\vphantom  \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \\
+\circ \\
+\circ \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \\
 0 & 0 & -\frac{mg}{M} & 0 \\
 0 & 0 & 0 & 1 \\
 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x \\
@@ -941,9 +941,9 @@ $$
 
 $$
 \begin{bmatrix} \dot{x} \\
-\vphantom  \\
-\vphantom  \\
-\vphantom  \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
+\circ \\
+\circ \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
 x_4 \end{bmatrix} = 0x_1+1x_2+0x_3+0x_4
