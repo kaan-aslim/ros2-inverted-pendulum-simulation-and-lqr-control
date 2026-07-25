@@ -46,7 +46,7 @@ These steps are applied below to the inverted pendulum project.
 
 ---
 
-# 1. Define the Purpose of the Model
+## 1. Define the Purpose of the Model
 
 The same physical system can be modelled differently depending on the engineering objective.
 
@@ -81,7 +81,7 @@ Effects that are not essential for the initial controller design can be neglecte
 
 ---
 
-# 2. Identify the Physical Bodies
+## 2. Identify the Physical Bodies
 
 The Gazebo model contains three principal rigid bodies:
 
@@ -91,7 +91,7 @@ The Gazebo model contains three principal rigid bodies:
 
 Their roles are different.
 
-## 2.1 Rail
+### 2.1 Rail
 
 The rail provides the horizontal guide along which the cart moves.
 
@@ -103,7 +103,7 @@ Its main functions are:
 * limiting the cart travel,
 * providing a reference frame for horizontal motion.
 
-## 2.2 Cart
+### 2.2 Cart
 
 The cart moves horizontally along the rail.
 
@@ -115,7 +115,7 @@ $$
 
 The cart is the actuated body because the control force is applied to it.
 
-## 2.3 Pendulum
+### 2.3 Pendulum
 
 The pendulum is connected to the cart through a revolute joint.
 
@@ -131,7 +131,7 @@ This indirect actuation is the central feature of the inverted pendulum problem.
 
 ---
 
-## Physical System Structure
+### Physical System Structure
 
 <p align="center">
     <img src="images/physical_system_structure.png" alt="Physical System Structure" width="1000">
@@ -141,11 +141,11 @@ This structure immediately shows that only the cart and pendulum contribute inde
 
 ---
 
-# 3. Identify the Joints and Allowed Motions
+## 3. Identify the Joints and Allowed Motions
 
 The type of joint determines how one body is allowed to move relative to another.
 
-## 3.1 Cart–Rail Joint
+### 3.1 Cart–Rail Joint
 
 The cart is connected to the rail by the prismatic joint:
 
@@ -163,7 +163,7 @@ For this project:
 
 Therefore, the cart contributes one translational degree of freedom.
 
-## 3.2 Pendulum–Cart Joint
+### 3.2 Pendulum–Cart Joint
 
 The pendulum is connected to the cart by the revolute joint:
 
@@ -183,7 +183,7 @@ Therefore, the pendulum contributes one rotational degree of freedom.
 
 ---
 
-# 4. Determine the Degrees of Freedom
+## 4. Determine the Degrees of Freedom
 
 A degree of freedom is an independent variable required to completely describe a system. In mechanical systems, it corresponds to an independent motion that defines the system's configuration.
 
@@ -204,7 +204,7 @@ The fixed rail does not add a degree of freedom because it cannot move relative 
 
 ---
 
-# 5. Choose the Generalized Coordinates
+## 5. Choose the Generalized Coordinates
 
 The  physical system configuration can be completely described using:
 
@@ -256,7 +256,7 @@ The same variables will later form the controller state vector.
 
 ---
 
-# 6. Define the Coordinate System and Sign Conventions
+## 6. Define the Coordinate System and Sign Conventions
 
 A mathematical derivation is only valid when all directions and signs are defined consistently.
 
@@ -275,7 +275,7 @@ A sign mismatch can cause a controller to push the cart in the wrong direction e
 
 ---
 
-## 6.1 Upright and Downward Equilibria
+### 6.1 Upright and Downward Equilibria
 
 The selected angle reference is important.
 
@@ -311,7 +311,7 @@ because the upright position is the desired equilibrium.
 
 ---
 
-# 7. Locate the Pendulum Centre of Mass
+## 7. Locate the Pendulum Centre of Mass
 
 The pendulum centre of mass is required because gravity acts through this point.
 
@@ -354,7 +354,7 @@ The gravitational moment and the translational motion of the centre of mass depe
 
 ---
 
-## 7.1 Pendulum Centre-of-Mass Position
+### 7.1 Pendulum Centre-of-Mass Position
 
 The pendulum pivot moves with the cart. Therefore, the centre-of-mass position depends on both $x$ and $\theta$.
 
@@ -379,11 +379,11 @@ This coupling later produces the mixed acceleration terms in the equations of mo
 
 ---
 
-# 8. Identify External Forces and Moments
+## 8. Identify External Forces and Moments
 
 Before drawing the free-body diagrams, all important external forces must be identified.
 
-## 8.1 Forces Acting on the Cart
+### 8.1 Forces Acting on the Cart
 
 The cart is affected by:
 
@@ -394,7 +394,7 @@ The cart is affected by:
 
 The vertical forces do not directly produce horizontal cart motion, but they are part of the complete physical picture.
 
-## 8.2 Forces Acting on the Pendulum
+### 8.2 Forces Acting on the Pendulum
 
 The pendulum is affected by:
 
@@ -404,7 +404,7 @@ The pendulum is affected by:
 
 The pivot reaction forces couple the pendulum motion to the cart motion.
 
-## 8.3 Control Input
+### 8.3 Control Input
 
 The controller input is the horizontal cart force:
 
@@ -418,7 +418,7 @@ The pendulum is stabilised by moving the pivot beneath its centre of mass.
 
 ---
 
-# 9. Draw the Free-Body Diagrams
+## 9. Draw the Free-Body Diagrams
 
 A free-body diagram isolates one body and shows all external forces acting on it.
 
@@ -437,7 +437,7 @@ A third combined-system diagram can also be useful for understanding internal-fo
 
 ---
 
-## 9.1 Cart Free-Body Diagram
+### 9.1 Cart Free-Body Diagram
 
 The cart FBD contains:
 
@@ -463,7 +463,7 @@ The pivot force must initially be included because the pendulum acts on the cart
 
 ---
 
-## 9.2 Pendulum Free-Body Diagram
+### 9.2 Pendulum Free-Body Diagram
 
 The pendulum FBD contains:
 
@@ -492,7 +492,7 @@ The cart acceleration also affects the pendulum dynamics because the pivot itsel
 
 ---
 
-## 9.3 Internal and External Forces
+### 9.3 Internal and External Forces
 
 The pivot reaction is external when the cart and pendulum are analysed separately.
 
@@ -504,7 +504,7 @@ This explains why deriving separate equations first and then combining them remo
 
 ---
 
-# 10. Define the Physical Parameters
+## 10. Define the Physical Parameters
 
 The principal physical parameters are:
 
@@ -534,7 +534,7 @@ For this project, the nominal values are:
 
 ---
 
-## 10.1 Pendulum Moment of Inertia
+### 10.1 Pendulum Moment of Inertia
 
 The pendulum inertia depends on its geometry and on the axis about which rotation is considered.
 
@@ -562,25 +562,25 @@ The URDF inertia tensor must also represent the same physical geometry and mass 
 
 ---
 
-# 11. Select the Modelling Assumptions
+## 11. Select the Modelling Assumptions
 
 Assumptions simplify the physical system while preserving the behaviour that matters for the controller.
 
 The following assumptions are used:
 
-## 11.1 Rigid Bodies
+### 11.1 Rigid Bodies
 
 The cart, rail and pendulum are treated as rigid.
 
 Elastic deformation and structural vibration are neglected.
 
-## 11.2 Planar Motion
+### 11.2 Planar Motion
 
 The system moves only in the x–z plane.
 
 Out-of-plane translation and rotation are constrained by the joints.
 
-## 11.3 Ideal Joints
+### 11.3 Ideal Joints
 
 The prismatic and revolute joints are assumed to have:
 
@@ -589,7 +589,7 @@ The prismatic and revolute joints are assumed to have:
 * no friction,
 * no compliance.
 
-## 11.4 Constant Gravity
+### 11.4 Constant Gravity
 
 Gravity is treated as constant:
 
@@ -597,7 +597,7 @@ $$
 g = 9.81\ \mathrm{m/s^2}
 $$
 
-## 11.5 Uniform Pendulum
+### 11.5 Uniform Pendulum
 
 The pendulum is modelled as a uniform rod, placing its centre of mass at:
 
@@ -605,13 +605,13 @@ $$
 l = \frac{L}{2}
 $$
 
-## 11.6 Direct Cart Force Input
+### 11.6 Direct Cart Force Input
 
 The actuator is represented as an ideal horizontal force applied directly to the cart.
 
 Motor voltage, current, gearbox and drive dynamics are not included in the initial model.
 
-## 11.7 No Rail Friction
+### 11.7 No Rail Friction
 
 The cart–rail friction force is neglected.
 
@@ -619,7 +619,7 @@ A friction term can later be added if the simulation or real system shows a mean
 
 ---
 
-# 12. Map the Analytical Model to URDF/Xacro
+## 12. Map the Analytical Model to URDF/Xacro
 
 The analytical model and the simulation model must describe the same physical system.
 
@@ -649,11 +649,11 @@ The following checks are especially important:
 
 ---
 
-# 13. Validate the Model Before Deriving Equations
+## 13. Validate the Model Before Deriving Equations
 
 A physical model should be checked before it is used for dynamic derivation.
 
-## 13.1 Degree-of-Freedom Check
+### 13.1 Degree-of-Freedom Check
 
 The physical system has two allowed independent motions:
 
@@ -663,7 +663,7 @@ $$
 
 Therefore, two generalized coordinates are sufficient.
 
-## 13.2 Unit Check
+### 13.2 Unit Check
 
 Each parameter must use consistent SI units:
 
@@ -673,7 +673,7 @@ Each parameter must use consistent SI units:
 * angle: rad,
 * inertia: kg·m².
 
-## 13.3 Limiting-Case Check
+### 13.3 Limiting-Case Check
 
 Simple physical cases should make sense:
 
@@ -682,7 +682,7 @@ Simple physical cases should make sense:
 * if the pendulum angle is slightly displaced, gravity should move it away from the unstable upright equilibrium,
 * if $m=0$, the system should reduce to a simple cart.
 
-## 13.4 Simulation Check
+### 13.4 Simulation Check
 
 Before enabling the controller:
 
@@ -696,7 +696,7 @@ These checks catch modelling mistakes before they appear inside the controller.
 
 ---
 
-# 14. Final Physical Model
+## 14. Final Physical Model
 
 The resulting engineering model contains:
 
@@ -735,7 +735,7 @@ This model contains the minimum information required to derive the nonlinear equ
 
 ---
 
-# 15. Transition to Dynamic Modelling
+## 15. Transition to Dynamic Modelling
 
 Physical modelling defines what the physical system is.
 
