@@ -815,37 +815,49 @@ $$
 The **state equation** can be written explicitly as
 
 $$
-\begin{bmatrix} \dot{x} \\
+\underbrace{\begin{bmatrix} \dot{x} \\
 \ddot{x} \\
 \dot{\theta} \\
-\ddot{\theta} \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \\
+\ddot{\theta} \end{bmatrix}}_{\dot{\mathbf{x}}}
+=
+\underbrace{\begin{bmatrix} 0 & 1 & 0 & 0 \\
 0 & 0 & -\frac{mg}{M} & 0 \\
 0 & 0 & 0 & 1 \\
-0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x \\
+0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix}}_{A}
+\underbrace{\begin{bmatrix} x \\
 \dot{x} \\
 \theta \\
-\dot{\theta} \end{bmatrix} + \begin{bmatrix} 0 \\
+\dot{\theta} \end{bmatrix}}_{\mathbf{x}}
++
+\underbrace{\begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml} \end{bmatrix} F
+-\frac{1}{Ml} \end{bmatrix}}_{B}
+\underbrace{F}_{u}
 $$
 
 The **output equation** can be written explicitly as
 
 $$
-\begin{bmatrix} y_1 \\
+\underbrace{\begin{bmatrix} y_1 \\
 y_2 \\
 y_3 \\
-y_4 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & 0 \\
+y_4 \end{bmatrix}}_{\mathbf{y}}
+=
+\underbrace{\begin{bmatrix} 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\
+0 & 0 & 0 & 1 \end{bmatrix}}_{C}
+\underbrace{\begin{bmatrix} x \\
 \dot{x} \\
 \theta \\
-\dot{\theta} \end{bmatrix} + \begin{bmatrix} 0 \\
+\dot{\theta} \end{bmatrix}}_{\mathbf{x}}
++
+\underbrace{\begin{bmatrix} 0 \\
 0 \\
 0 \\
-0 \end{bmatrix} F
+0 \end{bmatrix}}_{D}
+\underbrace{F}_{u}
 $$
 
 The resulting state-space model provides a compact representation of the linearised system and serves as the mathematical foundation for the controller developed in the next chapter.
