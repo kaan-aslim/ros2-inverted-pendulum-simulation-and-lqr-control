@@ -812,7 +812,7 @@ D=
 \end{bmatrix}
 $$
 
-The state equation can be written explicitly as
+The **state equation** can be written explicitly as
 
 $$
 \begin{bmatrix} \dot{x} \\
@@ -830,7 +830,7 @@ $$
 -\frac{1}{Ml} \end{bmatrix} F
 $$
 
-The output equation can be written explicitly as
+The **output equation** can be written explicitly as
 
 $$
 \begin{bmatrix} y_1 \\
