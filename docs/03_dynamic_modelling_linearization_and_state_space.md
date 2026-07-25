@@ -927,6 +927,98 @@ x_4 \end{bmatrix} = \begin{bmatrix} x\\
 \dot{\theta} \end{bmatrix}
 $$
 
+### Relationship Between the States and Their Derivatives
+
+The state variables are defined as
+
+$$
+x_1=x
+$$
+
+$$
+x_2=\dot{x}
+$$
+
+$$
+x_3=\theta
+$$
+
+$$
+x_4=\dot{\theta}
+$$
+
+These definitions distinguish the state variables from their time derivatives.
+
+For the first state,
+
+$$
+x_1=x
+$$
+
+Taking the time derivative of both sides gives
+
+$$
+\dot{x}_1=\frac{d}{dt}(x)=\dot{x}
+$$
+
+Since the cart velocity is defined as
+
+$$
+x_2=\dot{x}
+$$
+
+it follows that
+
+$$
+\dot{x}_1=x_2
+$$
+
+Similarly, for the third state,
+
+$$
+x_3=\theta
+$$
+
+Taking its time derivative gives
+
+$$
+\dot{x}_3=\frac{d}{dt}(\theta)=\dot{\theta}
+$$
+
+Since the pendulum angular velocity is defined as
+
+$$
+x_4=\dot{\theta}
+$$
+
+it follows that
+
+$$
+\dot{x}_3=x_4
+$$
+
+The derivatives of the velocity states represent accelerations
+
+$$
+\dot{x}_2=\frac{d}{dt}(\dot{x})=\ddot{x}
+$$
+
+$$
+\dot{x}_4=\frac{d}{dt}(\dot{\theta})=\ddot{\theta}
+$$
+
+Therefore, the derivative of the state vector is
+
+$$
+\dot{\mathbf{x}}= \begin{bmatrix} \dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3 \\
+\dot{x}_4 \end{bmatrix} = \begin{bmatrix} \dot{x} \\
+\ddot{x} \\
+\dot{\theta} \\
+\ddot{\theta} \end{bmatrix}
+$$
+
 ### First Row
 
 The first row is
