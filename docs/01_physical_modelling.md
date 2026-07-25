@@ -131,7 +131,7 @@ This indirect actuation is the central feature of the inverted pendulum problem.
 
 ---
 
-### Physical System Structure
+## Physical System Structure
 
 <p align="center">
     <img src="images/physical_system_structure.png" alt="Physical System Structure" width="1000">
@@ -273,8 +273,6 @@ The exact positive angular direction must match the joint axis convention used b
 
 A sign mismatch can cause a controller to push the cart in the wrong direction even when the equations are otherwise correct.
 
----
-
 ### 6.1 Upright and Downward Equilibria
 
 The selected angle reference is important.
@@ -351,8 +349,6 @@ The distinction between $L$ and $l$ is critical:
 * $l$ describes the distance between the pivot and the centre of mass.
 
 The gravitational moment and the translational motion of the centre of mass depend on $l$, not directly on the full length $L$.
-
----
 
 ### 7.1 Pendulum Centre-of-Mass Position
 
@@ -435,8 +431,6 @@ A third combined-system diagram can also be useful for understanding internal-fo
     <img src="images/system_fbd.png" alt="Inverted Pendulum System FBD" width="1000">
 </p>
 
----
-
 ### 9.1 Cart Free-Body Diagram
 
 The cart FBD contains:
@@ -460,8 +454,6 @@ The pivot force must initially be included because the pendulum acts on the cart
 <p align="center">
     <img src="images/cart_fbd.png" alt="Cart FBD" width="1000">
 </p>
-
----
 
 ### 9.2 Pendulum Free-Body Diagram
 
@@ -489,8 +481,6 @@ The cart acceleration also affects the pendulum dynamics because the pivot itsel
 <p align="center">
     <img src="images/pendulum_fbd.png" alt="Pendulum FBD" width="1000">
 </p>
-
----
 
 ### 9.3 Internal and External Forces
 
@@ -531,8 +521,6 @@ For this project, the nominal values are:
 | $g$    | Gravitational acceleration       | 9.81 m/s²                      |
 | -      | Rail length                      | 1.0 m                          |
 | -      | Cart travel limit                | Approximately −0.5 m to +0.5 m |
-
----
 
 ### 10.1 Pendulum Moment of Inertia
 
