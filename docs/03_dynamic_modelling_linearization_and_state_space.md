@@ -1275,6 +1275,12 @@ $$
 \ddot{\theta}=\frac{(M+m)g}{Ml}\theta
 $$
 
+The positive coefficient means that a small angular displacement from the upright equilibrium causes an angular acceleration in the same direction.
+
+Therefore, the pendulum naturally moves farther away from the upright position.
+
+This term represents the unstable open-loop dynamics of the inverted pendulum.
+
 ---
 
 ---
