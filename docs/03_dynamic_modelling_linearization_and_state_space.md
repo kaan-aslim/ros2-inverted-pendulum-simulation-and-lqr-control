@@ -916,39 +916,25 @@ $$
 The state vector is defined as
 
 $$
-\mathbf{x}=
-\begin{bmatrix}
-x_1 \\
+\mathbf{x}= \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
-x_4
-\end{bmatrix}
-=
-\begin{bmatrix}
-x \\
+x_4 \end{bmatrix} = \begin{bmatrix} x \\
 \dot{x} \\
 \theta \\
-\dot{\theta}
-\end{bmatrix}
+\dot{\theta} \end{bmatrix}
 $$
 
 Therefore, the derivative of the state vector is
 
 $$
-\dot{\mathbf{x}}=
-\begin{bmatrix}
-\dot{x}_1 \\
+\dot{\mathbf{x}}= \begin{bmatrix} \dot{x}_1 \\
 \dot{x}_2 \\
 \dot{x}_3 \\
-\dot{x}_4
-\end{bmatrix}
-=
-\begin{bmatrix}
-\dot{x} \\
+\dot{x}_4 \end{bmatrix} = \begin{bmatrix} \dot{x} \\
 \ddot{x} \\
 \dot{\theta} \\
-\ddot{\theta}
-\end{bmatrix}
+\ddot{\theta} \end{bmatrix}
 $$
 
 The original equations of motion contain the second derivatives
@@ -1011,20 +997,10 @@ Each row of the \(A\) matrix determines the time derivative of one state variabl
 The first row determines the time derivative of the cart position state
 
 $$
-\begin{bmatrix}
-\dot{x}_1 & \circ & \circ & \circ
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & 1 & 0 & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
+\begin{bmatrix} \dot{x}_1 & \circ & \circ & \circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
-x_4
-\end{bmatrix}
-=0x_1+1x_2+0x_3+0x_4
+x_4 \end{bmatrix} =0x_1+1x_2+0x_3+0x_4
 $$
 
 Therefore,
@@ -1066,20 +1042,10 @@ It allows the cart position state to be updated using the cart velocity state.
 The second row determines the time derivative of the cart velocity state
 
 $$
-\begin{bmatrix}
-\circ & \dot{x}_2 & \circ & \circ
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & 0 & -\frac{mg}{M} & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
+\begin{bmatrix} \circ & \dot{x}_2 & \circ & \circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
-x_4
-\end{bmatrix}
-=0x_1+0x_2-\frac{mg}{M}x_3+0x_4
+x_4 \end{bmatrix} =0x_1+0x_2-\frac{mg}{M}x_3+0x_4
 $$
 
 Therefore,
@@ -1131,20 +1097,10 @@ The negative sign indicates that, according to the selected coordinate and angle
 The third row determines the time derivative of the pendulum angle state
 
 $$
-\begin{bmatrix}
-\circ & \circ & \dot{x}_3 & \circ
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & 0 & 0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
+\begin{bmatrix} \circ & \circ & \dot{x}_3 & \circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
-x_4
-\end{bmatrix}
-=0x_1+0x_2+0x_3+1x_4
+x_4 \end{bmatrix} =0x_1+0x_2+0x_3+1x_4
 $$
 
 Therefore,
@@ -1202,20 +1158,10 @@ The third row allows the pendulum angle state to be updated using the angular ve
 The fourth row determines the time derivative of the pendulum angular velocity state
 
 $$
-\begin{bmatrix}
-\circ & \circ & \circ & \dot{x}_4
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & 0 & \frac{(M+m)g}{Ml} & 0
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
+\begin{bmatrix} \circ & \circ & \circ & \dot{x}_4 \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
 x_2 \\
 x_3 \\
-x_4
-\end{bmatrix}
-=0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
+x_4 \end{bmatrix} =0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
 $$
 
 Therefore,
