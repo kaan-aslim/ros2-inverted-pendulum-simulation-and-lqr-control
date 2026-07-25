@@ -1021,6 +1021,256 @@ $$
 
 ### First Row
 
+The first row of the state equation determines the derivative of the first state
+
+$$
+\dot{x}_1
+$$
+
+The corresponding matrix operation is
+
+$$
+\begin{bmatrix} \dot{x}_1 \\
+\circ \\
+\circ \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
+x_2 \\
+x_3 \\
+x_4 \end{bmatrix}
+$$
+
+Expanding the row-by-column multiplication gives
+
+$$
+\dot{x}_1=0x_1+1x_2+0x_3+0x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_1=x_2
+$$
+
+Using the state definitions,
+
+$$
+x_1=x
+$$
+
+and
+
+$$
+x_2=\dot{x}
+$$
+
+the left-hand side becomes
+
+$$
+\dot{x}_1=\frac{d}{dt}(x_1)=\frac{d}{dt}(x)=\dot{x}
+$$
+
+while the right-hand side is
+
+$$
+x_2=\dot{x}
+$$
+
+Thus,
+
+$$
+\dot{x}_1=x_2
+$$
+
+means that the time derivative of the cart position state is equal to the cart velocity state.
+
+### Second Row
+
+The second row determines the derivative of the second state
+
+$$
+\dot{x}_2
+$$
+
+Since the second state is defined as
+
+$$
+x_2=\dot{x}
+$$
+
+its time derivative is
+
+$$
+\dot{x}_2=\frac{d}{dt}(x_2)=\frac{d}{dt}(\dot{x})=\ddot{x}
+$$
+
+The corresponding matrix operation is
+
+$$
+\begin{bmatrix} \circ \\
+\dot{x}_2 \\
+\circ \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & -\frac{mg}{M} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
+x_2 \\
+x_3 \\
+x_4 \end{bmatrix}
+$$
+
+Expanding the row-by-column multiplication gives
+
+$$
+\dot{x}_2=0x_1+0x_2-\frac{mg}{M}x_3+0x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_2=-\frac{mg}{M}x_3
+$$
+
+Using
+
+$$
+\dot{x}_2=\ddot{x}
+$$
+
+and
+
+$$
+x_3=\theta
+$$
+
+the equation becomes
+
+$$
+\ddot{x}=-\frac{mg}{M}\theta
+$$
+
+### Third Row
+
+The third row determines the derivative of the third state
+
+$$
+\dot{x}_3
+$$
+
+Since
+
+$$
+x_3=\theta
+$$
+
+its time derivative is
+
+$$
+\dot{x}_3=\frac{d}{dt}(x_3)=\frac{d}{dt}(\theta)=\dot{\theta}
+$$
+
+The corresponding matrix operation is
+
+$$
+\begin{bmatrix} \circ \\
+\circ \\
+\dot{x}_3 \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\
+x_2 \\
+x_3 \\
+x_4 \end{bmatrix}
+$$
+
+Expanding the row-by-column multiplication gives
+
+$$
+\dot{x}_3=0x_1+0x_2+0x_3+1x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_3=x_4
+$$
+
+Using
+
+$$
+\dot{x}_3=\dot{\theta}
+$$
+
+and
+
+$$
+x_4=\dot{\theta}
+$$
+
+this equation states that the time derivative of the pendulum angle state is equal to the pendulum angular velocity state.
+
+### Fourth Row
+
+The fourth row determines the derivative of the fourth state
+
+$$
+\dot{x}_4
+$$
+
+Since
+
+$$
+x_4=\dot{\theta}
+$$
+
+its time derivative is
+
+$$
+\dot{x}_4=\frac{d}{dt}(x_4)=\frac{d}{dt}(\dot{\theta})=\ddot{\theta}
+$$
+
+The corresponding matrix operation is
+
+$$
+\begin{bmatrix} \circ \\
+\circ \\
+\circ \\
+\dot{x}_4 \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1 \\
+x_2 \\
+x_3 \\
+x_4 \end{bmatrix}
+$$
+
+Expanding the row-by-column multiplication gives
+
+$$
+\dot{x}_4=0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
+$$
+
+Therefore,
+
+$$
+\dot{x}_4=\frac{(M+m)g}{Ml}x_3
+$$
+
+Using
+
+$$
+\dot{x}_4=\ddot{\theta}
+$$
+
+and
+
+$$
+x_3=\theta
+$$
+
+the equation becomes
+
+$$
+\ddot{\theta}=\frac{(M+m)g}{Ml}\theta
+$$
+
+---
+
+---
+
+### First Row
+
 The first row is
 
 $$
