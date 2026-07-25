@@ -985,7 +985,10 @@ $$
 this becomes
 
 $$
-\ddot{x}=-\frac{mg}{M}\theta
+\begin{bmatrix} \circ \\
+\ddot{x} \\
+\circ \\
+\circ \end{bmatrix} = -\frac{mg}{M}\theta
 $$
 
 This equation shows that, in the absence of a control input, the pendulum angle influences the horizontal acceleration of the cart.
@@ -1003,7 +1006,10 @@ represents the gravitational coupling from the pendulum angle to the cart accele
 The third row is
 
 $$
-\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1\\
+\begin{bmatrix} \circ \\
+\circ \\
+\dot{\theta} \\
+\circ \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
 x_4 \end{bmatrix} = 0x_1+0x_2+0x_3+1x_4
@@ -1024,7 +1030,10 @@ $$
 this becomes
 
 $$
-\dot{\theta}=\dot{\theta}
+\begin{bmatrix} \circ \\
+\circ \\
+\dot{\theta} \\
+\circ \end{bmatrix} = \dot{\theta}
 $$
 
 which states that the time derivative of the pendulum angle is its angular velocity.
@@ -1034,7 +1043,10 @@ which states that the time derivative of the pendulum angle is its angular veloc
 The fourth row is
 
 $$
-\begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
+\begin{bmatrix} \circ \\
+\circ \\
+\circ \\
+\ddot{\theta} \end{bmatrix} = \begin{bmatrix} 0 & 0 & \frac{(M+m)g}{Ml} & 0 \end{bmatrix} \begin{bmatrix} x_1\\
 x_2\\
 x_3\\
 x_4 \end{bmatrix} = 0x_1+0x_2+\frac{(M+m)g}{Ml}x_3+0x_4
@@ -1055,7 +1067,10 @@ $$
 this becomes
 
 $$
-\ddot{\theta}=\frac{(M+m)g}{Ml}\theta
+\begin{bmatrix} \circ \\
+\circ \\
+\circ \\
+\ddot{\theta} \end{bmatrix} = \frac{(M+m)g}{Ml}\theta
 $$
 
 The positive coefficient means that a small angular displacement from the upright equilibrium causes an angular acceleration in the same direction.
