@@ -395,6 +395,697 @@ These linear equations provide the starting point for constructing the state-spa
 
 The next stage converts the second-order differential equations into a first-order state-space model by defining the system state variables and deriving the system matrices.
 
+---
+
+---
+
+---
+
+# State-Space Representation
+
+## 11. Why State-Space Representation Is Needed
+
+The linearised equations derived in the previous section are
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}=F
+$$
+
+$$
+l\ddot{\theta}+\ddot{x}-g\theta=0
+$$
+
+Although these equations are linear, they are still expressed as coupled second-order differential equations.
+
+Modern control techniques such as the Linear Quadratic Regulator (LQR) require the system to be represented as a set of first-order differential equations.
+
+State-space representation provides a compact mathematical framework that describes the complete dynamics of the system using a state vector and an input vector.
+
+Once the system is expressed in state-space form, it can be directly used for controller design, simulation, stability analysis and numerical implementation.
+
+---
+
+# 12. Solving the Coupled Linear Equations
+
+The two linear equations are coupled because both contain the unknown accelerations
+
+$$
+\ddot{x}
+$$
+
+and
+
+$$
+\ddot{\theta}
+$$
+
+Before constructing the state-space model, these accelerations must be written explicitly as functions of the system states and the control input.
+
+---
+
+## Solving for the Pendulum Angular Acceleration
+
+Starting from the second equation
+
+$$
+l\ddot{\theta}+\ddot{x}-g\theta=0
+$$
+
+Rearranging gives
+
+$$
+l\ddot{\theta}=g\theta-\ddot{x}
+$$
+
+Therefore
+
+$$
+\ddot{\theta}=\frac{g\theta-\ddot{x}}{l}
+$$
+
+This expression is substituted into the first equation.
+
+---
+
+## Solving for the Cart Acceleration
+
+The first equation is
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}=F
+$$
+
+Substituting the previous result gives
+
+$$
+(M+m)\ddot{x}+m(g\theta-\ddot{x})=F
+$$
+
+Expanding the equation
+
+$$
+(M+m)\ddot{x}+mg\theta-m\ddot{x}=F
+$$
+
+Combining the acceleration terms
+
+$$
+M\ddot{x}+mg\theta=F
+$$
+
+Finally,
+
+$$
+\ddot{x}=\frac{F-mg\theta}{M}
+$$
+
+or equivalently
+
+$$
+\ddot{x}=-\frac{mg}{M}\theta+\frac{1}{M}F
+$$
+
+This equation describes the horizontal acceleration of the cart.
+
+---
+
+## Completing the Pendulum Equation
+
+The previously derived expression
+
+$$
+\ddot{\theta}=\frac{g\theta-\ddot{x}}{l}
+$$
+
+can now be completed by substituting the expression for
+
+$$
+\ddot{x}
+$$
+
+$$
+\ddot{\theta}=\frac{g\theta-\left(-\frac{mg}{M}\theta+\frac{1}{M}F\right)}{l}
+$$
+
+Expanding
+
+$$
+\ddot{\theta}=\frac{g\theta+\frac{mg}{M}\theta-\frac{1}{M}F}{l}
+$$
+
+Collecting the gravity terms
+
+$$
+\ddot{\theta}=\frac{(M+m)g}{Ml}\theta-\frac{1}{Ml}F
+$$
+
+This equation describes the angular acceleration of the pendulum.
+
+At this point, both accelerations have been expressed explicitly in terms of the system states and the control input.
+
+---
+
+# 13. Choosing the State Variables
+
+The system has two degrees of freedom.
+
+Each degree of freedom contributes both a position and a velocity.
+
+Therefore, four state variables are required.
+
+They are selected as
+
+$$
+x_1=x
+$$
+
+$$
+x_2=\dot{x}
+$$
+
+$$
+x_3=\theta
+$$
+
+$$
+x_4=\dot{\theta}
+$$
+
+These variables completely describe the instantaneous state of the inverted pendulum.
+
+---
+
+# 14. State Vector
+
+The four state variables are grouped into a single vector
+
+$$
+x=
+\begin{bmatrix}
+x\\
+\dot{x}\\
+\theta\\
+\dot{\theta}
+\end{bmatrix}
+$$
+
+This vector contains all information required to predict the future motion of the system.
+
+---
+
+# 15. Input Variable
+
+The only external control input is the horizontal force applied to the cart.
+
+Therefore
+
+$$
+u=F
+$$
+
+or
+
+$$
+u=
+\begin{bmatrix}
+F
+\end{bmatrix}
+$$
+
+The pendulum has no independent actuator.
+
+Instead, it is stabilised indirectly through the cart motion.
+
+---
+
+# 16. Converting to First-Order Differential Equations
+
+State-space models are always expressed as first-order differential equations.
+
+The first and third state equations follow directly from the definitions of the state variables.
+
+Since
+
+$$
+x_1=x
+$$
+
+its derivative is
+
+$$
+\dot{x}_1=x_2
+$$
+
+Similarly,
+
+$$
+x_3=\theta
+$$
+
+gives
+
+$$
+\dot{x}_3=x_4
+$$
+
+The remaining derivatives are obtained from the previously derived acceleration equations.
+
+Using
+
+$$
+\ddot{x}=-\frac{mg}{M}\theta+\frac{1}{M}F
+$$
+
+gives
+
+$$
+\dot{x}_2=-\frac{mg}{M}x_3+\frac{1}{M}u
+$$
+
+Using
+
+$$
+\ddot{\theta}=\frac{(M+m)g}{Ml}\theta-\frac{1}{Ml}F
+$$
+
+gives
+
+$$
+\dot{x}_4=\frac{(M+m)g}{Ml}x_3-\frac{1}{Ml}u
+$$
+
+The complete first-order system is therefore
+
+$$
+\dot{x}_1=x_2
+$$
+
+$$
+\dot{x}_2=-\frac{mg}{M}x_3+\frac{1}{M}u
+$$
+
+$$
+\dot{x}_3=x_4
+$$
+
+$$
+\dot{x}_4=\frac{(M+m)g}{Ml}x_3-\frac{1}{Ml}u
+$$
+
+---
+
+# 17. Constructing the State-Space Model
+
+The four equations can now be written in matrix form
+
+$$
+\dot{x}=Ax+Bu
+$$
+
+where
+
+$$
+A=
+\begin{bmatrix}
+0&1&0&0\\
+0&0&-\frac{mg}{M}&0\\
+0&0&0&1\\
+0&0&\frac{(M+m)g}{Ml}&0
+\end{bmatrix}
+$$
+
+and
+
+$$
+B=
+\begin{bmatrix}
+0\\
+\frac{1}{M}\\
+0\\
+-\frac{1}{Ml}
+\end{bmatrix}
+$$
+
+The matrix
+
+$$
+A
+$$
+
+describes the natural dynamics of the inverted pendulum.
+
+The matrix
+
+$$
+B
+$$
+
+describes how the control force influences those dynamics.
+
+---
+
+# 18. Output Equation
+
+The general state-space representation also includes an output equation
+
+$$
+y=Cx+Du
+$$
+
+Since all four states are measured in this project, the output matrix is chosen as the identity matrix
+
+$$
+C=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix}
+$$
+
+There is no direct feedthrough from the applied force to the measured outputs.
+
+Therefore
+
+$$
+D=
+\begin{bmatrix}
+0\\
+0\\
+0\\
+0
+\end{bmatrix}
+$$
+
+---
+
+# 19. Final State-Space Representation
+
+The complete continuous-time model used throughout this project is
+
+$$
+\dot{x}=Ax+Bu
+$$
+
+$$
+y=Cx+Du
+$$
+
+where
+
+$$
+A=
+\begin{bmatrix}
+0&1&0&0\\
+0&0&-\frac{mg}{M}&0\\
+0&0&0&1\\
+0&0&\frac{(M+m)g}{Ml}&0
+\end{bmatrix}
+$$
+
+$$
+B=
+\begin{bmatrix}
+0\\
+\frac{1}{M}\\
+0\\
+-\frac{1}{Ml}
+\end{bmatrix}
+$$
+
+$$
+C=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix}
+$$
+
+$$
+D=
+\begin{bmatrix}
+0\\
+0\\
+0\\
+0
+\end{bmatrix}
+$$
+
+The resulting state-space model provides a compact representation of the linearised system and serves as the mathematical foundation for the controller developed in the next chapter.
+
+---
+
+---
+
+---
+
+# 20. Physical Interpretation of the State-Space Model
+
+The state-space model provides a compact mathematical description of the inverted pendulum dynamics.
+
+Unlike the original nonlinear equations of motion, the state-space representation expresses the system as a set of coupled first-order differential equations.
+
+This form is particularly suitable for numerical computation because every state derivative can be calculated directly from the current system state and the applied control input.
+
+Rather than treating the cart and pendulum separately, the state-space model describes the entire system as a single dynamic system.
+
+---
+
+# 21. Physical Meaning of the State Variables
+
+Each element of the state vector represents a measurable physical quantity.
+
+| State Variable | Physical Meaning |
+|----------------|------------------|
+| $$x$$ | Horizontal position of the cart |
+| $$\dot{x}$$ | Horizontal velocity of the cart |
+| $$\theta$$ | Pendulum angle measured from the upright equilibrium |
+| $$\dot{\theta}$$ | Angular velocity of the pendulum |
+
+Together, these four variables completely describe the instantaneous condition of the inverted pendulum.
+
+If all four state variables are known at a particular instant together with the applied input force, the future motion of the system can be predicted using the state-space equations.
+
+---
+
+# 22. Physical Meaning of the A Matrix
+
+The system matrix
+
+$$
+A
+$$
+
+describes the natural behaviour of the inverted pendulum when no external force is applied.
+
+Each row corresponds to one state equation.
+
+### First Row
+
+$$
+\dot{x}= \dot{x}
+$$
+
+The first row simply states that the derivative of the cart position is its velocity.
+
+---
+
+### Second Row
+
+The second row describes the horizontal acceleration of the cart.
+
+It shows that the cart acceleration depends on the pendulum angle.
+
+As the pendulum begins to fall, gravity produces a horizontal acceleration of the cart even when no control input is applied.
+
+---
+
+### Third Row
+
+$$
+\dot{\theta}=\dot{\theta}
+$$
+
+The third row states that the derivative of the pendulum angle is its angular velocity.
+
+---
+
+### Fourth Row
+
+The fourth row describes the angular acceleration of the pendulum.
+
+It shows how gravity naturally causes the pendulum to rotate away from the upright equilibrium.
+
+This row contains the unstable dynamics that make the inverted pendulum a challenging control problem.
+
+---
+
+# 23. Physical Meaning of the B Matrix
+
+The input matrix
+
+$$
+B
+$$
+
+describes how the external control force influences the system.
+
+The applied force directly changes the cart acceleration.
+
+As the cart accelerates, the pendulum experiences an inertial effect that changes its angular acceleration.
+
+Therefore, the pendulum is not controlled directly.
+
+Instead, it is stabilised indirectly by controlling the cart motion.
+
+This indirect actuation is one of the defining characteristics of the inverted pendulum system.
+
+---
+
+# 24. Stability of the Open-Loop System
+
+The state-space model derived in this chapter represents the system without any controller.
+
+This configuration is known as the **open-loop system**.
+
+Although the mathematical model is linear, it is inherently unstable around the upright equilibrium.
+
+A small disturbance causes the pendulum angle to increase continuously until the pendulum falls.
+
+This behaviour can also be observed in the Gazebo simulation by applying a small external disturbance while no controller is active.
+
+Because of this instability, a feedback controller is required to continuously calculate the control force needed to maintain the upright position.
+
+---
+
+# 25. Mapping the State Variables to ROS 2
+
+The analytical state variables correspond directly to data published by Gazebo through ROS 2.
+
+| Mathematical Variable | ROS 2 Source |
+|-----------------------|--------------|
+| $$x$$ | Position of `cart_rail_joint` |
+| $$\dot{x}$$ | Velocity of `cart_rail_joint` |
+| $$\theta$$ | Position of `pendulum_cart_joint` |
+| $$\dot{\theta}$$ | Velocity of `pendulum_cart_joint` |
+
+The `JointState` message published by Gazebo contains all four quantities required by the controller.
+
+The ROS 2 control node reads these values and constructs the state vector
+
+$$
+x=
+\begin{bmatrix}
+x\\
+\dot{x}\\
+\theta\\
+\dot{\theta}
+\end{bmatrix}
+$$
+
+This state vector becomes the input to the LQR controller.
+
+---
+
+# 26. Control Pipeline Used in This Project
+
+The complete control process implemented in this project is illustrated below.
+
+```text
+JointState Topic
+        ↓
+Read Cart Position
+Read Cart Velocity
+Read Pendulum Angle
+Read Pendulum Angular Velocity
+        ↓
+Construct State Vector
+        ↓
+Compute Control Law
+u = -Kx
+        ↓
+Publish Force Command
+        ↓
+Gazebo Simulation
+        ↓
+Updated Joint States
+```
+
+This feedback loop is executed continuously during the simulation.
+
+At every control cycle, the controller computes a new force based on the current system state.
+
+---
+
+# 27. Why the State-Space Model Is Important
+
+The state-space model serves as the mathematical bridge between system dynamics and controller design.
+
+It transforms the physical behaviour of the inverted pendulum into a form that can be analysed and controlled using modern control theory.
+
+Without the state-space representation, algorithms such as the Linear Quadratic Regulator cannot be applied.
+
+In this project, the state-space model provides the mathematical foundation for calculating the optimal control force that stabilises the pendulum.
+
+---
+
+# 28. Summary
+
+In this chapter, the nonlinear equations of motion were transformed into a linear state-space model around the upright equilibrium.
+
+The resulting model consists of four coupled first-order differential equations represented by the matrices
+
+$$
+A
+$$
+
+$$
+B
+$$
+
+$$
+C
+$$
+
+and
+
+$$
+D
+$$
+
+These matrices completely describe the linear dynamics of the inverted pendulum and provide the mathematical model required for optimal control design.
+
+The state variables used in the analytical model correspond directly to the joint positions and velocities available from the Gazebo simulation, allowing the theoretical model to be implemented directly within the ROS 2 control node.
+
+---
+
+# Next Step
+
+The next chapter uses the state-space model developed here to design a Linear Quadratic Regulator (LQR).
+
+Using the matrices
+
+$$
+A
+$$
+
+and
+
+$$
+B
+$$
+
+the controller computes an optimal feedback gain matrix
+
+$$
+K
+$$
+
+that minimises a quadratic cost function while stabilising the inverted pendulum around its upright equilibrium.
+
 Continue to:
 
-**Dynamic Modelling: State-Space Representation**
+**04_control_design_lqr_controller.md**
