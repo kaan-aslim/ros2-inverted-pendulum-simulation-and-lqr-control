@@ -831,15 +831,7 @@ $$
 $$
 
 $$
-\dot{\mathbf{x}}
-\qquad\qquad
-A
-\qquad\qquad
-\mathbf{x}
-\qquad\qquad
-B
-\qquad
-u
+\dot{\mathbf{x}} \qquad = \qquad A \qquad * \qquad \mathbf{x} \qquad + \qquad B \qquad * \qquad u
 $$
 
 The **output equation** can be written explicitly as
