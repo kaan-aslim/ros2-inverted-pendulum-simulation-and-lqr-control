@@ -89,6 +89,10 @@ For this reason, the LQR controller designed in this project is intended only fo
 
 Large-angle swing-up control requires the original nonlinear model.
 
+<p align="center">
+    <img src="images/local_linear_approximation.png" alt="Local Linear Approximation" width=1000">
+</p>
+
 ---
 
 # 3. Selecting the Operating Point
