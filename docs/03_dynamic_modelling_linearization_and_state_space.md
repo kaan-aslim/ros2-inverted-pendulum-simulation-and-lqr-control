@@ -1336,7 +1336,10 @@ $$
 B\mathbf{u}= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml} \end{bmatrix} \\
+-\frac{1}{Ml} \end{bmatrix}
+$$
+
+$$
 F = \begin{bmatrix} 0 \\
 \frac{F}{M} \\
 0 \\
