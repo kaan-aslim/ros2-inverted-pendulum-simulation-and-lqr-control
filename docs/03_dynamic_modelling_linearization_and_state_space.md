@@ -598,7 +598,31 @@ Instead, it is stabilised indirectly through the cart motion.
 
 ## 16. Converting to First-Order Differential Equations
 
-State-space models are always expressed as first-order differential equations.
+State-space models are always expressed as first-order differential equations. Therefore, by using the relationships between the state variables and their time derivatives, the original second-order differential equations are converted into an equivalent set of first-order state equations.
+
+The state vector is defined as
+
+$$
+\mathbf{x}= \begin{bmatrix} x_1 \\
+x_2 \\
+x_3 \\
+x_4 \end{bmatrix} = \begin{bmatrix} x \\
+\dot{x} \\
+\theta \\
+\dot{\theta} \end{bmatrix}
+$$
+
+Therefore, the derivative of the state vector is
+
+$$
+\dot{\mathbf{x}}= \begin{bmatrix} \dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3 \\
+\dot{x}_4 \end{bmatrix} = \begin{bmatrix} \dot{x} \\
+\ddot{x} \\
+\dot{\theta} \\
+\ddot{\theta} \end{bmatrix}
+$$
 
 The first and third state equations follow directly from the definitions of the state variables.
 
