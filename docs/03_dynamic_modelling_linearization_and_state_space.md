@@ -1330,18 +1330,18 @@ The input matrix describes how the external control input influences each state 
 
 Unlike the system matrix, which represents the natural dynamics of the inverted pendulum, the input matrix determines how an externally applied force changes the state derivatives.
 
-Multiplying the input matrix by the control input gives
+Multiplying the input matrix by the control input
 
 $$
 \begin{aligned} B\mathbf{u} &= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml} \end{bmatrix} \\
-\\
-\\
-\\
-\\
-\\
+-\frac{1}{Ml} \end{bmatrix}
+$$
+
+gives
+
+$$
 F &= \begin{bmatrix} 0 \\
 \frac{F}{M} \\
 0 \\
