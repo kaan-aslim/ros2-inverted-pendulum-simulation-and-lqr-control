@@ -1256,6 +1256,28 @@ $$
 \end{aligned}
 $$
 
+The four first-order state equations are
+
+$$
+\begin{aligned}
+\dot{x}_1 &= x_2 \\
+\dot{x}_2 &= -\frac{mg}{M}x_3 \\
+\dot{x}_3 &= x_4 \\
+\dot{x}_4 &= \frac{(M+m)g}{Ml}x_3
+\end{aligned}
+$$
+
+Their physical meanings are
+
+$$
+\begin{aligned}
+\text{rate of change of cart position} &= \text{cart velocity} \\
+\text{rate of change of cart velocity} &= \text{cart acceleration} \\
+\text{rate of change of pendulum angle} &= \text{pendulum angular velocity} \\
+\text{rate of change of angular velocity} &= \text{pendulum angular acceleration}
+\end{aligned}
+$$
+
 The first and third equations are kinematic state definitions introduced when the original second-order equations are converted into first-order form.
 
 The second and fourth equations contain the actual system dynamics and describe how the cart and pendulum accelerations depend on the current state.
