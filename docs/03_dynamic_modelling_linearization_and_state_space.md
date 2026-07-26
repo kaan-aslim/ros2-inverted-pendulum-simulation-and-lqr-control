@@ -1480,7 +1480,7 @@ This behaviour can also be observed in the Gazebo simulation by applying a small
 Because of this instability, a feedback controller is required to continuously calculate the control force needed to maintain the upright position.
 
 <p align="center">
-    <img src="open_and_closed_loop_system.png" alt="Open and Closed Loop System Difference" width="1000">
+    <img src="images/open_and_closed_loop_system.png" alt="Open and Closed Loop System Difference" width="1000">
 </p>
 
 ---
