@@ -1512,25 +1512,9 @@ This state vector becomes the input to the LQR controller.
 
 The complete control process implemented in this project is illustrated below.
 
-```text
-JointState Topic
-        ↓
-Read Cart Position
-Read Cart Velocity
-Read Pendulum Angle
-Read Pendulum Angular Velocity
-        ↓
-Construct State Vector
-        ↓
-Compute Control Law
-u = -Kx
-        ↓
-Publish Force Command
-        ↓
-Gazebo Simulation
-        ↓
-Updated Joint States
-```
+<p align="center">
+    <img src="images/control_pipeline_1.png" alt="Control Pipeline" width="600">
+</p>
 
 This feedback loop is executed continuously during the simulation.
 
