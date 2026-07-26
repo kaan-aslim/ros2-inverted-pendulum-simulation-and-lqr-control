@@ -1336,7 +1336,7 @@ $$
 \begin{aligned} B\mathbf{u} &= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml} \end{bmatrix} \\[8pt]
+-\frac{1}{Ml} \end{bmatrix} \\
 &= \begin{bmatrix} 0 \\
 \frac{F}{M} \\
 0 \\
