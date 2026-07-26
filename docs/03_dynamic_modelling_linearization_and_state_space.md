@@ -1457,7 +1457,7 @@ The second element shows that the applied force directly generates cart accelera
 
 The fourth element shows that the same force also changes the pendulum angular acceleration through the dynamic coupling between the cart and the pendulum.
 
-Therefore, the inverted pendulum is an **underactuated system (a mechanical system with fewer independent actuators than degrees of freedom.)**.
+Therefore, the inverted pendulum is an **underactuated system (a mechanical system with fewer independent actuators than degrees of freedom)**.
 
 The actuator applies force only to the cart, while the pendulum is stabilised indirectly through the cart motion.
 
