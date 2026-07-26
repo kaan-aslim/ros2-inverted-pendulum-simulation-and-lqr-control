@@ -1234,7 +1234,7 @@ This relationship represents the unstable open-loop dynamics of the inverted pen
 
 ### Interpretation of the Four Rows
 
-The four rows of the \(A\) matrix can be summarised as
+The four first-order state equations are
 
 $$
 \begin{aligned}
@@ -1255,8 +1255,6 @@ $$
 \ddot{\theta} &= \frac{(M+m)g}{Ml}\theta
 \end{aligned}
 $$
-
-The four first-order state equations are
 
 Their physical meanings are
 
