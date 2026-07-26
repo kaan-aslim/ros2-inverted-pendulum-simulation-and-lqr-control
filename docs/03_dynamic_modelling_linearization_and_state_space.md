@@ -1265,7 +1265,7 @@ $$
 \text{rate of change of cart position} \ \dot{x}_1 &= \text{cart velocity} \ \dot{x} \\
 \text{rate of change of cart velocity} \ \dot{x}_2 &= \text{cart acceleration} \ \ddot{x} \\
 \text{rate of change of pendulum angle} \ \dot{x}_3 &= \text{pendulum angular velocity} \ \dot{\theta} \\
-\text{rate of change of angular velocity} \ \dot{x}_4 &= \text{pendulum angular acceleration} \ \ddot{\theta}
+\text{rate of change of pendulum angular velocity} \ \dot{x}_4 &= \text{pendulum angular acceleration} \ \ddot{\theta}
 \end{aligned}
 $$
 
