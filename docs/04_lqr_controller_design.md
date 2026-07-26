@@ -112,7 +112,7 @@ By repeatedly updating the control force, the controller maintains the pendulum 
 
 # 3. From State-Space Model to State Feedback
 
-The linearised state-space model obtained previously is
+The linearized state-space model obtained previously is
 
 $$
 \dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u}
