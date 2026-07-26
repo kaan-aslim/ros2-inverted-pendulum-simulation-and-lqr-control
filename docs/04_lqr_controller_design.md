@@ -60,6 +60,10 @@ The controller repeatedly performs the following cycle:
 
 This continuous feedback process enables the controller to compensate for disturbances and stabilise the system.
 
+<p align="center">
+    <img src="images/open_and_closed_loop_system.png" alt="Open and Closed Loop Control" width="1000">
+</p>
+
 For the inverted pendulum, the measured state vector is
 
 $$
