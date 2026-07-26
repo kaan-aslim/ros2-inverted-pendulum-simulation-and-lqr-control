@@ -1337,21 +1337,13 @@ Unlike the system matrix, which represents the natural dynamics of the inverted 
 Multiplying the input matrix by the control input gives
 
 $$
-B\mathbf{u}=
-\begin{bmatrix}
-0 \\
+B\mathbf{u}= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml}
-\end{bmatrix}
-F
-=
-\begin{bmatrix}
-0 \\
+-\frac{1}{Ml} \end{bmatrix} F = \begin{bmatrix} 0 \\
 \frac{F}{M} \\
 0 \\
--\frac{F}{Ml}
-\end{bmatrix}
+-\frac{F}{Ml} \end{bmatrix}
 $$
 
 Each element of the resulting vector represents the contribution of the control force to one state equation.
@@ -1385,11 +1377,7 @@ $$
 Therefore, the second state equation becomes
 
 $$
-\dot{x}_2
-=
--\frac{mg}{M}x_3
-+
-\frac{F}{M}
+\dot{x}_2 = -\frac{mg}{M}x_3 + \frac{F}{M}
 $$
 
 Since
@@ -1431,11 +1419,7 @@ $$
 Therefore, the fourth state equation becomes
 
 $$
-\dot{x}_4
-=
-\frac{(M+m)g}{Ml}x_3
--
-\frac{F}{Ml}
+\dot{x}_4 = \frac{(M+m)g}{Ml}x_3 - \frac{F}{Ml}
 $$
 
 Since
@@ -1459,13 +1443,10 @@ For this reason, the pendulum is controlled indirectly by controlling the motion
 The input matrix can be summarised as
 
 $$
-B=
-\begin{bmatrix}
-0 \\
+B= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
--\frac{1}{Ml}
-\end{bmatrix}
+-\frac{1}{Ml} \end{bmatrix}
 $$
 
 The first and third elements are zero because the applied force does not directly affect the position states.
