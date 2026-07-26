@@ -1,8 +1,8 @@
 # LQR Controller Design
 
-## 1. Introduction to Control Systems
+# Introduction to Control Systems
 
-### 1.1 What is a Control System?
+## 1. What is a Control System?
 
 A control system is a mathematical and computational framework used to regulate the behaviour of a dynamic system.
 
@@ -14,7 +14,9 @@ In this project, the control input is the horizontal force applied to the cart.
 
 By adjusting this force continuously, the controller keeps the pendulum balanced around its unstable upright equilibrium.
 
-### 1.2 Why is Control Required?
+---
+
+## 2. Why is Control Required?
 
 The state-space model developed in the previous chapter describes only the natural dynamics of the inverted pendulum.
 
@@ -34,7 +36,9 @@ Since no corrective action is applied, the pendulum eventually falls.
 
 Therefore, a controller is required to continuously observe the current system state and calculate the force needed to maintain the upright equilibrium.
 
-### 1.3 Open-Loop and Closed-Loop Control
+---
+
+## 3. Open-Loop and Closed-Loop Control
 
 A system operating without feedback is called an **open-loop system**.
 
@@ -80,7 +84,7 @@ For this reason, the inverted pendulum is always operated as a closed-loop syste
 
 ---
 
-## 2. Why the Inverted Pendulum Needs Control
+## 4. Why the Inverted Pendulum Needs Control
 
 The objective of the inverted pendulum is to maintain the pendulum in its unstable upright equilibrium while allowing the cart to move along the rail.
 
@@ -106,7 +110,7 @@ By repeatedly updating the control force, the controller maintains the pendulum 
 
 ---
 
-## 3. From State-Space Model to State Feedback
+## 5. From State-Space Model to State Feedback
 
 The linearized state-space model obtained previously is
 
@@ -170,7 +174,7 @@ One possible solution is the **Linear Quadratic Regulator (LQR)**.
 
 ---
 
-## 4. Linear Quadratic Regulator (LQR)
+# Linear Quadratic Regulator (LQR)
 
 The Linear Quadratic Regulator (LQR) is one of the most widely used optimal control methods for linear dynamic systems.
 
@@ -192,7 +196,7 @@ The optimisation is performed by minimising a mathematical performance index cal
 
 ---
 
-## 5. Cost Function
+## 6. Cost Function
 
 The cost function used by the Linear Quadratic Regulator is
 
@@ -241,7 +245,7 @@ For this reason, the resulting controller is called an **optimal controller**.
 
 ---
 
-## 6. Choosing the Weighting Matrices
+## 7. Choosing the Weighting Matrices
 
 The Linear Quadratic Regulator determines the optimal controller by minimising the cost function
 
@@ -265,7 +269,7 @@ allow the designer to specify which aspects of the system should be prioritised 
 
 Rather than changing the system dynamics, these matrices define how strongly different quantities are penalised in the cost function.
 
-### 6.1 State Weighting Matrix (Q)
+### State Weighting Matrix (Q)
 
 The matrix
 
@@ -302,7 +306,7 @@ Since maintaining the upright position is the primary objective, the pendulum an
 
 As a result, the controller prioritises keeping the pendulum balanced over maintaining the cart exactly at the origin.
 
-### 6.2 Control Weighting Matrix (R)
+### Control Weighting Matrix (R)
 
 The matrix
 
@@ -352,7 +356,7 @@ therefore determines the trade-off between
 
 ---
 
-## 7. Solving the Riccati Equation
+## 8. Solving the Riccati Equation
 
 Once the weighting matrices have been selected, the next step is to compute the optimal feedback gain matrix.
 
@@ -390,7 +394,7 @@ $$
 
 contains the information required to compute the optimal feedback gain.
 
-### 7.1 Why is the Riccati Equation Required?
+### Why is the Riccati Equation Required?
 
 The objective of LQR is to minimise the cost function while satisfying the system dynamics.
 
@@ -410,7 +414,7 @@ has been obtained, the optimal feedback gain matrix can be calculated immediatel
 
 ---
 
-## 8. Computing the Feedback Gain Matrix
+## 9. Computing the Feedback Gain Matrix
 
 After solving the Riccati equation, the optimal feedback gain matrix is calculated as
 
@@ -462,7 +466,7 @@ This complete use of the system state is one of the main reasons why LQR provide
 
 ---
 
-## 9. Closed-Loop System Dynamics
+## 10. Closed-Loop System Dynamics
 
 Substituting the state-feedback control law
 
@@ -518,7 +522,7 @@ Consequently, the pendulum returns to its upright equilibrium after small distur
 
 ---
 
-## 10. Control Loop Implementation
+## 11. Control Loop Implementation
 
 The LQR controller is implemented as a continuous feedback loop.
 
@@ -551,7 +555,7 @@ This feedback cycle continuously compensates for disturbances and maintains the 
 
 ---
 
-## 11. Summary
+## 12. Summary
 
 In this chapter, the linearised state-space model was transformed into a closed-loop control system using the Linear Quadratic Regulator.
 
