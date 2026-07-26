@@ -42,7 +42,8 @@ The primary goal of this repository is therefore not simply to balance a pendulu
   - [Modelling Assumptions](#modelling-assumptions)
   - [URDF/Xacro Model](#urdfxacro-model)
 - [Dynamic Modelling](#dynamic-modelling)
-- [Linearization and State-Space Representation](#linearization-and-state-space-representation)
+- [Linearization](#linearization)
+- [State-Space Representation](#state-space-representation)
 - [LQR Controller Design](#lqr-controller-design)
 - [Control Pipeline](#control-pipeline)
 - [ROS2 Software Architecture](#ros2-software-architecture)
@@ -257,7 +258,7 @@ The complete Pyhsical System Modelling is documented in: [Physical System Modell
 
 ---
 
-# Dynamic Modeling
+# Dynamic Modelling
 
 The first step in controller development is obtaining a mathematical description of the system dynamics.
 
@@ -464,7 +465,7 @@ $$
 
 These equations describe the local dynamics around the upright equilibrium and form the basis for the state-space representation used in the LQR controller design.
 
-The complete derivation is available in `docs/05_linearization_and_state_space.md`.
+The complete derivation is documented in: [Dynamic Modelling: Linearization and State-Space Representation](docs/03_dynamic_modelling_linearization_and_state_space.md)
 
 ## Why State-Space?
 
@@ -535,7 +536,7 @@ Within this project, the state-space matrices are obtained directly from the lin
 
 This mathematical representation serves as the foundation for controllability analysis, state-feedback control, and the LQR controller implemented in this project.
 
-The complete derivation is available in `docs/05_linearization_and_state_space.md`.
+The complete derivation is documented in: [Dynamic Modelling: Linearization and State-Space Representation](docs/03_dynamic_modelling_linearization_and_state_space.md)
 
 ---
 
@@ -979,10 +980,10 @@ The mathematical derivations and implementation details are intentionally separa
 | 01 | Physical Modelling |
 | 02 | Dynamic Modelling: Equation of Motions |
 | 03 | Dynamic Modelling: Linearization & State-Space |
-| 06 | LQR Controller Design |
-| 07 | ROS2 Software Architecture |
-| 08 | Control Node |
-| 09 | Simulation Results |
+| 04 | LQR Controller Design |
+| 05 | LQR Controller Node Software Implementation |
+| 06 | ROS2 and Gazebo Software Architecture |
+| 07 | Simulation Results |
 
 Each document explains the engineering methodology used during the corresponding stage of the project.
 
