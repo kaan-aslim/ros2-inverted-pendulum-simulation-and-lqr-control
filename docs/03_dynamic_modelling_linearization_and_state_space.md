@@ -884,11 +884,7 @@ The resulting state-space model provides a compact representation of the lineari
 
 ---
 
----
-
----
-
-# 20. Physical Interpretation of the State-Space Model
+## 20. Physical Interpretation of the State-Space Model
 
 The state-space model provides a compact mathematical description of the inverted pendulum dynamics.
 
@@ -900,7 +896,7 @@ Rather than treating the cart and pendulum separately, the state-space model des
 
 ---
 
-# 21. Physical Meaning of the State Variables
+## 21. Physical Meaning of the State Variables
 
 Each element of the state vector represents a measurable physical quantity.
 
@@ -1463,7 +1459,7 @@ This indirect actuation is one of the defining characteristics of the inverted p
 
 ---
 
-# 24. Stability of the Open-Loop System
+## 24. Stability of the Open-Loop System
 
 The state-space model derived in this chapter represents the system without any controller.
 
@@ -1479,7 +1475,7 @@ Because of this instability, a feedback controller is required to continuously c
 
 ---
 
-# 25. Mapping the State Variables to ROS 2
+## 25. Mapping the State Variables to ROS 2
 
 The analytical state variables correspond directly to data published by Gazebo through ROS 2.
 
@@ -1508,7 +1504,7 @@ This state vector becomes the input to the LQR controller.
 
 ---
 
-# 26. Control Pipeline Used in This Project
+## 26. Control Pipeline Used in This Project
 
 The complete control process implemented in this project is illustrated below.
 
@@ -1522,7 +1518,7 @@ At every control cycle, the controller computes a new force based on the current
 
 ---
 
-# 27. Why the State-Space Model Is Important
+## 27. Why the State-Space Model Is Important
 
 The state-space model serves as the mathematical bridge between system dynamics and controller design.
 
@@ -1534,7 +1530,7 @@ In this project, the state-space model provides the mathematical foundation for 
 
 ---
 
-# 28. Summary
+## 28. Summary
 
 In this chapter, the nonlinear equations of motion were transformed into a linear state-space model around the upright equilibrium.
 
@@ -1564,7 +1560,7 @@ The state variables used in the analytical model correspond directly to the join
 
 ---
 
-# Next Step
+## Next Step
 
 The next chapter uses the state-space model developed here to design a Linear Quadratic Regulator (LQR).
 
@@ -1590,4 +1586,4 @@ that minimises a quadratic cost function while stabilising the inverted pendulum
 
 Continue to:
 
-**04_control_design_lqr_controller.md**
+[LQR Controller Design](04_lqr_controller_design.md)

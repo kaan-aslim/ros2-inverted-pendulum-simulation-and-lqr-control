@@ -736,3 +736,7 @@ Using the bodies, coordinates, forces, parameters and assumptions established in
 3. eliminate the unknown pivot forces,
 4. obtain the coupled nonlinear equations of motion,
 5. prepare the model for linearisation and state-space representation.
+
+Continue to:
+
+[Dynamic Modelling: Equations of Motion](02_dynamic_modelling_equations_of_motion.md)
