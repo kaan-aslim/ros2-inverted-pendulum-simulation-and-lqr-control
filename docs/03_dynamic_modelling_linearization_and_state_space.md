@@ -1333,7 +1333,7 @@ Unlike the system matrix, which represents the natural dynamics of the inverted 
 Multiplying the input matrix by the control input
 
 $$
-\begin{aligned} B\mathbf{u} &= \begin{bmatrix} 0 \\
+B\mathbf{u}= \begin{bmatrix} 0 \\
 \frac{1}{M} \\
 0 \\
 -\frac{1}{Ml} \end{bmatrix}
@@ -1342,10 +1342,10 @@ $$
 gives
 
 $$
-F &= \begin{bmatrix} 0 \\
+F = \begin{bmatrix} 0 \\
 \frac{F}{M} \\
 0 \\
--\frac{F}{Ml} \end{bmatrix} \end{aligned}
+-\frac{F}{Ml} \end{bmatrix}
 $$
 
 Each element of the resulting vector represents the contribution of the control force to one state equation.
