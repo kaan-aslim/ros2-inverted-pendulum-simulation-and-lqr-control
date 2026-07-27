@@ -131,7 +131,7 @@ $$
 B=\begin{bmatrix}0\\
 \dfrac{I+ml^2}{\Delta}\\
 0\\
--\dfrac{ml}{\Delta}\end{bmatrix}.
+-\dfrac{ml}{\Delta}\end{bmatrix}
 $$
 
 The inertia $I$ appears explicitly in both $\Delta$ and $B$. Consequently, replacing the rigid pendulum with a point-mass approximation changes the system matrices, the Riccati equation solution, and the resulting LQR gain.
@@ -145,7 +145,7 @@ $$
 For this four-state system to be controllable, the controllability matrix must satisfy
 
 $$
-\mathrm{rank}(\mathcal{C})=4.
+\mathrm{rank}(\mathcal{C})=4
 $$
 
 ---
@@ -183,7 +183,7 @@ The objective is to stabilise the rigid pendulum while balancing state regulatio
 The infinite-horizon continuous-time LQR cost function is
 
 $$
-\mathcal{J}=\int_0^\infty\left(\mathbf{x}^TQ\mathbf{x}+ru^2\right)\,dt.
+\mathcal{J}=\int_0^\infty\left(\mathbf{x}^TQ\mathbf{x}+ru^2\right) \ dt
 $$
 
 The term $\mathbf{x}^TQ\mathbf{x}$ penalises deviations from the desired equilibrium, whereas $ru^2$ penalises the applied cart force.
@@ -202,7 +202,7 @@ $$
 Q=\begin{bmatrix}q_x&0&0&0\\
 0&q_{\dot{x}}&0&0\\
 0&0&q_\theta&0\\
-0&0&0&q_{\dot{\theta}}\end{bmatrix}.
+0&0&0&q_{\dot{\theta}}\end{bmatrix}
 $$
 
 Each diagonal element penalises the corresponding state:
@@ -219,7 +219,7 @@ Because maintaining the upright orientation is the primary objective, the pendul
 The inverted-pendulum model has one control input, so
 
 $$
-R=\begin{bmatrix}r\end{bmatrix},\qquad r>0.
+R=\begin{bmatrix}r\end{bmatrix},\qquad r>0
 $$
 
 A larger $r$ penalises the applied force more strongly and generally produces smaller, smoother control inputs. A smaller $r$ permits larger forces and generally produces a faster, more aggressive response.
@@ -233,7 +233,7 @@ The choices of $Q$ and $R$ do not change the rigid-body plant model. They define
 After selecting $Q$ and $R$, the continuous-time algebraic Riccati equation (CARE) is solved:
 
 $$
-A^TP+PA-PBR^{-1}B^TP+Q=0.
+A^TP+PA-PBR^{-1}B^TP+Q=0
 $$
 
 Here, $A$ and $B$ are the rigid-body system matrices, $Q$ is the state-weighting matrix, $R$ is the input-weighting matrix, and $P$ is the symmetric positive-semidefinite solution used to calculate the optimal feedback gain.
@@ -249,19 +249,19 @@ Because $A$ and $B$ contain the centre-of-mass inertia $I$, the resulting $P$ an
 After solving the CARE, the optimal feedback gain is
 
 $$
-K=R^{-1}B^TP.
+K=R^{-1}B^TP
 $$
 
 For this single-input, four-state system,
 
 $$
-K=\begin{bmatrix}k_1&k_2&k_3&k_4\end{bmatrix}.
+K=\begin{bmatrix}k_1&k_2&k_3&k_4\end{bmatrix}
 $$
 
 The applied force is therefore
 
 $$
-u=-K\mathbf{x}=-\left(k_1x+k_2\dot{x}+k_3\theta+k_4\dot{\theta}\right).
+u=-K\mathbf{x}=-\left(k_1x+k_2\dot{x}+k_3\theta+k_4\dot{\theta}\right)
 $$
 
 Each gain determines how strongly its corresponding state contributes to the applied cart force. Since the gains are calculated from the rigid-body matrices, they should be recalculated whenever $M$, $m$, $l$, $I$, $g$, $Q$, or $R$ changes.
@@ -273,13 +273,13 @@ Each gain determines how strongly its corresponding state contributes to the app
 Substituting the state-feedback law into the state-space model gives
 
 $$
-\dot{\mathbf{x}}=A\mathbf{x}+B(-K\mathbf{x}).
+\dot{\mathbf{x}}=A\mathbf{x}+B(-K\mathbf{x})
 $$
 
 Therefore,
 
 $$
-\dot{\mathbf{x}}=(A-BK)\mathbf{x}.
+\dot{\mathbf{x}}=(A-BK)\mathbf{x}
 $$
 
 The matrix $A-BK$ is the **closed-loop system matrix**. Its eigenvalues determine the local stability and dynamic response of the controlled system.
@@ -299,13 +299,13 @@ $$
 \mathbf{x}=\begin{bmatrix}x\\
 \dot{x}\\
 \theta\\
-\dot{\theta}\end{bmatrix}.
+\dot{\theta}\end{bmatrix}
 $$
 
 3. Calculate the control force:
 
 $$
-u=-K\mathbf{x}.
+u=-K\mathbf{x}
 $$
 
 4. Apply the required actuator force limit.
@@ -323,13 +323,13 @@ This chapter used the linearised rigid-body state-space model to design a contin
 The rigid-body matrices $A$ and $B$ are used in the CARE, and the resulting optimal gain defines the control law
 
 $$
-u=-K\mathbf{x}.
+u=-K\mathbf{x}
 $$
 
 The corresponding closed-loop dynamics are
 
 $$
-\dot{\mathbf{x}}=(A-BK)\mathbf{x}.
+\dot{\mathbf{x}}=(A-BK)\mathbf{x}
 $$
 
 This model is consistent with the rigid-body equations implemented in the control node and is suitable for systems in which rotational inertia is significant, including humanoid mechanisms and reaction-wheel-based platforms.
