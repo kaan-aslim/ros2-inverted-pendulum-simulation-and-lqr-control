@@ -518,8 +518,8 @@ The principal physical parameters are:
 | $L$      | Total pendulum length                            | m          |
 | $l$      | Pivot-to-centre-of-mass distance                 | m          |
 | $r$      | Pendulum cylinder radius                         | m          |
-| $I$ | Pendulum inertia about its centre of mass | $\mathrm{kg\,m^2}$ |
-| $I_{\mathrm{pivot}}$ | Pendulum inertia about the pivot axis | $\mathrm{kg\,m^2}$ |
+| $I$ | Pendulum inertia about its centre of mass | $\mathrm{kg \ m^2}$ |
+| $I_{\mathrm{pivot}}$ | Pendulum inertia about the pivot axis | $\mathrm{kg \ m^2}$ |
 | $g$ | Gravitational acceleration | $\mathrm{m/s^2}$ |
 | $F$      | Horizontal control force                         | N          |
 | $x$      | Cart position                                    | m          |
@@ -534,8 +534,8 @@ For this project, the nominal values are:
 | $L$    | Total pendulum length                            | 0.5 m                            |
 | $l$    | Pivot-to-centre-of-mass distance                 | 0.25 m                           |
 | $r$    | Pendulum cylinder radius                         | 0.01 m                           |
-| $I$ | Pendulum inertia about its centre of mass | $0.020858\ \mathrm{kg\,m^2}$ |
-| $I_{\mathrm{pivot}}$ | Pendulum inertia about the pivot axis | $0.083358\ \mathrm{kg\,m^2}$ |
+| $I$ | Pendulum inertia about its centre of mass | $0.020858\ \mathrm{kg \ m^2}$ |
+| $I_{\mathrm{pivot}}$ | Pendulum inertia about the pivot axis | $0.083358\ \mathrm{kg \ m^2}$ |
 | $g$ | Gravitational acceleration | $9.81\ \mathrm{m/s^2}$ |
 | -      | Rail length                                      | 1.0 m                            |
 | -      | Cart travel limit                                | Approximately $-0.5$ m to $+0.5$ m |
@@ -693,7 +693,7 @@ Each parameter must use consistent SI units:
 * length: m,
 * force: N,
 * angle: rad,
-* inertia: $\mathrm{kg\,m^2}$
+* inertia: $\mathrm{kg \ m^2}$
 
 ### 13.3 Limiting-Case Check
 
