@@ -770,7 +770,7 @@ A physical model does not attempt to reproduce every physical detail. Instead, i
 * Which effects can be neglected?
 * How will the analytical model correspond to the simulation model?
 
-For this project, the final model must be simple enough to derive mathematically while still representing the dominant behaviour and rigid-body inertial properties of the cartâ€“pendulum system in Gazebo.
+For this project, the final model must be simple enough to derive mathematically while still representing the dominant behaviour and rigid-body inertial properties of the cart–pendulum system in Gazebo.
 
 ---
 
@@ -814,7 +814,7 @@ However, including all these effects would make the mathematical derivation unne
 
 The purpose of the present model is more specific:
 
-> To obtain the minimum mathematical representation required to derive the cartâ€“pendulum dynamics and design an LQR controller for upright stabilisation.
+> To obtain the minimum mathematical representation required to derive the cart–pendulum dynamics and design an LQR controller for upright stabilisation.
 
 Therefore, the model must include:
 
@@ -896,7 +896,7 @@ This structure immediately shows that only the cart and pendulum contribute inde
 
 The type of joint determines how one body is allowed to move relative to another.
 
-### 3.1 Cartâ€“Rail Joint
+### 3.1 Cart–Rail Joint
 
 The cart is connected to the rail by the prismatic joint:
 
@@ -914,7 +914,7 @@ For this project:
 
 Therefore, the cart contributes one translational degree of freedom.
 
-### 3.2 Pendulumâ€“Cart Joint
+### 3.2 Pendulum–Cart Joint
 
 The pendulum is connected to the cart by the revolute joint:
 
@@ -1172,7 +1172,7 @@ The pendulum is stabilised by moving the pivot beneath its centre of mass.
 
 A free-body diagram isolates one body and shows all external forces acting on it.
 
-The purpose of the FBD is not only to illustrate the physical system. It provides the direct starting point for Newtonâ€“Euler equations.
+The purpose of the FBD is not only to illustrate the physical system. It provides the direct starting point for Newton–Euler equations.
 
 For this project, two separate free-body diagrams are required:
 
@@ -1337,7 +1337,7 @@ Elastic deformation and structural vibration are neglected.
 
 ### 11.2 Planar Motion
 
-The system moves only in the xâ€“z plane.
+The system moves only in the x–z plane.
 
 Out-of-plane translation and rotation are constrained by the joints.
 
@@ -1382,7 +1382,7 @@ Motor voltage, current, gearbox and drive dynamics are not included in the initi
 
 ### 11.7 No Rail Friction
 
-The cartâ€“rail friction force is neglected.
+The cart–rail friction force is neglected.
 
 A friction term can later be added if the simulation or real system shows a meaningful mismatch.
 
