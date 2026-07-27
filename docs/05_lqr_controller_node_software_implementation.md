@@ -1,6 +1,6 @@
 # LQR Controller Node Software Implementation
 
-# Introduction
+## Introduction
 
 The previous documents established the complete theoretical foundation required to stabilise the inverted pendulum.
 
@@ -32,7 +32,7 @@ The following sections explain how each of these steps is implemented in softwar
 
 ---
 
-# 1. Controller Architecture
+## 1. Controller Architecture
 
 The controller node follows the same sequence as the theoretical control loop introduced in the previous document.
 
@@ -80,7 +80,7 @@ The overall controller architecture is illustrated below.
 
 ---
 
-# 2. Importing Required Libraries
+## 2. Importing Required Libraries
 
 The controller implementation begins by importing the libraries required for numerical computation, ROS2 communication, message handling, and optimal control design.
 
@@ -140,8 +140,6 @@ NumPy provides efficient matrix and vector operations required to implement thes
 
 Without a numerical linear algebra library, implementing state-space control would be considerably more complex.
 
----
-
 ### ROS2 Client Library
 
 ```python
@@ -154,8 +152,6 @@ The ROS2 Client Library provides the infrastructure required to initialise the R
 
 Rather than directly interacting with the simulator, the controller exchanges information using the ROS2 communication framework developed earlier in the project.
 
----
-
 ### ROS2 Node Class
 
 ```python
@@ -167,8 +163,6 @@ Every executable component in ROS2 is implemented as a node.
 The controller inherits from the Node class, allowing it to create publishers, subscribers, timers, and log messages.
 
 This class forms the foundation of the entire software implementation.
-
----
 
 ### JointState Message
 
@@ -192,8 +186,6 @@ In the simulation, these quantities are provided by Gazebo through the standard 
 
 The controller extracts the measured joint positions and velocities from this message before constructing the state vector used by the LQR controller.
 
----
-
 ### Float64 Message
 
 ```python
@@ -209,8 +201,6 @@ $$
 the resulting control force must be transmitted to Gazebo.
 
 The computed scalar force is therefore packaged inside a Float64 message before being published to the cart force command topic.
-
----
 
 ### Riccati Equation Solver
 
@@ -246,7 +236,7 @@ This approach allows the software implementation to follow exactly the same math
 
 ---
 
-# 3. Creating the ROS2 Controller Node
+## 3. Creating the ROS2 Controller Node
 
 After importing the required libraries, the next step is to create the controller node.
 
@@ -283,9 +273,7 @@ For example, the controller stores
 
 Keeping these elements inside a class ensures that they remain available while the node is running.
 
----
-
-## Initialising the Controller
+### Initialising the Controller
 
 The controller constructor is implemented as
 
@@ -334,7 +322,7 @@ The next step is therefore to create the subscriber that receives the current jo
 
 ---
 
-# 4. Creating the ROS2 Communication Interfaces
+## 4. Creating the ROS2 Communication Interfaces
 
 Once the controller node has been created, it must communicate with the simulation.
 
@@ -367,9 +355,7 @@ The overall communication flow is illustrated below.
              Gazebo Simulation
 ```
 
----
-
-## 4.1 Creating the Subscriber
+### Creating the Subscriber
 
 The subscriber is created using the following code.
 
@@ -444,9 +430,7 @@ This callback serves as the starting point of the control loop.
 
 Every control calculation performed by the controller begins with the latest state measurements received through this subscriber.
 
----
-
-## 4.2 Creating the Publisher
+### Creating the Publisher
 
 The publisher is created using the following code.
 
@@ -506,7 +490,7 @@ Through this publisher–subscriber architecture, the mathematical feedback loop
 
 ---
 
-# 5. Defining the Physical System Parameters
+## 5. Defining the Physical System Parameters
 
 The previous documents developed the mathematical model of the inverted pendulum from first principles.
 
@@ -545,9 +529,7 @@ At this stage, the controller has not yet performed any control calculations.
 
 Instead, it has simply converted the physical model developed in **01_physical_modelling.md** into software variables that can be used for numerical computation.
 
----
-
-## 5.1 Distance to the Centre of Mass
+### Distance to the Centre of Mass
 
 The next step is to compute the distance between the pivot joint and the pendulum's centre of mass.
 
@@ -578,9 +560,7 @@ $$
 
 appears repeatedly throughout the equations of motion, the state-space model, and the LQR controller.
 
----
-
-## 5.2 Moment of Inertia About the Centre of Mass
+### Moment of Inertia About the Centre of Mass
 
 The controller then computes the pendulum's mass moment of inertia about its own centre of mass.
 
@@ -605,9 +585,7 @@ This quantity was introduced in the Newton–Euler formulation and later became 
 
 The software implementation therefore directly follows the mathematical equation previously derived.
 
----
-
-## 5.3 Total Moment of Inertia About the Pivot
+### Total Moment of Inertia About the Pivot
 
 The equations of motion are written about the pendulum pivot rather than its centre of mass.
 
@@ -640,9 +618,7 @@ $$
 
 is used throughout the state-space model and therefore becomes an essential parameter for the controller.
 
----
-
-## 5.4 Computing the Common Denominator
+### Computing the Common Denominator
 
 The final parameter required before constructing the state-space model is
 
@@ -677,7 +653,7 @@ The controller is now ready to convert the linearised equations of motion into t
 
 ---
 
-# 6. Computing the State-Space Model
+## 6. Computing the State-Space Model
 
 After defining the physical parameters of the inverted pendulum, the controller constructs the state-space model.
 
@@ -694,9 +670,7 @@ where
 
 Rather than deriving these matrices again, the controller directly implements the mathematical expressions obtained during the linearisation process.
 
----
-
-## 6.1 Constructing the State Matrix
+### Constructing the State Matrix
 
 The state matrix is defined as
 
@@ -735,9 +709,7 @@ $$
 
 which is identical to the linearised state matrix derived in **03_dynamic_modelling_linearization_and_state_space.md**.
 
----
-
-## Physical Interpretation of the A Matrix
+### Physical Interpretation of the A Matrix
 
 Each row of the matrix represents one state equation.
 
@@ -761,8 +733,6 @@ $$
 
 This equation simply states that the derivative of the cart position is the cart velocity.
 
----
-
 ### Second Row
 
 ```text
@@ -780,8 +750,6 @@ $$
 using the mathematical model derived previously.
 
 This row describes how the pendulum angle influences the horizontal acceleration of the cart.
-
----
 
 ### Third Row
 
@@ -805,8 +773,6 @@ As in the first row, this equation introduces no new dynamics.
 
 Instead, it converts the second-order pendulum equation into its first-order state-space representation.
 
----
-
 ### Fourth Row
 
 ```text
@@ -825,9 +791,7 @@ This row describes how gravity causes the pendulum angle to evolve about the uns
 
 Together, the four rows reproduce the complete linearised system dynamics derived mathematically in the previous document.
 
----
-
-## 6.2 Constructing the Input Matrix
+### Constructing the Input Matrix
 
 The controller then constructs the input matrix.
 
@@ -856,9 +820,7 @@ This matrix is identical to the input matrix derived during the state-space form
 
 Unlike the state matrix, which represents the natural behaviour of the system, the input matrix describes how the externally applied force influences each state.
 
----
-
-## Physical Interpretation of the B Matrix
+### Physical Interpretation of the B Matrix
 
 Each element of the matrix represents the influence of the control input on one of the state equations.
 
@@ -872,8 +834,6 @@ The applied force does not directly change the cart position.
 
 Instead, the force first changes the cart acceleration, which subsequently changes the velocity and position.
 
----
-
 ### Second Element
 
 ```text
@@ -884,8 +844,6 @@ This term determines how strongly the applied force influences the cart accelera
 
 It represents the direct relationship between the control force and the translational motion of the cart.
 
----
-
 ### Third Element
 
 ```text
@@ -895,8 +853,6 @@ It represents the direct relationship between the control force and the translat
 The applied force does not directly change the pendulum angle.
 
 Instead, the pendulum rotates only because the cart accelerates.
-
----
 
 ### Fourth Element
 
@@ -912,9 +868,7 @@ This behaviour reflects one of the defining characteristics of the inverted pend
 
 It is an **underactuated system**, meaning that the system possesses more degrees of freedom than independent actuators.
 
----
-
-## State-Space Model Complete
+### State-Space Model Complete
 
 After constructing the matrices
 
@@ -952,7 +906,7 @@ which establish the optimisation objective of the Linear Quadratic Regulator.
 
 ---
 
-# 7. Defining the LQR Cost Function
+## 7. Defining the LQR Cost Function
 
 After constructing the state-space model, the controller has a complete mathematical description of the system dynamics.
 
@@ -994,9 +948,7 @@ These matrices define the optimisation objective used by the Linear Quadratic Re
 
 Rather than changing the physical behaviour of the inverted pendulum, they determine how strongly different quantities are penalised during the optimisation process.
 
----
-
-## 7.1 Defining the State Weighting Matrix
+### Defining the State Weighting Matrix
 
 The controller first creates the state weighting matrix
 
@@ -1042,9 +994,7 @@ Since maintaining the pendulum in its upright equilibrium is the primary control
 
 Consequently, the optimisation process prioritises minimising the pendulum angle error over the remaining state variables.
 
----
-
-## 7.2 Defining the Control Weighting Matrix
+### Defining the Control Weighting Matrix
 
 The controller then defines the control weighting matrix.
 
@@ -1107,9 +1057,7 @@ $$
 
 therefore determine the trade-off between state regulation and control effort.
 
----
-
-## 7.3 From Theory to Software
+### From Theory to Software
 
 In **04_lqr_controller_design.md**, the weighting matrices were introduced as part of the LQR cost function
 
@@ -1159,7 +1107,7 @@ The final step is to solve the optimisation problem and compute the optimal feed
 
 ---
 
-# 8. Computing the Optimal LQR Gain
+## 8. Computing the Optimal LQR Gain
 
 After defining the system dynamics and the optimisation objective, the controller has all the information required to compute the optimal feedback controller.
 
@@ -1201,9 +1149,7 @@ First, the controller solves the continuous-time Algebraic Riccati Equation.
 
 The resulting solution is then used to compute the optimal feedback gain matrix.
 
----
-
-## 8.1 Solving the Riccati Equation
+### Solving the Riccati Equation
 
 The Riccati equation is solved using
 
@@ -1253,8 +1199,6 @@ is not used directly for controlling the inverted pendulum.
 
 Instead, it is an intermediate result produced by the optimisation process and is required for computing the optimal feedback gain matrix.
 
----
-
 ### From Theory to Software
 
 In the previous document, the Riccati equation was introduced as the mathematical solution to the LQR optimisation problem.
@@ -1267,9 +1211,7 @@ The Python implementation shown above is the direct software equivalent of that 
 >
 > Instead, numerical optimisation algorithms provided by scientific computing libraries compute the Riccati solution automatically once the system matrices and weighting matrices have been specified.
 
----
-
-## 8.2 Computing the Feedback Gain Matrix
+### Computing the Feedback Gain Matrix
 
 Once the Riccati solution has been obtained, the controller computes the optimal feedback gain matrix.
 
@@ -1318,8 +1260,6 @@ Unlike manually tuned controllers, these gains are obtained through mathematical
 
 As a result, the controller simultaneously considers all system states while minimising both the state error and the control effort.
 
----
-
 ### Storing the Gain Matrix
 
 The computed gain matrix is stored as
@@ -1350,8 +1290,6 @@ Since the physical parameters and weighting matrices remain unchanged during exe
 
 This significantly improves computational efficiency because the optimisation process is not repeated during every control cycle.
 
----
-
 ### From Theory to Software
 
 The implementation of the Riccati equation and feedback gain computation completes the transition from control theory to software.
@@ -1370,7 +1308,7 @@ The next step is to receive the current state of the inverted pendulum from Gaze
 
 ---
 
-# 9. Receiving the Current System State
+## 9. Receiving the Current System State
 
 Once the controller has been fully initialised, it enters the execution phase.
 
@@ -1390,9 +1328,7 @@ This function represents the beginning of each control cycle.
 
 Every iteration of the feedback loop starts by obtaining the latest measurements from the simulation.
 
----
-
-## 9.1 Identifying the Required Joints
+### Identifying the Required Joints
 
 The `JointState` message contains information for every joint in the robot model.
 
@@ -1416,9 +1352,7 @@ Instead of assuming a fixed index, the controller always locates the required jo
 
 This improves the robustness and portability of the implementation.
 
----
-
-## 9.2 Extracting the State Variables
+### Extracting the State Variables
 
 After identifying the required joints, the controller extracts the measured state variables.
 
@@ -1446,9 +1380,7 @@ Instead, they are measured by the Gazebo simulation and transmitted through the 
 
 Consequently, every control action is based on the current physical state of the system.
 
----
-
-## From Theory to Software
+### From Theory to Software
 
 In **03_dynamic_modelling_linearization_and_state_space.md**, the inverted pendulum was represented using the state vector
 
@@ -1483,7 +1415,7 @@ The next step is to assemble these individual measurements into the state vector
 
 ---
 
-# 10. Constructing the State Vector
+## 10. Constructing the State Vector
 
 After obtaining the individual state variables, the controller combines them into a single state vector.
 
@@ -1539,9 +1471,7 @@ $$
 
 and produce an incorrect control force.
 
----
-
-## From Theory to Software
+### From Theory to Software
 
 In the theoretical derivation, the state vector was introduced as a mathematical representation of the system.
 
@@ -1562,7 +1492,7 @@ The controller is now ready to evaluate the optimal control law derived in the p
 
 ---
 
-# 11. Computing the Control Force
+## 11. Computing the Control Force
 
 After constructing the state vector, the controller has all the information required to determine the optimal control action.
 
@@ -1608,9 +1538,7 @@ The resulting control force therefore depends on
 - pendulum angle,
 - pendulum angular velocity.
 
----
-
-## Matrix Multiplication
+### Matrix Multiplication
 
 The feedback gain matrix has the form
 
@@ -1652,9 +1580,7 @@ This equation shows that the controller computes the control force as the weight
 
 Each feedback gain determines how strongly its corresponding state influences the applied force.
 
----
-
-## Why is the Negative Sign Required?
+### Why is the Negative Sign Required?
 
 The negative sign
 
@@ -1674,9 +1600,7 @@ Without the negative sign, the controller would apply **positive feedback**, cau
 
 Negative feedback is therefore one of the fundamental principles of modern control systems.
 
----
-
-## From Theory to Software
+### From Theory to Software
 
 In the previous theoretical document, the LQR controller was derived mathematically through the following sequence
 
@@ -1702,7 +1626,7 @@ The resulting control force is then ready to be transmitted to the simulation.
 
 ---
 
-# 12. Publishing the Control Force
+## 12. Publishing the Control Force
 
 After computing the control force, the controller must transmit the result to Gazebo.
 
@@ -1756,9 +1680,7 @@ $$
 
 has been converted into a ROS2 communication message.
 
----
-
-## Publishing the Message
+### Publishing the Message
 
 The control force is transmitted to Gazebo using
 
@@ -1795,9 +1717,7 @@ As the simulation evolves, Gazebo computes the updated joint positions and veloc
 
 This new measurement triggers the callback function once again, beginning the next control cycle.
 
----
-
-## Closed-Loop Feedback Cycle
+### Closed-Loop Feedback Cycle
 
 The complete control loop implemented by the controller can therefore be summarised as
 
@@ -1834,7 +1754,7 @@ Through this continuous feedback process, the controller maintains the pendulum 
 
 ---
 
-# 13. Starting the ROS2 Controller
+## 13. Starting the ROS2 Controller
 
 The final part of the implementation starts the controller node and hands control to the ROS2 execution framework.
 
@@ -1912,7 +1832,7 @@ release the allocated ROS2 resources and shut down the communication framework s
 
 ---
 
-# 14. Theory to Implementation Mapping
+## 14. Theory to Implementation Mapping
 
 Throughout this project, the inverted pendulum controller was developed progressively, beginning with the physical model and ending with a complete software implementation.
 
@@ -1942,7 +1862,7 @@ Rather than existing as isolated mathematical equations, the physical model, sta
 
 ---
 
-# 15. Complete Controller Execution Flow
+## 15. Complete Controller Execution Flow
 
 The complete execution sequence of the LQR controller node is summarised below.
 
@@ -2020,7 +1940,7 @@ This repeated feedback process enables the controller to stabilise the inverted 
 
 ---
 
-# 16. Conclusion
+## 16. Conclusion
 
 This document presented the complete software implementation of the Linear Quadratic Regulator (LQR) controller developed throughout the previous chapters.
 
@@ -2040,4 +1960,6 @@ This continuous feedback loop transforms the mathematical controller into a real
 
 Together with the previous documents, this implementation completes the entire development process of the project, from physical modelling and mathematical analysis to optimal control design and real-time software execution.
 
-#### Başlık
+Continue to:
+
+[ROS2 and Gazebo Software Architecture](06_ros2_and_gazebo_software_architecture.md)
