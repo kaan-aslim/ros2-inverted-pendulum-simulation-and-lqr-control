@@ -739,15 +739,13 @@ ros2-inverted-pendulum-simulation-and-lqr-control/
 ├── requirements.txt
 │
 ├── docs/
-│   ├── 01_system_model.md
-│   ├── 02_dynamic_modeling.md
-│   ├── 03_newton_euler_derivation.md
-│   ├── 04_lagrangian_derivation.md
-│   ├── 05_linearization_and_state_space.md
-│   ├── 06_lqr_controller_design.md
-│   ├── 07_ros2_architecture.md
-│   ├── 08_control_node.md
-│   └── 09_simulation_results.md
+│   ├── 01_physical_modelling.md
+│   ├── 02_dynamic_modelling_equations_of_motion.md
+│   ├── 03_dynamic_modelling_linearization_and_state_space.md
+│   ├── 04_lqr_controller_design.md
+│   ├── 05_lqr_controller_node_software_implementation.md
+│   ├── 06_ros2_and_gazebo_software_architecture.md
+│   ├── 07_simulation_results.md
 │
 ├── images/
 │
