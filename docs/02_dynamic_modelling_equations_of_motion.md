@@ -1121,3 +1121,1075 @@ The next stage therefore:
 Continue to:
 
 [Dynamic Modelling: Linearisation and State-Space Representation](03_dynamic_modelling_linearization_and_state_space.md)
+
+---
+
+---
+
+---
+
+# Dynamic Modelling: Equations of Motion
+
+## Purpose
+
+The physical modelling stage defined the components, degrees of freedom, coordinate system, parameters, and assumptions of the inverted pendulum system.
+
+The next step is to describe how the system moves under the effect of forces.
+
+This requires the development of a dynamic model.
+
+The dynamic model establishes the mathematical relationship between:
+
+- the horizontal force applied to the cart,
+- the translational motion of the cart,
+- the rotational motion of the pendulum,
+- gravity,
+- translational and rotational inertia,
+- the interaction between the cart and the pendulum.
+
+In this project, the nonlinear equations of motion are derived using two different approaches:
+
+1. Newtonâ€“Euler mechanics
+2. Lagrangian mechanics
+
+Both methods describe the same physical system and lead to the same nonlinear equations of motion.
+
+These equations later form the basis for:
+
+- linearisation,
+- state-space representation,
+- LQR controller design,
+- controller implementation in ROS 2.
+
+---
+
+## Dynamic Modelling Workflow
+
+The dynamic modelling process used in this project follows the sequence below:
+
+<p align="center">
+    <img src="images/dynamic_modelling_workflow.png" alt="Dynamic Modelling Workflow" width="600">
+</p>
+
+The two derivation methods are presented separately so that the physical meaning of the equations can be understood from both force-based and energy-based perspectives.
+
+---
+
+## 1. System Definition
+
+The inverted pendulum system consists of:
+
+- a cart moving horizontally along a fixed rail,
+- a uniform rigid-cylinder pendulum rotating about a pivot attached to the cart,
+- a horizontal control force applied to the cart.
+
+<p align="center">
+    <img src="images/physical_model.png" alt="Physical System Model" width="1000">
+</p>
+
+The system has two degrees of freedom:
+
+- cart translation,
+- pendulum rotation.
+
+The generalised coordinates are defined as
+
+$$
+q=\begin{bmatrix}x\\
+\theta\end{bmatrix}
+$$
+
+where:
+
+- $x$ is the horizontal position of the cart,
+- $\theta$ is the angular displacement of the pendulum from the upward vertical position.
+
+Their time derivatives are
+
+$$
+\dot{q}=\begin{bmatrix}\dot{x}\\
+\dot{\theta}\end{bmatrix}
+$$
+
+and
+
+$$
+\ddot{q}=\begin{bmatrix}\ddot{x}\\
+\ddot{\theta}\end{bmatrix}
+$$
+
+The horizontal force applied to the cart is represented by
+
+$$
+F
+$$
+
+---
+
+## 2. Sign Convention
+
+A consistent sign convention must be defined before deriving the equations.
+
+For this project:
+
+- positive cart displacement $x$ is directed to the right,
+- positive cart velocity $\dot{x}$ is directed to the right,
+- positive force $F$ acts to the right,
+- the pendulum angle $\theta$ is measured from the upward vertical position,
+- positive $\theta$ corresponds to the selected positive rotational direction.
+
+The upright equilibrium position is therefore
+
+$$
+\theta=0
+$$
+
+This definition becomes particularly important during linearisation and state-space modelling.
+
+---
+
+## 3. Dynamic Model Parameters
+
+The parameters used in the derivation are:
+
+| Symbol | Description | Unit |
+| --- | --- | --- |
+| $M$ | Cart mass | $\mathrm{kg}$ |
+| $m$ | Pendulum mass | $\mathrm{kg}$ |
+| $L$ | Total pendulum length | $\mathrm{m}$ |
+| $l$ | Distance from the pivot to the pendulum centre of mass | $\mathrm{m}$ |
+| $r$ | Pendulum cylinder radius | $\mathrm{m}$ |
+| $I$ | Pendulum moment of inertia about its centre of mass | $\mathrm{kg\,m^2}$ |
+| $g$ | Gravitational acceleration | $\mathrm{m/s^2}$ |
+| $F$ | Horizontal force applied to the cart | $\mathrm{N}$ |
+| $x$ | Cart position | $\mathrm{m}$ |
+| $\theta$ | Pendulum angular displacement | $\mathrm{rad}$ |
+
+For the project model:
+
+| Parameter | Value |
+| --- | --- |
+| $M$ | $3.0\ \mathrm{kg}$ |
+| $m$ | $1.0\ \mathrm{kg}$ |
+| $L$ | $0.5\ \mathrm{m}$ |
+| $l$ | $0.25\ \mathrm{m}$ |
+| $r$ | $0.01\ \mathrm{m}$ |
+| $I$ | $0.020858\ \mathrm{kg\,m^2}$ |
+| $g$ | $9.81\ \mathrm{m/s^2}$ |
+
+The pendulum is modelled as a uniform rigid cylinder. Its mass moment of inertia about an axis through its centre of mass and perpendicular to its longitudinal axis is
+
+$$
+I=\frac{1}{12}m(3r^2+L^2)
+$$
+
+The corresponding inertia about the pivot is obtained using the parallel-axis theorem:
+
+$$
+I_{\mathrm{pivot}}=I+ml^2
+$$
+
+---
+
+# Newtonâ€“Euler Derivation
+
+## 4. Overview of the Newtonâ€“Euler Method
+
+The Newtonâ€“Euler method develops the equations of motion directly from forces, accelerations, and moments.
+
+It combines:
+
+- Newton's second law for translational motion,
+- Euler's rotational equation for rotational motion.
+
+Newton's second law is
+
+$$
+\sum F=ma
+$$
+
+Euler's rotational equation is
+
+$$
+\sum \tau=I\alpha
+$$
+
+For the inverted pendulum system, the cart and the pendulum are first analysed as separate bodies.
+
+The interaction forces between them are introduced at the pivot and later eliminated to obtain equations containing only the generalised coordinates $x$ and $\theta$.
+
+<p align="center">
+    <img src="images/newton_euler.png" alt="Newton-Euler Derivation" width="1000">
+</p>
+
+---
+
+## 5. Position of the Pendulum Centre of Mass
+
+The pendulum pivot moves together with the cart.
+
+The horizontal and vertical coordinates of the pendulum centre of mass are
+
+$$
+x_p=x+l\sin\theta
+$$
+
+and
+
+$$
+y_p=l\cos\theta
+$$
+
+The vertical coordinate is measured relative to the pivot level.
+
+When
+
+$$
+\theta=0
+$$
+
+the pendulum is upright and its centre of mass is directly above the pivot.
+
+---
+
+## 6. Pendulum Centre-of-Mass Velocity
+
+Differentiating the position equations gives the velocity components.
+
+The horizontal velocity is
+
+$$
+\dot{x}_p=\dot{x}+l\dot{\theta}\cos\theta
+$$
+
+The vertical velocity is
+
+$$
+\dot{y}_p=-l\dot{\theta}\sin\theta
+$$
+
+These equations show that the pendulum centre of mass has two sources of motion:
+
+- translation caused by the cart,
+- rotation about the pivot.
+
+---
+
+## 7. Pendulum Centre-of-Mass Acceleration
+
+Differentiating once more gives the acceleration components.
+
+The horizontal acceleration is
+
+$$
+\ddot{x}_p=\ddot{x}+l\ddot{\theta}\cos\theta-l\dot{\theta}^2\sin\theta
+$$
+
+The vertical acceleration is
+
+$$
+\ddot{y}_p=-l\ddot{\theta}\sin\theta-l\dot{\theta}^2\cos\theta
+$$
+
+The horizontal acceleration contains three terms:
+
+$$
+\ddot{x}
+$$
+
+from cart translation,
+
+$$
+l\ddot{\theta}\cos\theta
+$$
+
+from angular acceleration,
+
+and
+
+$$
+-l\dot{\theta}^2\sin\theta
+$$
+
+from centripetal acceleration.
+
+---
+
+## 8. Horizontal Force Balance for the Pendulum
+
+Let the horizontal interaction force exerted by the cart on the pendulum be represented by $H$.
+
+Applying Newton's second law in the horizontal direction gives
+
+$$
+H=m\ddot{x}_p
+$$
+
+Substituting the horizontal acceleration of the pendulum centre of mass:
+
+$$
+H=m\left(\ddot{x}+l\ddot{\theta}\cos\theta-l\dot{\theta}^2\sin\theta\right)
+$$
+
+Therefore,
+
+$$
+H=m\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta
+$$
+
+---
+
+## 9. Horizontal Force Balance for the Cart
+
+The cart is acted on by:
+
+- the applied control force $F$,
+- the horizontal interaction force from the pendulum.
+
+Applying Newton's second law to the cart gives
+
+$$
+F-H=M\ddot{x}
+$$
+
+Substituting the expression for $H$:
+
+$$
+F-\left(m\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta\right)=M\ddot{x}
+$$
+
+Rearranging the terms gives
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+This is the first nonlinear equation of motion.
+
+It describes the horizontal dynamics of the complete cartâ€“pendulum system.
+
+---
+
+## 10. Physical Meaning of the First Equation
+
+The first equation is
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+Each term has a physical meaning.
+
+### Combined Translational Inertia
+
+$$
+(M+m)\ddot{x}
+$$
+
+represents the force required to accelerate both the cart and the pendulum mass horizontally.
+
+### Angular-Acceleration Coupling
+
+$$
+ml\ddot{\theta}\cos\theta
+$$
+
+represents the horizontal force contribution produced by pendulum angular acceleration.
+
+### Centripetal Coupling
+
+$$
+-ml\dot{\theta}^2\sin\theta
+$$
+
+represents the nonlinear horizontal force caused by pendulum rotation.
+
+### Applied Control Force
+
+$$
+F
+$$
+
+is the external horizontal force used to control the system.
+
+The equation demonstrates that cart motion and pendulum motion are dynamically coupled.
+
+The cart cannot be analysed independently from the pendulum.
+
+---
+
+## 11. Rotational Dynamics of the Rigid Pendulum
+
+The pendulum has distributed mass and therefore possesses rotational inertia about its centre of mass. Its inertia about the moving pivot is
+
+$$
+I_{\mathrm{pivot}}=I+ml^2
+$$
+
+The rotational equation can be written by balancing the moments associated with pendulum angular acceleration, cart acceleration and gravity:
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+This is the second nonlinear equation of motion for the rigid-body pendulum.
+
+The term $(I+ml^2)\ddot{\theta}$ represents the angular-inertia effect about the pivot. The term $ml\ddot{x}\cos\theta$ represents the moment induced by horizontal pivot acceleration, and the term $-mgl\sin\theta$ represents the gravitational moment about the pivot.
+
+---
+
+## 12. Physical Meaning of the Second Equation
+
+The second equation is
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+### Rigid-Body Angular Inertia
+
+$$
+(I+ml^2)\ddot{\theta}
+$$
+
+represents the moment required to produce angular acceleration. It includes the pendulum inertia $I$ about its centre of mass and the parallel-axis contribution $ml^2$.
+
+### Cartâ€“Pendulum Coupling
+
+$$
+ml\ddot{x}\cos\theta
+$$
+
+represents the moment produced by the horizontal acceleration of the pivot. This term is the mechanism through which cart motion controls pendulum rotation.
+
+There is no actuator torque applied directly to the pendulum joint. Instead, the pendulum is stabilised indirectly by accelerating the cart.
+
+### Gravitational Moment
+
+$$
+-mgl\sin\theta
+$$
+
+represents the gravitational moment about the pivot.
+
+Near the upright position, gravity drives the pendulum away from equilibrium, making the upright configuration naturally unstable.
+
+---
+
+## 13. Coupled Rigid-Body Equations
+
+The Newtonâ€“Euler derivation produces the coupled nonlinear equations
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+and
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+Both equations retain the distributed-mass effects of the rigid pendulum. The first equation describes horizontal translation of the complete system, while the second describes rotation of the pendulum with its full pivot-axis inertia.
+
+---
+
+# Lagrangian Derivation
+
+## 14. Overview of the Lagrangian Method
+
+The Lagrangian method derives the equations of motion from energy rather than directly balancing individual forces.
+
+The Lagrangian is defined as
+
+$$
+\mathcal{L}=T-V
+$$
+
+where:
+
+- $T$ is the total kinetic energy,
+- $V$ is the total potential energy.
+
+For each generalised coordinate $q_i$, Lagrange's equation is
+
+$$
+\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{q}_i}\right)-\frac{\partial\mathcal{L}}{\partial q_i}=Q_i
+$$
+
+where $Q_i$ is the generalised external force associated with $q_i$.
+
+For this system:
+
+$$
+q_1=x
+$$
+
+and
+
+$$
+q_2=\theta
+$$
+
+The corresponding generalised forces are
+
+$$
+Q_x=F
+$$
+
+and
+
+$$
+Q_\theta=0
+$$
+
+There is no direct actuator torque applied to the pendulum.
+
+<p align="center">
+    <img src="images/lagrangian.png" alt="Lagrangian Derivation" width="1000">
+</p>
+
+---
+
+## 15. Kinetic Energy of the Cart
+
+The cart moves only in the horizontal direction.
+
+Its kinetic energy is
+
+$$
+T_c=\frac{1}{2}M\dot{x}^2
+$$
+
+---
+
+## 16. Kinetic Energy of the Pendulum
+
+The velocity components of the pendulum centre of mass are
+
+$$
+\dot{x}_p=\dot{x}+l\dot{\theta}\cos\theta
+$$
+
+and
+
+$$
+\dot{y}_p=-l\dot{\theta}\sin\theta
+$$
+
+The squared centre-of-mass velocity is
+
+$$
+v_p^2=\dot{x}_p^2+\dot{y}_p^2
+$$
+
+Substituting the velocity components:
+
+$$
+v_p^2=\left(\dot{x}+l\dot{\theta}\cos\theta\right)^2+\left(-l\dot{\theta}\sin\theta\right)^2
+$$
+
+Expanding:
+
+$$
+v_p^2=\dot{x}^2+2l\dot{x}\dot{\theta}\cos\theta+l^2\dot{\theta}^2\cos^2\theta+l^2\dot{\theta}^2\sin^2\theta
+$$
+
+Using
+
+$$
+\sin^2\theta+\cos^2\theta=1
+$$
+
+the expression becomes
+
+$$
+v_p^2=\dot{x}^2+2l\dot{x}\dot{\theta}\cos\theta+l^2\dot{\theta}^2
+$$
+
+The translational kinetic energy of the pendulum is therefore
+
+$$
+T_{p,\mathrm{trans}}=\frac{1}{2}m\left(\dot{x}^2+2l\dot{x}\dot{\theta}\cos\theta+l^2\dot{\theta}^2\right)
+$$
+
+Because the pendulum is a rigid body, its rotational kinetic energy about the centre of mass is
+
+$$
+T_{p,\mathrm{rot}}=\frac{1}{2}I\dot{\theta}^2
+$$
+
+The total pendulum kinetic energy is the sum of its centre-of-mass translational energy and rotational energy:
+
+$$
+T_p=\frac{1}{2}m\left(\dot{x}^2+2l\dot{x}\dot{\theta}\cos\theta+l^2\dot{\theta}^2\right)+\frac{1}{2}I\dot{\theta}^2
+$$
+
+---
+
+## 17. Total Kinetic Energy
+
+The total kinetic energy of the system is
+
+$$
+T=T_c+T_p
+$$
+
+Therefore,
+
+$$
+T=\frac{1}{2}M\dot{x}^2+\frac{1}{2}m\left(\dot{x}^2+2l\dot{x}\dot{\theta}\cos\theta+l^2\dot{\theta}^2\right)+\frac{1}{2}I\dot{\theta}^2
+$$
+
+Collecting terms:
+
+$$
+T=\frac{1}{2}(M+m)\dot{x}^2+ml\dot{x}\dot{\theta}\cos\theta+\frac{1}{2}(I+ml^2)\dot{\theta}^2
+$$
+
+---
+
+## 18. Potential Energy of the Pendulum
+
+Only the pendulum contributes gravitational potential energy.
+
+The vertical position of the pendulum centre of mass is
+
+$$
+y_p=l\cos\theta
+$$
+
+The potential energy is therefore
+
+$$
+V=mgy_p
+$$
+
+Thus,
+
+$$
+V=mgl\cos\theta
+$$
+
+The absolute zero level of potential energy is arbitrary.
+
+Only derivatives of the potential energy appear in the equations of motion.
+
+---
+
+## 19. Lagrangian of the System
+
+The Lagrangian is
+
+$$
+\mathcal{L}=T-V
+$$
+
+$$
+\mathcal{L}=\frac{1}{2}(M+m)\dot{x}^2+ml\dot{x}\dot{\theta}\cos\theta+\frac{1}{2}(I+ml^2)\dot{\theta}^2-mgl\cos\theta
+$$
+
+---
+
+## 20. Lagrange Equation for the Cart Coordinate
+
+For the cart coordinate $x$:
+
+$$
+\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{x}}\right)-\frac{\partial\mathcal{L}}{\partial x}=F
+$$
+
+First,
+
+$$
+\frac{\partial\mathcal{L}}{\partial\dot{x}}=(M+m)\dot{x}+ml\dot{\theta}\cos\theta
+$$
+
+Taking the time derivative:
+
+$$
+\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{x}}\right)=(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta
+$$
+
+The Lagrangian does not explicitly depend on $x$, therefore
+
+$$
+\frac{\partial\mathcal{L}}{\partial x}=0
+$$
+
+Substituting into Lagrange's equation:
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+This is the same horizontal equation obtained using the Newtonâ€“Euler method.
+
+---
+
+## 21. Lagrange Equation for the Pendulum Coordinate
+
+For the pendulum coordinate $\theta$:
+
+$$
+\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{\theta}}\right)-\frac{\partial\mathcal{L}}{\partial\theta}=0
+$$
+
+First,
+
+$$
+\frac{\partial\mathcal{L}}{\partial\dot{\theta}}=ml\dot{x}\cos\theta+(I+ml^2)\dot{\theta}
+$$
+
+Taking the time derivative:
+
+$$
+\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{\theta}}\right)=ml\ddot{x}\cos\theta-ml\dot{x}\dot{\theta}\sin\theta+(I+ml^2)\ddot{\theta}
+$$
+
+Next,
+
+$$
+\frac{\partial\mathcal{L}}{\partial\theta}=-ml\dot{x}\dot{\theta}\sin\theta+mgl\sin\theta
+$$
+
+Substituting into Lagrange's equation:
+
+$$
+ml\ddot{x}\cos\theta-ml\dot{x}\dot{\theta}\sin\theta+(I+ml^2)\ddot{\theta}-\left(-ml\dot{x}\dot{\theta}\sin\theta+mgl\sin\theta\right)=0
+$$
+
+The velocity-coupling terms cancel:
+
+$$
+-ml\dot{x}\dot{\theta}\sin\theta+ml\dot{x}\dot{\theta}\sin\theta=0
+$$
+
+The equation becomes
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+Dividing by $ml$:
+
+$$
+\left(l+\frac{I}{ml}\right)\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
+$$
+
+This is the same pendulum equation obtained using the Newtonâ€“Euler method.
+
+---
+
+# Final Nonlinear Equations of Motion
+
+## 22. Equations Used in This Project
+
+The rigid-body nonlinear dynamic model used for controller development is
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+and
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+These equations describe the coupled nonlinear motion of the cart and pendulum.
+
+The first equation represents horizontal translation of the complete system.
+
+The second equation represents rotational motion of the pendulum.
+
+---
+
+## 23. Matrix Form of the Nonlinear Model
+
+The equations can also be written in a compact coupled form.
+
+Starting from
+
+$$
+(M+m)\ddot{x}+ml\cos\theta\,\ddot{\theta}=F+ml\dot{\theta}^2\sin\theta
+$$
+
+and
+
+$$
+ml\cos\theta\,\ddot{x}+(I+ml^2)\ddot{\theta}=mgl\sin\theta
+$$
+
+the acceleration terms can be grouped as
+
+$$
+\begin{bmatrix}M+m&ml\cos\theta\\
+ml\cos\theta&I+ml^2\end{bmatrix}\begin{bmatrix}\ddot{x}\\
+\ddot{\theta}\end{bmatrix}=\begin{bmatrix}F+ml\dot{\theta}^2\sin\theta\\
+mgl\sin\theta\end{bmatrix}
+$$
+
+This form shows that $\ddot{x}$ and $\ddot{\theta}$ must be solved together.
+
+The cart acceleration depends on the pendulum acceleration, and the pendulum acceleration depends on the cart acceleration.
+
+This coupling is the central feature of the inverted pendulum dynamics.
+
+---
+
+## 24. Solving for the Accelerations
+
+To simplify the solution, define the pendulum inertia about the pivot as
+
+$$
+J=I+ml^2
+$$
+
+and the nonlinear determinant as
+
+$$
+\Delta(\theta)=(M+m)J-m^2l^2\cos^2\theta
+$$
+
+Solving the two coupled equations simultaneously gives the cart acceleration:
+
+$$
+\ddot{x}=\frac{J\left(F+ml\dot{\theta}^2\sin\theta\right)-m^2gl^2\sin\theta\cos\theta}{\Delta(\theta)}
+$$
+
+The pendulum angular acceleration is
+
+$$
+\ddot{\theta}=\frac{mgl(M+m)\sin\theta-ml\cos\theta\left(F+ml\dot{\theta}^2\sin\theta\right)}{\Delta(\theta)}
+$$
+
+These explicit acceleration equations are useful for:
+
+- nonlinear simulation,
+- numerical integration,
+- model verification,
+- future swing-up controller development.
+
+---
+
+## 25. Why the Model Is Nonlinear
+
+The equations contain nonlinear terms such as
+
+$$
+\sin\theta
+$$
+
+$$
+\cos\theta
+$$
+
+and
+
+$$
+\dot{\theta}^2\sin\theta
+$$
+
+These terms make the system nonlinear.
+
+For example:
+
+- the influence of gravity changes with pendulum angle,
+- the coupling between cart and pendulum changes with $\cos\theta$,
+- the centripetal term depends on the square of angular velocity.
+
+A linear state-space controller cannot be designed directly from these equations without first linearising them around an operating point.
+
+For this project, the selected operating point is the upright equilibrium:
+
+$$
+x=0
+$$
+
+$$
+\dot{x}=0
+$$
+
+$$
+\theta=0
+$$
+
+$$
+\dot{\theta}=0
+$$
+
+---
+
+## 26. How the Equations Are Used in the Project
+
+The nonlinear equations are not directly inserted into the LQR controller.
+
+Instead, they define the physical dynamics from which the controller model is developed.
+
+The project uses the equations through the following sequence:
+
+<p align="center">
+    <img src="images/dynamic_model_to_control_workflow.png" alt="Dynamic Model to Control Workflow" width="600">
+</p>
+
+The nonlinear equations are also useful for checking whether the signs, parameters, and coupling relationships used in the controller are physically correct.
+
+---
+
+## 27. Relationship Between the Mathematical Model and Gazebo
+
+The analytical model represents the system using two generalised coordinates:
+
+$$
+x
+$$
+
+and
+
+$$
+\theta
+$$
+
+In the Gazebo model, these quantities correspond to:
+
+| Mathematical Quantity | Gazebo / URDF Representation |
+|-----------------------|------------------------------|
+| $x$ | Position of `cart_rail_joint` |
+| $\dot{x}$ | Velocity of `cart_rail_joint` |
+| $\theta$ | Position of `pendulum_cart_joint` |
+| $\dot{\theta}$ | Velocity of `pendulum_cart_joint` |
+| $F$ | Force command applied to `cart_rail_joint` |
+| $M$ | Mass of `cart_link` |
+| $m$ | Mass of `pendulum_link` |
+| $L$ | Length of `pendulum_link` |
+| $l$ | Pivot-to-centre-of-mass distance |
+| $r$ | Radius of the cylindrical `pendulum_link` |
+| $I$ | Transverse centre-of-mass inertia of `pendulum_link` |
+| $g$ | Gravity configured in the Gazebo world |
+
+The ROS 2 controller reads the joint states, forms the state vector, calculates the required control force, and applies that force to the cart joint.
+
+The dynamic equations explain why this horizontal force can influence both cart position and pendulum angle.
+
+---
+
+## 28. Newtonâ€“Euler and Lagrange Comparison
+
+Both methods produce the same equations, but they emphasise different aspects of the system.
+
+| Newtonâ€“Euler Method | Lagrangian Method |
+|---------------------|-------------------|
+| Based on force and moment balances | Based on kinetic and potential energy |
+| Makes interaction forces visible | Eliminates many internal forces automatically |
+| Provides direct physical interpretation | Often more systematic for multi-body systems |
+| Requires separate free-body diagrams | Requires position, velocity, and energy expressions |
+| Useful for understanding forces | Useful for deriving complex robotic dynamics |
+
+For this project:
+
+- Newtonâ€“Euler mechanics explains the physical origin of each force term.
+- Lagrangian mechanics provides a structured verification of the same model.
+- Agreement between both derivations increases confidence in the final equations.
+
+---
+
+## 29. Important Modelling Notes
+
+### Idealised Rigid-Body Model
+
+The analytical model assumes:
+
+- rigid bodies,
+- frictionless joints,
+- no aerodynamic drag,
+- no actuator dynamics,
+- no sensor noise,
+- no joint backlash,
+- no structural flexibility.
+
+The Gazebo simulation may include additional numerical effects that are not represented in the analytical equations.
+
+### Pendulum Inertia
+
+The analytical model and the URDF/Gazebo model both represent the pendulum as a uniform rigid cylinder. The centre-of-mass inertia is
+
+$$
+I=\frac{1}{12}m(3r^2+L^2)
+$$
+
+and the total inertia about the pivot is
+
+$$
+J=I+ml^2
+$$
+
+according to the parallel-axis theorem. Retaining $I$ keeps the equations of motion, state-space model, LQR design and Gazebo simulation physically consistent.
+
+### Rail Limits
+
+The equations assume that the cart can move without reaching a mechanical boundary.
+
+The simulated rail has finite travel limits.
+
+Therefore, the controller must also keep the cart within the available rail length.
+
+### Upright Angle Definition
+
+The equations use
+
+$$
+\theta=0
+$$
+
+for the upright position.
+
+The joint angle reported by Gazebo must be converted or offset if the URDF joint coordinate does not use the same zero reference.
+
+---
+
+## 30. Final Result
+
+The dynamic modelling stage produces the coupled nonlinear equations
+
+$$
+(M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
+$$
+
+and
+
+$$
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
+$$
+
+These equations capture:
+
+- cart inertia,
+- pendulum translational and rotational inertia,
+- gravitational effects,
+- angular acceleration coupling,
+- centripetal effects,
+- the influence of the control force.
+
+They form the mathematical foundation of the inverted pendulum controller.
+
+---
+
+## Transition to Linearisation and State-Space Modelling
+
+The equations derived in this chapter are nonlinear.
+
+The LQR controller used in this project requires a linear state-space model.
+
+The next stage therefore:
+
+- selects the upright equilibrium point,
+- applies small-angle approximations,
+- linearises the nonlinear equations,
+- defines the state vector,
+- constructs the state-space matrices.
+
+Continue to:
+
+[Dynamic Modelling: Linearisation and State-Space Representation](03_dynamic_modelling_linearization_and_state_space.md)
+
