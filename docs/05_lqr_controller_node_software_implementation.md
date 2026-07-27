@@ -33,7 +33,7 @@ $$
 \mathbf{x}=\begin{bmatrix}x\\
 \dot{x}\\
 \theta\\
-\dot{\theta}\end{bmatrix}.
+\dot{\theta}\end{bmatrix}
 $$
 
 Here, $u=F$ is the scalar horizontal force applied to the cart. The controller receives the four measured states through `/joint_states` and publishes the calculated scalar force through `/cart_force_cmd`.
@@ -197,7 +197,7 @@ l = L / 2.0
 Therefore,
 
 $$
-l=\frac{L}{2}=0.25\ \mathrm{m}.
+l=\frac{L}{2}=0.25\ \mathrm{m}
 $$
 
 The equations use $l$, not the full length $L$, for the distance from the pivot to the centre of mass.
@@ -214,13 +214,13 @@ I = (m / 12.0) * (3.0 * r**2 + L**2)
 This implements
 
 $$
-I=\frac{m}{12}\left(3r^2+L^2\right).
+I=\frac{m}{12}\left(3r^2+L^2\right)
 $$
 
 For the parameters used in the code,
 
 $$
-I=0.0208583\ \mathrm{kg\,m^2}.
+I=0.0208583\ \mathrm{kg\,m^2}
 $$
 
 This term distinguishes the implemented rigid-body model from a point-mass approximation.
@@ -237,13 +237,13 @@ J = I + m * l**2
 Therefore,
 
 $$
-J=I+ml^2.
+J=I+ml^2
 $$
 
 For the implemented parameters,
 
 $$
-J=0.0833583\ \mathrm{kg\,m^2}.
+J=0.0833583\ \mathrm{kg\,m^2}
 $$
 
 ### Common Denominator
@@ -258,13 +258,13 @@ delta = (M + m) * J - (m * l)**2
 The code variable `delta` represents the mathematical quantity
 
 $$
-\Delta=(M+m)J-(ml)^2.
+\Delta=(M+m)J-(ml)^2
 $$
 
 Using $J=I+ml^2$, the same denominator can be written as
 
 $$
-\Delta=I(M+m)+Mml^2.
+\Delta=I(M+m)+Mml^2
 $$
 
 For the implemented parameters,
@@ -282,7 +282,7 @@ The formulas in this document use $\Delta$, whereas the Python implementation us
 The linearized rigid-body model about the upright equilibrium is
 
 $$
-\dot{\mathbf{x}}=A\mathbf{x}+Bu,
+\dot{\mathbf{x}}=A\mathbf{x}+Bu
 $$
 
 where
@@ -294,7 +294,11 @@ $$
 \dot{\theta}\end{bmatrix}
 $$
 
-and $u=F$.
+and 
+
+$
+u=F
+$
 
 ### State Matrix
 
