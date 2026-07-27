@@ -288,7 +288,10 @@ $$
 where
 
 $$
-\mathbf{x}=\begin{bmatrix}x&\dot{x}&\theta&\dot{\theta}\end{bmatrix}^T
+\mathbf{x}=\begin{bmatrix}x\\
+\dot{x}\\
+\theta\\
+\dot{\theta}\end{bmatrix}
 $$
 
 and $u=F$.
