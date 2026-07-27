@@ -468,27 +468,27 @@ Near the upright position, gravity drives the pendulum away from equilibrium, ma
 
 ## 13. Rigid-Body Form of the Pendulum Equation
 
-If the rotational inertia of the pendulum is retained, the rotational equation becomes
+The equations developed throughout this project model the pendulum as a **point mass** located at its centre of mass. This assumption neglects the pendulum's own rotational inertia, resulting in a simpler mathematical model that is widely used for introductory control design and inverted pendulum studies.
+
+In a more complete rigid-body model, the pendulum possesses its own moment of inertia about its centre of mass. The rotational equation then becomes
 
 $$
-\left(I + ml^2\right)\ddot{\theta} + ml\ddot{x}\cos\theta - mgl\sin\theta = 0
+(I+ml^2)\ddot{\theta}+ml\ddot{x}\cos\theta-mgl\sin\theta=0
 $$
 
-Dividing by $ml$ gives
+Dividing the entire equation by \(ml\) gives
 
 $$
-\left( l+\frac{I}{ml} \right)\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0
+\left(l+\frac{I}{ml}\right)\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
 $$
 
-The simplified project equation
+Throughout this project, the pendulum is intentionally modelled as a point mass, allowing the separate rotational inertia term \(I\) to be neglected. Consequently, the rotational equation simplifies to
 
 $$
-l\ddot{\theta} + \ddot{x}\cos\theta - g\sin\theta = 0
+l\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
 $$
 
-is obtained when the separate inertia term $I$ is neglected.
-
-This simplification is widely used during introductory controller development and produces the state-space model used later in this project.
+Although industrial simulation and multibody dynamics software typically employ the complete rigid-body formulation, the simplified point-mass model provides an accurate and widely accepted foundation for linearization, state-space modelling, and LQR controller design.
 
 ---
 
