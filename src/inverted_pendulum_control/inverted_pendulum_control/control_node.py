@@ -25,26 +25,26 @@ class InvertedPendulumController(Node):
             10
         )
 
-        # Sistem parametreleri
+        # System parameters
         M = 3.0
         m = 1.0
         L = 0.5
         r = 0.01
         g = 9.81
 
-        # Pivot ile kütle merkezi arasındaki mesafe
+        # Distance between the pivot and the centre of mass
         l = L / 2.0
 
-        # Sarkacın kütle merkezi etrafındaki ataleti
+        # Pendulum inertia about its centre of mass
         I = (m / 12.0) * (3.0 * r**2 + L**2)
 
-        # Pivot etrafındaki toplam atalet
+        # Total pendulum inertia about the pivot
         J = I + m * l**2
 
-        # Hareket denklemlerini matris formunda çözerken ortaya çıkan ortak payda (determinant)
+        # Common denominator (determinant) obtained when solving the equations of motion in matrix form
         delta = (M + m) * J - (m * l)**2
 
-        # State-space matrisi
+        # State-space matrices
         A = np.array([
             [0.0, 1.0, 0.0, 0.0],
             [0.0, 0.0, -(m**2 * g * l**2) / delta, 0.0],
@@ -59,7 +59,7 @@ class InvertedPendulumController(Node):
             [-m * l / delta]
         ])
 
-        # LQR ağırlıkları
+        # LQR weighting matrices
         Q = np.diag([
             10.0,
             1.0,
@@ -71,10 +71,10 @@ class InvertedPendulumController(Node):
             [0.1]
         ])
 
-        # Riccati denklemi
+        # Solve the continuous-time algebraic Riccati equation
         P = solve_continuous_are(A, B, Q, R)
 
-        # LQR kazancı
+        # LQR gain matrix
         self.K = np.linalg.inv(R) @ B.T @ P
 
         self.get_logger().info(f'K matrix: {self.K}')
@@ -84,14 +84,14 @@ class InvertedPendulumController(Node):
         cart_index = msg.name.index('cart_rail_joint')
         pendulum_index = msg.name.index('pendulum_cart_joint')
 
-        # State değerleri
+        # State variables
         x = msg.position[cart_index]
         x_dot = msg.velocity[cart_index]
 
         theta = msg.position[pendulum_index]
         theta_dot = msg.velocity[pendulum_index]
 
-        # State vektörü
+        # State vector
         state = np.array([
             [x],
             [x_dot],
@@ -99,14 +99,14 @@ class InvertedPendulumController(Node):
             [theta_dot]
         ])
 
-        # LQR kontrol kuvveti
+        # LQR control force
         force = -self.K @ state
 
-        # ROS mesajına dönüştür
+        # Convert the force to a ROS message
         force_msg = Float64()
         force_msg.data = float(force[0, 0])
 
-        # Kuvveti publish et
+        # Publish the control force
         self.publisher.publish(force_msg)
 
 
