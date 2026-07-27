@@ -1636,34 +1636,16 @@ $$
 Performing the matrix multiplication gives
 
 $$
-\mathbf{u}
-=
--
-\begin{bmatrix}
-k_1 & k_2 & k_3 & k_4
-\end{bmatrix}
-\begin{bmatrix}
-x\\
+\mathbf{u} = - \begin{bmatrix} k_1 & k_2 & k_3 & k_4 \end{bmatrix} \begin{bmatrix} x\\
 \dot{x}\\
 \theta\\
-\dot{\theta}
-\end{bmatrix}
+\dot{\theta} \end{bmatrix}
 $$
 
 which produces
 
 $$
-u
-=
--\left(
-k_1x
-+
-k_2\dot{x}
-+
-k_3\theta
-+
-k_4\dot{\theta}
-\right)
+u = -\left( k_1x + k_2\dot{x} + k_3\theta + k_4\dot{\theta} \right)
 $$
 
 This equation shows that the controller computes the control force as the weighted sum of all system states.
@@ -1677,7 +1659,7 @@ Each feedback gain determines how strongly its corresponding state influences th
 The negative sign
 
 $$
--
+u=-K\mathbf{x}
 $$
 
 implements **negative feedback**.
@@ -1804,11 +1786,7 @@ $$
 in the state-space equation
 
 $$
-\dot{\mathbf{x}}
-=
-A\mathbf{x}
-+
-B\mathbf{u}
+\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}
 $$
 
 The applied force changes the motion of the cart and pendulum.
