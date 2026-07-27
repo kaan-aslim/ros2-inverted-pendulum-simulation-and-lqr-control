@@ -249,7 +249,7 @@ The designer defines the optimisation objective by selecting the weighting matri
 
 Once these matrices have been specified, the cost function is fully defined.
 
-In practical implementations, the engineer does not minimise the cost function J manually.
+In practical implementations, the engineer does not minimise the cost function **J** manually.
 
 Instead, numerical optimisation algorithms implemented in scientific software libraries automatically determine the controller that minimises the defined cost function.
 
