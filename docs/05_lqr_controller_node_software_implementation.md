@@ -296,9 +296,9 @@ $$
 
 and 
 
-$
-u=F
-$
+$$
+u = F
+$$
 
 ### State Matrix
 
