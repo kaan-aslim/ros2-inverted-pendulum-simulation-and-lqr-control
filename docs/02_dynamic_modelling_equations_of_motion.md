@@ -1259,7 +1259,7 @@ The parameters used in the derivation are:
 | $L$ | Total pendulum length | $\mathrm{m}$ |
 | $l$ | Distance from the pivot to the pendulum centre of mass | $\mathrm{m}$ |
 | $r$ | Pendulum cylinder radius | $\mathrm{m}$ |
-| $I$ | Pendulum moment of inertia about its centre of mass | $\mathrm{kg\,m^2}$ |
+| $I$ | Pendulum moment of inertia about its centre of mass | $\mathrm{kg \ m^2}$ |
 | $g$ | Gravitational acceleration | $\mathrm{m/s^2}$ |
 | $F$ | Horizontal force applied to the cart | $\mathrm{N}$ |
 | $x$ | Cart position | $\mathrm{m}$ |
@@ -1274,7 +1274,7 @@ For the project model:
 | $L$ | $0.5\ \mathrm{m}$ |
 | $l$ | $0.25\ \mathrm{m}$ |
 | $r$ | $0.01\ \mathrm{m}$ |
-| $I$ | $0.020858\ \mathrm{kg\,m^2}$ |
+| $I$ | $0.020858\ \mathrm{kg \ m^2}$ |
 | $g$ | $9.81\ \mathrm{m/s^2}$ |
 
 The pendulum is modelled as a uniform rigid cylinder. Its mass moment of inertia about an axis through its centre of mass and perpendicular to its longitudinal axis is
