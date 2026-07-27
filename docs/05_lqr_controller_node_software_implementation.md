@@ -113,13 +113,13 @@ $$
 the system matrices
 
 $$
-A,\;B
+A,\ B
 $$
 
 the weighting matrices
 
 $$
-Q,\;R
+Q,\ R
 $$
 
 the Riccati solution
