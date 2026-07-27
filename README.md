@@ -736,7 +736,6 @@ ros2-inverted-pendulum-simulation-and-lqr-control/
 
 ├── README.md
 ├── LICENSE
-├── requirements.txt
 │
 ├── docs/
 │   ├── 01_physical_modelling.md
