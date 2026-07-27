@@ -1149,7 +1149,7 @@ The dynamic model establishes the mathematical relationship between:
 
 In this project, the nonlinear equations of motion are derived using two different approaches:
 
-1. Newtonâ€“Euler mechanics
+1. Newton–Euler mechanics
 2. Lagrangian mechanics
 
 Both methods describe the same physical system and lead to the same nonlinear equations of motion.
@@ -1291,11 +1291,11 @@ $$
 
 ---
 
-# Newtonâ€“Euler Derivation
+# Newton–Euler Derivation
 
-## 4. Overview of the Newtonâ€“Euler Method
+## 4. Overview of the Newton–Euler Method
 
-The Newtonâ€“Euler method develops the equations of motion directly from forces, accelerations, and moments.
+The Newton–Euler method develops the equations of motion directly from forces, accelerations, and moments.
 
 It combines:
 
@@ -1466,7 +1466,7 @@ $$
 
 This is the first nonlinear equation of motion.
 
-It describes the horizontal dynamics of the complete cartâ€“pendulum system.
+It describes the horizontal dynamics of the complete cart–pendulum system.
 
 ---
 
@@ -1554,7 +1554,7 @@ $$
 
 represents the moment required to produce angular acceleration. It includes the pendulum inertia $I$ about its centre of mass and the parallel-axis contribution $ml^2$.
 
-### Cartâ€“Pendulum Coupling
+### Cart–Pendulum Coupling
 
 $$
 ml\ddot{x}\cos\theta
@@ -1578,7 +1578,7 @@ Near the upright position, gravity drives the pendulum away from equilibrium, ma
 
 ## 13. Coupled Rigid-Body Equations
 
-The Newtonâ€“Euler derivation produces the coupled nonlinear equations
+The Newton–Euler derivation produces the coupled nonlinear equations
 
 $$
 (M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
@@ -1823,7 +1823,7 @@ $$
 (M+m)\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^2\sin\theta=F
 $$
 
-This is the same horizontal equation obtained using the Newtonâ€“Euler method.
+This is the same horizontal equation obtained using the Newton–Euler method.
 
 ---
 
@@ -1877,7 +1877,7 @@ $$
 \left(l+\frac{I}{ml}\right)\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
 $$
 
-This is the same pendulum equation obtained using the Newtonâ€“Euler method.
+This is the same pendulum equation obtained using the Newton–Euler method.
 
 ---
 
@@ -2074,11 +2074,11 @@ The dynamic equations explain why this horizontal force can influence both cart 
 
 ---
 
-## 28. Newtonâ€“Euler and Lagrange Comparison
+## 28. Newton–Euler and Lagrange Comparison
 
 Both methods produce the same equations, but they emphasise different aspects of the system.
 
-| Newtonâ€“Euler Method | Lagrangian Method |
+| Newton–Euler Method | Lagrangian Method |
 |---------------------|-------------------|
 | Based on force and moment balances | Based on kinetic and potential energy |
 | Makes interaction forces visible | Eliminates many internal forces automatically |
@@ -2088,7 +2088,7 @@ Both methods produce the same equations, but they emphasise different aspects of
 
 For this project:
 
-- Newtonâ€“Euler mechanics explains the physical origin of each force term.
+- Newton–Euler mechanics explains the physical origin of each force term.
 - Lagrangian mechanics provides a structured verification of the same model.
 - Agreement between both derivations increases confidence in the final equations.
 
@@ -2192,4 +2192,3 @@ The next stage therefore:
 Continue to:
 
 [Dynamic Modelling: Linearisation and State-Space Representation](03_dynamic_modelling_linearization_and_state_space.md)
-
