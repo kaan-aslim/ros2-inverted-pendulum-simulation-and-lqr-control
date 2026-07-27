@@ -243,6 +243,16 @@ Instead of minimising only the state error or only the control effort, LQR minim
 
 For this reason, the resulting controller is called an **optimal controller**.
 
+> **Practical Note**
+
+The designer defines the optimisation objective by selecting the weighting matrices **Q** and **R** according to the desired control performance.
+
+Once these matrices have been specified, the cost function is fully defined.
+
+In practical implementations, the engineer does not minimise the cost function J manually.
+
+Instead, numerical optimisation algorithms implemented in scientific software libraries automatically determine the controller that minimises the defined cost function.
+
 ---
 
 ## 7. Choosing the Weighting Matrices
@@ -412,6 +422,12 @@ $$
 
 has been obtained, the optimal feedback gain matrix can be calculated immediately.
 
+> **Practical Note**
+
+Although the Riccati equation is presented explicitly to explain the mathematical foundation of the Linear Quadratic Regulator, it is not solved manually in practical applications.
+
+Instead, numerical algorithms implemented in scientific computing libraries solve the Riccati equation automatically once the system matrices and weighting matrices have been specified.
+
 ---
 
 ## 9. Computing the Feedback Gain Matrix
@@ -463,6 +479,12 @@ Rather than considering only the pendulum angle, LQR simultaneously accounts for
 - pendulum angular velocity.
 
 This complete use of the system state is one of the main reasons why LQR provides excellent stabilisation performance.
+
+> **Practical Note**
+
+After the Riccati equation has been solved, the optimal feedback gain matrix is computed automatically by the numerical optimisation algorithm.
+
+In practice, the engineer specifies the system model and the weighting matrices, while the software library calculates the optimal feedback gain matrix without requiring the gain values to be derived manually.
 
 ---
 
