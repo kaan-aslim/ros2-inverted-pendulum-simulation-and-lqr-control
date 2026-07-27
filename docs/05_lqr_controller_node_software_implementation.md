@@ -2039,3 +2039,5 @@ and publishes the resulting force command back to the simulator.
 This continuous feedback loop transforms the mathematical controller into a real-time software implementation capable of balancing the inverted pendulum within the ROS2 and Gazebo simulation environment.
 
 Together with the previous documents, this implementation completes the entire development process of the project, from physical modelling and mathematical analysis to optimal control design and real-time software execution.
+
+#### Başlık
