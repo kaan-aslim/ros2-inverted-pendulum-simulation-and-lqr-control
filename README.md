@@ -254,7 +254,7 @@ Within this project, the URDF model serves as the digital representation of the 
     <img src="images/urdf_xacro_model.png" alt="URDF/Xacro Model" width="1000">
 </p>
 
-The complete Pyhsical System Modelling is documented in: [Physical System Modelling](docs/01_physical_modelling.md)
+The complete physical system modelling is documented in: [Physical System Modelling](docs/01_physical_modelling.md)
 
 ---
 
@@ -638,8 +638,6 @@ to generate the control force applied to the cart.
 
 In practice, the optimization of the quadratic cost function **J**, the numerical solution of the Riccati equation **P**, and the computation of the optimal feedback gain matrix **K** are performed automatically by the computer using built-in numerical algorithms and library functions, eliminating the need for manual calculations.
 
-The complete derivation, theoretical background, and tuning procedure are available in **[docs/06_lqr_controller_design.md](docs/06_lqr_controller_design.md)**.
-
 ## Why LQR?
 
 The Linear Quadratic Regulator (LQR) was selected for this project because it provides an effective balance between control performance, implementation simplicity, and computational efficiency for linearized dynamic systems.
@@ -658,6 +656,8 @@ The main advantages of LQR include
 Although the controller is designed using a linearized model, it provides excellent performance when the pendulum operates close to the upright equilibrium.
 
 For larger angular deviations, an energy-based swing-up controller can first drive the pendulum toward the upright position before handing control over to the LQR stabilizer.
+
+The theoretical background and implementation of LQR controller is documented in: [LQR Controller Design](docs/04_lqr_controller_design.md)
 
 ---
 
