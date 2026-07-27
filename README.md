@@ -1092,7 +1092,7 @@ The project follows the same sequence of steps commonly encountered during the d
 - Closed-loop simulation
 - Controller Validation
 
-The system dynamics are derived independently using both the **Newtonâ€“Euler** and **Lagrangian** formulations. After verifying that both approaches lead to the same nonlinear equations of motion, the model is linearized around the upright equilibrium and expressed in state-space form.
+The system dynamics are derived independently using both the **Newton–Euler** and **Lagrangian** formulations. After verifying that both approaches lead to the same nonlinear equations of motion, the model is linearized around the upright equilibrium and expressed in state-space form.
 
 A **Linear Quadratic Regulator (LQR)** is then designed using the linearized rigid-body model. The resulting controller is implemented as a ROS2 node that continuously reads the cart and pendulum states from Gazebo, computes the required control force, and applies it to the simulated cart in real time.
 
@@ -1134,7 +1134,7 @@ The primary goal of this repository is therefore not simply to balance a pendulu
 
 **Maintaining balance** is **one of the most fundamental challenges in robotics.**
 
-Many robotic systemsâ€”including **humanoid robots**, **bipedal platforms**, **quadruped robots**, **self-balancing mobile robots**, and dynamically stabilized manipulatorsâ€”must continuously regulate their motion to remain stable while interacting with their environment.
+Many robotic systems—including **humanoid robots**, **bipedal platforms**, **quadruped robots**, **self-balancing mobile robots**, and dynamically stabilized manipulators—must continuously regulate their motion to remain stable while interacting with their environment.
 
 Although these systems are mechanically complex, many of their balance-related behaviors can be approximated using variations of the inverted pendulum model. As a result, the inverted pendulum has become one of the most widely studied benchmark problems in robotics and modern control engineering.
 
@@ -1167,7 +1167,7 @@ This repository demonstrates the complete development of a modern control system
 
 ### Modelling
 
-- Conceptual cartâ€“pole mechanical system
+- Conceptual cart–pole mechanical system
 - URDF/Xacro robot description
 - Physical parameters and inertial properties
 - Generalized coordinate definition
@@ -1175,7 +1175,7 @@ This repository demonstrates the complete development of a modern control system
 
 ### Dynamics
 
-- Newtonâ€“Euler formulation
+- Newton–Euler formulation
 - Lagrangian formulation
 - Nonlinear equations of motion
 - Dynamic model verification
@@ -1194,7 +1194,7 @@ This repository demonstrates the complete development of a modern control system
 - ROS2 Humble package architecture
 - Python-based controller implementation
 - Publisher/subscriber communication
-- Gazeboâ€“ROS2 integration
+- Gazebo–ROS2 integration
 - Force-based cart actuation
 - Modular package organization
 
@@ -1212,7 +1212,7 @@ This repository demonstrates the complete development of a modern control system
 >
 > This repository focuses on the modeling, simulation, and control of an inverted pendulum as a robotics control problem.
 >
-> The objective is not to design a manufacturable mechanical product, but to develop a complete robotics engineering workflowâ€”from dynamic modeling and controller design to software implementation and closed-loop simulation using ROS2.
+> The objective is not to design a manufacturable mechanical product, but to develop a complete robotics engineering workflow—from dynamic modeling and controller design to software implementation and closed-loop simulation using ROS2.
 
 ---
 
@@ -1246,11 +1246,11 @@ The conceptual mechanical system is defined using the following physical paramet
 | **l** | Distance from the pivot to the pendulum center of mass | 0.25 m |
 | **r** | Pendulum radius | 0.01 m |
 | **I** | Pendulum mass moment of inertia about its center of mass | $\frac{1}{12}m(3r^2+L^2)$ |
-| **g** | Gravitational acceleration | 9.81 m/sÂ² |
+| **g** | Gravitational acceleration | 9.81 m/s² |
 | **x** | Cart position | Variable |
-| **Î¸** | Pendulum angle | Variable |
+| **θ** | Pendulum angle | Variable |
 
-The pendulum is modeled as a uniform rigid cylinder. Its distributed mass is represented by the moment of inertia **I** about the center of mass, while **l** defines the distance from the revolute joint to the center of mass. According to the parallel-axis theorem, the pendulum inertia about the pivot is **I + mlÂ²**.
+The pendulum is modeled as a uniform rigid cylinder. Its distributed mass is represented by the moment of inertia **I** about the center of mass, while **l** defines the distance from the revolute joint to the center of mass. According to the parallel-axis theorem, the pendulum inertia about the pivot is **I + ml²**.
 
 These values are intentionally selected to create a realistic yet computationally efficient simulation model suitable for controller development.
 
@@ -1259,7 +1259,7 @@ These values are intentionally selected to create a realistic yet computationall
 The system motion is completely described using two generalized coordinates:
 
 - **x** : Horizontal displacement of the cart
-- **Î¸** : Angular displacement of the pendulum measured from the upright equilibrium position
+- **θ** : Angular displacement of the pendulum measured from the upright equilibrium position
 
 The corresponding state vector is defined as
 
@@ -1275,9 +1275,9 @@ $$
 where
 
 - **x** : Cart position
-- **áº‹** : Cart velocity
-- **Î¸** : Pendulum angle
-- **Î¸Ì‡** : Pendulum angular velocity
+- **ẋ** : Cart velocity
+- **θ** : Pendulum angle
+- **θ̇** : Pendulum angular velocity
 
 This state-space representation forms the basis for both the linearized dynamic model and the subsequent controller design.
 
@@ -1339,7 +1339,7 @@ The complete physical system modelling is documented in: [Physical System Modell
 
 The first step in controller development is obtaining a mathematical description of the system dynamics.
 
-For the cartâ€“pole system, the cart translation and pendulum rotation are strongly coupled. Any force applied to the cart directly influences the pendulum motion, while the pendulum simultaneously affects the cart through inertial and gravitational interactions.
+For the cart–pole system, the cart translation and pendulum rotation are strongly coupled. Any force applied to the cart directly influences the pendulum motion, while the pendulum simultaneously affects the cart through inertial and gravitational interactions.
 
 In robotics, the nonlinear dynamics of a mechanical system are commonly expressed in the following generalized form:
 
@@ -1354,23 +1354,23 @@ $$
 where
 
 - **M(q)** is the inertia (mass) matrix,
-- **C(q, qÌ‡)** represents the Coriolis and centrifugal effects,
+- **C(q, q̇)** represents the Coriolis and centrifugal effects,
 - **g(q)** is the gravity vector,
 - **q** is the vector of generalized coordinates,
-- **Ï„** is the vector of generalized external forces.
+- **τ** is the vector of generalized external forces.
 
-For the cartâ€“pole system, this nonlinear dynamic model is derived using two independent analytical methods:
+For the cart–pole system, this nonlinear dynamic model is derived using two independent analytical methods:
 
-- Newtonâ€“Euler mechanics
+- Newton–Euler mechanics
 - Lagrangian mechanics
 
 Although these methods originate from different physical principles, they produce the same nonlinear equations of motion. Using both approaches provides mathematical verification while also illustrating two of the most widely used modeling techniques in robotics.
 
 The complete derivations are provided in the documentation.
 
-## Newtonâ€“Euler Formulation
+## Newton–Euler Formulation
 
-The Newtonâ€“Euler approach derives the equations of motion directly from force and moment balances.
+The Newton–Euler approach derives the equations of motion directly from force and moment balances.
 
 The translational dynamics of the cart and pendulum center of mass are obtained using Newton's Second Law, while the rotational dynamics of the pendulum are derived using its rigid-body moment of inertia.
 
@@ -1390,14 +1390,14 @@ $$
 
 where
 
-- **Î£F** is the resultant external force,
+- **ΣF** is the resultant external force,
 - **m** is the body mass,
 - **a** is the linear acceleration,
-- **Î£Ï„** is the resultant external moment,
+- **Στ** is the resultant external moment,
 - **I** is the moment of inertia,
-- **Î±** is the angular acceleration.
+- **α** is the angular acceleration.
 
-Applying these equations to the cartâ€“pole system yields the nonlinear equations of motion
+Applying these equations to the cart–pole system yields the nonlinear equations of motion
 
 <p align="center">
 
@@ -1432,7 +1432,7 @@ where
 - **T** is the total kinetic energy,
 - **V** is the total potential energy.
 
-The equations of motion are obtained using the Eulerâ€“Lagrange equation
+The equations of motion are obtained using the Euler–Lagrange equation
 
 <p align="center">
 
@@ -1444,10 +1444,10 @@ $$
 
 where
 
-- **qáµ¢** represents a generalized coordinate,
-- **Qáµ¢** is the generalized external force.
+- **qᵢ** represents a generalized coordinate,
+- **Qᵢ** is the generalized external force.
 
-Applying the Eulerâ€“Lagrange formulation to the cartâ€“pole system produces the same nonlinear equations of motion obtained using the Newtonâ€“Euler approach.
+Applying the Euler–Lagrange formulation to the cart–pole system produces the same nonlinear equations of motion obtained using the Newton–Euler approach.
 
 <p align="center">
 
@@ -1461,13 +1461,13 @@ $$
 
 </p>
 
-Compared with the Newtonâ€“Euler formulation, the Lagrangian method becomes particularly convenient for systems containing multiple interconnected rigid bodies and generalized coordinates.
+Compared with the Newton–Euler formulation, the Lagrangian method becomes particularly convenient for systems containing multiple interconnected rigid bodies and generalized coordinates.
 
 ## Nonlinear Equations of Motion
 
 Both derivation methods lead to the same nonlinear dynamic model.
 
-The resulting equations describe the coupled translational and rotational dynamics of the cartâ€“pendulum system.
+The resulting equations describe the coupled translational and rotational dynamics of the cart–pendulum system.
 
 The nonlinear equations of motion are
 
@@ -1486,7 +1486,7 @@ $$
 where
 
 - **x** is the cart position,
-- **Î¸** is the pendulum angle,
+- **θ** is the pendulum angle,
 - **F** is the applied cart force,
 - **M** and **m** are the cart and pendulum masses,
 - **l** is the distance from the pivot to the pendulum center of mass,
@@ -1523,7 +1523,7 @@ $$
 \cos\theta \approx 1
 $$
 
-where **Î¸** is assumed to remain sufficiently small around the upright equilibrium.
+where **θ** is assumed to remain sufficiently small around the upright equilibrium.
 
 The operating point is defined as the state in which
 
@@ -1568,9 +1568,9 @@ $$
 where
 
 - **x** is the cart position,
-- **áº‹** is the cart velocity,
-- **Î¸** is the pendulum angle,
-- **Î¸Ì‡** is the pendulum angular velocity.
+- **ẋ** is the cart velocity,
+- **θ** is the pendulum angle,
+- **θ̇** is the pendulum angular velocity.
 
 For robotic systems, the state-space formulation offers several important advantages:
 
@@ -1646,7 +1646,7 @@ $$
 
 </p>
 
-The output matrices are selected as **C = Iâ‚„** and **D = 0** so that all four states are available as outputs for feedback and evaluation.
+The output matrices are selected as **C = I₄** and **D = 0** so that all four states are available as outputs for feedback and evaluation.
 
 This mathematical representation serves as the foundation for controllability analysis, state-feedback control, and the LQR controller implemented in this project.
 
@@ -1710,7 +1710,7 @@ $$
 
 </p>
 
-The pendulum angle is assigned the largest weighting (**Qâ‚ƒâ‚ƒ = 100**) because maintaining the upright position is the primary control objective. The remaining weights are chosen to achieve smooth cart motion while avoiding unnecessarily aggressive control actions.
+The pendulum angle is assigned the largest weighting (**Q₃₃ = 100**) because maintaining the upright position is the primary control objective. The remaining weights are chosen to achieve smooth cart motion while avoiding unnecessarily aggressive control actions.
 
 Using the selected weighting matrices, LQR solves the **Continuous Algebraic Riccati Equation (CARE)**
 
@@ -1844,25 +1844,25 @@ The repository is organized according to standard ROS2 workspace conventions.
 ```text
 ros2-inverted-pendulum-simulation-and-lqr-control/
 
-â”œâ”€â”€ README.md
-â”œâ”€â”€ LICENSE
-â”‚
-â”œâ”€â”€ docs/
-â”‚   â”œâ”€â”€ 01_physical_modelling.md
-â”‚   â”œâ”€â”€ 02_dynamic_modelling_equations_of_motion.md
-â”‚   â”œâ”€â”€ 03_dynamic_modelling_linearization_and_state_space.md
-â”‚   â”œâ”€â”€ 04_lqr_controller_design.md
-â”‚   â”œâ”€â”€ 05_lqr_controller_node_software_implementation.md
-â”‚   â”œâ”€â”€ 06_ros2_and_gazebo_software_architecture.md
-â”‚   â”œâ”€â”€ 07_simulation_results.md
-â”‚
-â”œâ”€â”€ images/
-â”‚
-â””â”€â”€ src/
-    â”œâ”€â”€ inverted_pendulum_description/
-    â”œâ”€â”€ inverted_pendulum_gazebo/
-    â”œâ”€â”€ inverted_pendulum_bringup/
-    â”œâ”€â”€ inverted_pendulum_control/
+├── README.md
+├── LICENSE
+│
+├── docs/
+│   ├── 01_physical_modelling.md
+│   ├── 02_dynamic_modelling_equations_of_motion.md
+│   ├── 03_dynamic_modelling_linearization_and_state_space.md
+│   ├── 04_lqr_controller_design.md
+│   ├── 05_lqr_controller_node_software_implementation.md
+│   ├── 06_ros2_and_gazebo_software_architecture.md
+│   ├── 07_simulation_results.md
+│
+├── images/
+│
+└── src/
+    ├── inverted_pendulum_description/
+    ├── inverted_pendulum_gazebo/
+    ├── inverted_pendulum_bringup/
+    ├── inverted_pendulum_control/
 ```
 
 Each package has a clearly defined responsibility, improving maintainability, modularity, and scalability.
@@ -1978,10 +1978,10 @@ The launch file automatically starts
 - Robot State Publisher
 - Gazebo Fortress
 - Robot Spawner
-- ROS2â€“Gazebo Bridge
+- ROS2–Gazebo Bridge
 - LQR Controller Node
 
-After startup, the cartâ€“pole system is spawned into the simulation and the controller immediately begins stabilizing the pendulum around the upright equilibrium.
+After startup, the cart–pole system is spawned into the simulation and the controller immediately begins stabilizing the pendulum around the upright equilibrium.
 
 ---
 
@@ -2008,8 +2008,8 @@ ros2 run inverted_pendulum_control disturbance_test \
 
 Parameters:
 
-- `torque` â€“ Disturbance torque (NÂ·m)
-- `duration` â€“ Torque application time (s)
+- `torque` – Disturbance torque (N·m)
+- `duration` – Torque application time (s)
 
 The disturbance node automatically removes the applied torque after the specified duration, creating an impulse-like disturbance for evaluating the controller response.
 
@@ -2135,7 +2135,7 @@ Several improvements can be incorporated in future versions of the project.
 
 ### Hardware
 
-- Real cartâ€“pole prototype
+- Real cart–pole prototype
 - Encoder integration
 - DC motor drive
 - Embedded controller
@@ -2147,12 +2147,12 @@ Several improvements can be incorporated in future versions of the project.
 
 The following references were used throughout the development of this project.
 
-1. Richard M. Murray â€” Feedback Systems
-2. Franklin, Powell & Emami-Naeini â€” Feedback Control of Dynamic Systems
-3. Ogata â€” Modern Control Engineering
-4. Dorf & Bishop â€” Modern Control Systems
-5. Siciliano et al. â€” Robotics: Modelling, Planning and Control
-6. Spong, Hutchinson & Vidyasagar â€” Robot Modeling and Control
+1. Richard M. Murray — Feedback Systems
+2. Franklin, Powell & Emami-Naeini — Feedback Control of Dynamic Systems
+3. Ogata — Modern Control Engineering
+4. Dorf & Bishop — Modern Control Systems
+5. Siciliano et al. — Robotics: Modelling, Planning and Control
+6. Spong, Hutchinson & Vidyasagar — Robot Modeling and Control
 7. ROS2 Documentation
 8. Gazebo Documentation
 
@@ -2173,4 +2173,3 @@ See the LICENSE file for additional information.
 This project was developed as part of a personal robotics learning journey focused on dynamic modeling, optimal control, and ROS2-based robotic software development.
 
 Its primary objective is to bridge the gap between theoretical control engineering and practical robotics implementation through a complete end-to-end engineering workflow.
-
