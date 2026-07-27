@@ -10,8 +10,8 @@ Therefore, before designing the controller, the nonlinear dynamic model must be 
 
 This chapter explains:
 
-- why linearisation is required,
-- how the nonlinear equations are linearised,
+- why linearization is required,
+- how the nonlinear equations are linearized,
 - how the operating point is selected,
 - how small-angle approximations are applied,
 - how the resulting linear equations are prepared for state-space representation.
@@ -22,7 +22,7 @@ The state-space model obtained in this chapter forms the mathematical foundation
 
 # Linearization Workflow
 
-The linearisation process used in this project follows the sequence below.
+The linearization process used in this project follows the sequence below.
 
 <p align="center">
     <img src="images/linearization_workflow.png" alt="Linearization Workflow" width="600">
@@ -75,13 +75,13 @@ Because of these nonlinear terms:
 
 Although nonlinear controllers can be designed for these equations, the objective of this project is to stabilise the pendulum around its upright equilibrium using an LQR controller.
 
-Since LQR requires a linear state-space model, the nonlinear equations must first be linearised.
+Since LQR requires a linear state-space model, the nonlinear equations must first be linearized.
 
 ---
 
 ## 2. Local Linear Approximation
 
-Linearisation does not replace the nonlinear model.
+Linearization does not replace the nonlinear model.
 
 Instead, it creates a local approximation that accurately represents the system behaviour only near a chosen operating point.
 
@@ -103,7 +103,7 @@ Large-angle swing-up control requires the original nonlinear model.
 
 ## 3. Selecting the Operating Point
 
-Linearisation must always be performed around a specific operating point.
+Linearization must always be performed around a specific operating point.
 
 An operating point is a system condition where all state variables remain constant if no disturbance occurs.
 
@@ -159,7 +159,7 @@ This operating point represents the desired equilibrium around which the control
 
 ## 4. Taylor Series Expansion
 
-The mathematical basis of linearisation is the Taylor series expansion.
+The mathematical basis of linearization is the Taylor series expansion.
 
 For a general nonlinear function
 
@@ -265,7 +265,7 @@ $$
 \dot{\theta}^2\theta
 $$
 
-This expression is third order in the small perturbation variables and is therefore neglected during linearisation.
+This expression is third order in the small perturbation variables and is therefore neglected during linearization.
 
 Therefore,
 
@@ -291,7 +291,7 @@ If the pendulum angle becomes large, the nonlinear equations must be used instea
 
 ---
 
-## 7. Linearisation of the First Equation of Motion
+## 7. Linearization of the First Equation of Motion
 
 The original nonlinear cart equation is
 
@@ -317,13 +317,13 @@ $$
 (M+m)\ddot{x}+ml\ddot{\theta}=F
 $$
 
-This is the linearised horizontal equation of motion.
+This is the linearized horizontal equation of motion.
 
 The nonlinear centripetal term is omitted because it is negligible near the equilibrium.
 
 ---
 
-## 8. Linearisation of the Second Equation of Motion
+## 8. Linearization of the Second Equation of Motion
 
 The original nonlinear rigid-body pendulum equation is
 
@@ -349,7 +349,7 @@ $$
 (I+ml^2)\ddot{\theta}+ml\ddot{x}-mgl\theta=0
 $$
 
-This is the linearised rotational equation.
+This is the linearized rotational equation.
 
 The gravitational term is now proportional to the pendulum angle, which makes the system linear.
 
@@ -357,7 +357,7 @@ The gravitational term is now proportional to the pendulum angle, which makes th
 
 ## 9. Final Linear Differential Equations
 
-After linearisation, the nonlinear model becomes
+After linearization, the nonlinear model becomes
 
 $$
 (M+m)\ddot{x}+ml\ddot{\theta}=F
@@ -375,7 +375,7 @@ This makes them suitable for conversion into state-space form.
 
 ---
 
-## 10. How Linearisation Is Used in This Project
+## 10. How Linearization Is Used in This Project
 
 The analytical model developed in the previous chapter represents the complete nonlinear dynamics of the inverted pendulum.
 
@@ -393,7 +393,7 @@ The next stage converts the second-order differential equations into a first-ord
 
 ## 11. Why State-Space Representation Is Needed
 
-The linearised equations derived in the previous section are
+The linearized equations derived in the previous section are
 
 $$
 (M+m)\ddot{x}+ml\ddot{\theta}=F
@@ -409,7 +409,7 @@ Modern control techniques such as the Linear Quadratic Regulator (LQR) require t
 
 State-space representation provides a compact mathematical framework that describes the complete dynamics of the system using a state vector and an input vector.
 
-Once the system is expressed in state-space form, it can be directly used for controller design, simulation, stability analysis and numerical implementation.
+Once the system is expressed in state-space form, it can be used directly for controller design, simulation, stability analysis, and numerical implementation.
 
 ---
 
@@ -441,25 +441,25 @@ $$
 Define the common denominator
 
 $$
-p=(M+m)(I+ml^2)-m^2l^2
+\Delta=(M+m)(I+ml^2)-m^2l^2
 $$
 
 Expanding and simplifying gives
 
 $$
-p=I(M+m)+Mml^2
+\Delta=I(M+m)+Mml^2
 $$
 
 Solving the coupled equations simultaneously gives the cart acceleration:
 
 $$
-\ddot{x}=-\frac{m^2gl^2}{p}\theta+\frac{I+ml^2}{p}F
+\ddot{x}=-\frac{m^2gl^2}{\Delta}\theta+\frac{I+ml^2}{\Delta}F
 $$
 
 The pendulum angular acceleration is
 
 $$
-\ddot{\theta}=\frac{mgl(M+m)}{p}\theta-\frac{ml}{p}F
+\ddot{\theta}=\frac{mgl(M+m)}{\Delta}\theta-\frac{ml}{\Delta}F
 $$
 
 Both accelerations are now expressed explicitly in terms of the pendulum angle and control input while retaining the rigid pendulum's centre-of-mass inertia $I$.
@@ -515,7 +515,7 @@ This vector contains all information required to predict the future motion of th
 
 The only external control input is the horizontal force applied to the cart.
 
-Therefore
+Therefore,
 
 $$
 u=F
@@ -586,25 +586,25 @@ The remaining derivatives are obtained from the previously derived acceleration 
 Using
 
 $$
-\ddot{x}=-\frac{m^2gl^2}{p}\theta+\frac{I+ml^2}{p}F
+\ddot{x}=-\frac{m^2gl^2}{\Delta}\theta+\frac{I+ml^2}{\Delta}F
 $$
 
 gives
 
 $$
-\dot{x}_2=-\frac{m^2gl^2}{p}x_3+\frac{I+ml^2}{p}u
+\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3+\frac{I+ml^2}{\Delta}u
 $$
 
 Using
 
 $$
-\ddot{\theta}=\frac{mgl(M+m)}{p}\theta-\frac{ml}{p}F
+\ddot{\theta}=\frac{mgl(M+m)}{\Delta}\theta-\frac{ml}{\Delta}F
 $$
 
 gives
 
 $$
-\dot{x}_4=\frac{mgl(M+m)}{p}x_3-\frac{ml}{p}u
+\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3-\frac{ml}{\Delta}u
 $$
 
 The complete first-order system is therefore
@@ -614,7 +614,7 @@ $$
 $$
 
 $$
-\dot{x}_2=-\frac{m^2gl^2}{p}x_3+\frac{I+ml^2}{p}u
+\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3+\frac{I+ml^2}{\Delta}u
 $$
 
 $$
@@ -622,7 +622,7 @@ $$
 $$
 
 $$
-\dot{x}_4=\frac{mgl(M+m)}{p}x_3-\frac{ml}{p}u
+\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3-\frac{ml}{\Delta}u
 $$
 
 ---
@@ -638,25 +638,25 @@ $$
 where
 
 $$
-p=I(M+m)+Mml^2
+\Delta=I(M+m)+Mml^2
 $$
 
 and
 
 $$
 A=\begin{bmatrix}0&1&0&0\\
-0&0&-\frac{m^2gl^2}{p}&0\\
+0&0&-\frac{m^2gl^2}{\Delta}&0\\
 0&0&0&1\\
-0&0&\frac{mgl(M+m)}{p}&0\end{bmatrix}
+0&0&\frac{mgl(M+m)}{\Delta}&0\end{bmatrix}
 $$
 
 and
 
 $$
 B=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}
+-\frac{ml}{\Delta}\end{bmatrix}
 $$
 
 The matrix
@@ -696,7 +696,7 @@ $$
 
 The applied force has no direct feedthrough to the measured outputs.
 
-Therefore
+Therefore,
 
 $$
 D=\begin{bmatrix}0\\
@@ -723,16 +723,16 @@ where
 
 $$
 A=\begin{bmatrix}0&1&0&0\\
-0&0&-\frac{m^2gl^2}{p}&0\\
+0&0&-\frac{m^2gl^2}{\Delta}&0\\
 0&0&0&1\\
-0&0&\frac{mgl(M+m)}{p}&0\end{bmatrix}
+0&0&\frac{mgl(M+m)}{\Delta}&0\end{bmatrix}
 $$
 
 $$
 B=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}
+-\frac{ml}{\Delta}\end{bmatrix}
 $$
 
 $$
@@ -756,15 +756,15 @@ $$
 \ddot{x}\\
 \dot{\theta}\\
 \ddot{\theta}\end{bmatrix}=\begin{bmatrix}0&1&0&0\\
-0&0&-\frac{m^2gl^2}{p}&0\\
+0&0&-\frac{m^2gl^2}{\Delta}&0\\
 0&0&0&1\\
-0&0&\frac{mgl(M+m)}{p}&0\end{bmatrix}\begin{bmatrix}x\\
+0&0&\frac{mgl(M+m)}{\Delta}&0\end{bmatrix}\begin{bmatrix}x\\
 \dot{x}\\
 \theta\\
 \dot{\theta}\end{bmatrix}+\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}F
+-\frac{ml}{\Delta}\end{bmatrix}F
 $$
 
 The **output equation** can be written explicitly as
@@ -785,7 +785,7 @@ y_4\end{bmatrix}=\begin{bmatrix}1&0&0&0\\
 0\end{bmatrix}F
 $$
 
-The resulting state-space model provides a compact representation of the linearised system and serves as the mathematical foundation for the controller developed in the next chapter.
+The resulting state-space model provides a compact representation of the linearized system and serves as the mathematical foundation for the controller developed in the next chapter.
 
 ---
 
@@ -814,13 +814,13 @@ Each element of the state vector represents a measurable physical quantity.
 
 Together, these four variables completely describe the instantaneous condition of the inverted pendulum.
 
-If all four state variables are known at a particular instant together with the applied input force, the future motion of the system can be predicted using the state-space equations.
+If all four state variables and the applied input force are known at a particular instant, the future motion of the system can be predicted using the state-space equations.
 
 ---
 
 ## 22. Physical Meaning of the A Matrix
 
-The linearised state equation is written as
+The linearized state equation is written as
 
 $$
 \dot{\mathbf{x}}=A\mathbf{x}+Bu
@@ -830,9 +830,9 @@ The system matrix is
 
 $$
 A=\begin{bmatrix}0&1&0&0\\
-0&0&-\frac{m^2gl^2}{p}&0\\
+0&0&-\frac{m^2gl^2}{\Delta}&0\\
 0&0&0&1\\
-0&0&\frac{mgl(M+m)}{p}&0\end{bmatrix}
+0&0&\frac{mgl(M+m)}{\Delta}&0\end{bmatrix}
 $$
 
 The state vector is defined as
@@ -970,16 +970,16 @@ $$
 \begin{bmatrix}\circ\\
 \dot{x}_2\\
 \circ\\
-\circ\end{bmatrix}=\begin{bmatrix}0&0&-\frac{m^2gl^2}{p}&0\end{bmatrix}\begin{bmatrix}x_1\\
+\circ\end{bmatrix}=\begin{bmatrix}0&0&-\frac{m^2gl^2}{\Delta}&0\end{bmatrix}\begin{bmatrix}x_1\\
 x_2\\
 x_3\\
-x_4\end{bmatrix}=-\frac{m^2gl^2}{p}x_3
+x_4\end{bmatrix}=-\frac{m^2gl^2}{\Delta}x_3
 $$
 
 Therefore,
 
 $$
-\dot{x}_2=-\frac{m^2gl^2}{p}x_3
+\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3
 $$
 
 The second state is the cart velocity
@@ -1003,17 +1003,17 @@ $$
 Substituting these state definitions gives
 
 $$
-\ddot{x}=-\frac{m^2gl^2}{p}\theta
+\ddot{x}=-\frac{m^2gl^2}{\Delta}\theta
 $$
 
-Unlike the first row, this row represents a dynamic relationship obtained from the linearised equations of motion.
+Unlike the first row, this row represents a dynamic relationship obtained from the linearized equations of motion.
 
 It shows that, in the absence of an external control force, the pendulum angle produces a horizontal acceleration of the cart.
 
 The coefficient
 
 $$
--\frac{m^2gl^2}{p}
+-\frac{m^2gl^2}{\Delta}
 $$
 
 represents the gravitational coupling from the pendulum angle to the cart acceleration.
@@ -1092,16 +1092,16 @@ $$
 \begin{bmatrix}\circ\\
 \circ\\
 \circ\\
-\dot{x}_4\end{bmatrix}=\begin{bmatrix}0&0&\frac{mgl(M+m)}{p}&0\end{bmatrix}\begin{bmatrix}x_1\\
+\dot{x}_4\end{bmatrix}=\begin{bmatrix}0&0&\frac{mgl(M+m)}{\Delta}&0\end{bmatrix}\begin{bmatrix}x_1\\
 x_2\\
 x_3\\
-x_4\end{bmatrix}=\frac{mgl(M+m)}{p}x_3
+x_4\end{bmatrix}=\frac{mgl(M+m)}{\Delta}x_3
 $$
 
 Therefore,
 
 $$
-\dot{x}_4=\frac{mgl(M+m)}{p}x_3
+\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3
 $$
 
 The fourth state is the pendulum angular velocity
@@ -1125,7 +1125,7 @@ $$
 Substituting these state definitions gives
 
 $$
-\ddot{\theta}=\frac{mgl(M+m)}{p}\theta
+\ddot{\theta}=\frac{mgl(M+m)}{\Delta}\theta
 $$
 
 This row represents the rotational dynamics of the pendulum.
@@ -1133,7 +1133,7 @@ This row represents the rotational dynamics of the pendulum.
 The positive coefficient
 
 $$
-\frac{mgl(M+m)}{p}
+\frac{mgl(M+m)}{\Delta}
 $$
 
 means that a small angular displacement from the upright equilibrium produces an angular acceleration in the same direction as the displacement.
@@ -1160,18 +1160,18 @@ The four first-order state equations are
 
 $$
 \begin{aligned}\dot{x}_1&=x_2\\
-\dot{x}_2&=-\frac{m^2gl^2}{p}x_3\\
+\dot{x}_2&=-\frac{m^2gl^2}{\Delta}x_3\\
 \dot{x}_3&=x_4\\
-\dot{x}_4&=\frac{mgl(M+m)}{p}x_3\end{aligned}
+\dot{x}_4&=\frac{mgl(M+m)}{\Delta}x_3\end{aligned}
 $$
 
 Using the physical variables, the same relationships can be written as
 
 $$
 \begin{aligned}\dot{x}_1&=x_2=\dot{x}\\
-\dot{x}_2&=\ddot{x}=-\frac{m^2gl^2}{p}\theta\\
+\dot{x}_2&=\ddot{x}=-\frac{m^2gl^2}{\Delta}\theta\\
 \dot{x}_3&=x_4=\dot{\theta}\\
-\dot{x}_4&=\ddot{\theta}=\frac{mgl(M+m)}{p}\theta\end{aligned}
+\dot{x}_4&=\ddot{\theta}=\frac{mgl(M+m)}{\Delta}\theta\end{aligned}
 $$
 
 Their physical meanings are
@@ -1190,7 +1190,7 @@ The second and fourth equations contain the actual system dynamics and describe 
 Therefore, the $A$ matrix combines:
 
 - the kinematic relationships required by the first-order state-space representation,
-- the linearised dynamic relationships obtained from the equations of motion,
+- the linearized dynamic relationships obtained from the equations of motion,
 - the gravitational coupling between the pendulum angle and cart acceleration,
 - the unstable angular dynamics of the upright inverted pendulum.
 
@@ -1208,9 +1208,9 @@ The input matrix is
 
 $$
 B=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}
+-\frac{ml}{\Delta}\end{bmatrix}
 $$
 
 The control input is
@@ -1227,18 +1227,18 @@ Multiplying the input matrix by the control input
 
 $$
 Bu=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}F
+-\frac{ml}{\Delta}\end{bmatrix}F
 $$
 
 gives
 
 $$
 Bu=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}F\\
+\frac{I+ml^2}{\Delta}F\\
 0\\
--\frac{ml}{p}F\end{bmatrix}
+-\frac{ml}{\Delta}F\end{bmatrix}
 $$
 
 Each element of the resulting vector represents the contribution of the control force to one state equation.
@@ -1266,13 +1266,13 @@ The cart position changes only because the cart has velocity.
 The second element is
 
 $$
-\frac{I+ml^2}{p}
+\frac{I+ml^2}{\Delta}
 $$
 
 Therefore, the second state equation becomes
 
 $$
-\dot{x}_2=-\frac{m^2gl^2}{p}x_3+\frac{I+ml^2}{p}F
+\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3+\frac{I+ml^2}{\Delta}F
 $$
 
 Since
@@ -1283,7 +1283,7 @@ $$
 
 the applied force produces a direct horizontal acceleration of the cart.
 
-The coefficient $\frac{I+ml^2}{p}$ determines how strongly the applied force affects cart acceleration.
+The coefficient $\frac{I+ml^2}{\Delta}$ determines how strongly the applied force affects cart acceleration.
 
 ### Third Element: Pendulum Angle
 
@@ -1308,13 +1308,13 @@ The pendulum angle changes only because the pendulum has angular velocity.
 The fourth element is
 
 $$
--\frac{ml}{p}
+-\frac{ml}{\Delta}
 $$
 
 Therefore, the fourth state equation becomes
 
 $$
-\dot{x}_4=\frac{mgl(M+m)}{p}x_3-\frac{ml}{p}F
+\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3-\frac{ml}{\Delta}F
 $$
 
 Since
@@ -1339,9 +1339,9 @@ The input matrix can be summarised as
 
 $$
 B=\begin{bmatrix}0\\
-\frac{I+ml^2}{p}\\
+\frac{I+ml^2}{\Delta}\\
 0\\
--\frac{ml}{p}\end{bmatrix}
+-\frac{ml}{\Delta}\end{bmatrix}
 $$
 
 The first and third elements are zero because the applied force does not directly affect the position states.
