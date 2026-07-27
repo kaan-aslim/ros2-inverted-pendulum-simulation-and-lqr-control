@@ -756,7 +756,7 @@ $$
 For this four-state system to be controllable, the controllability matrix must satisfy
 
 $$
-\operatorname{rank}(\mathcal{C})=4.
+\mathrm{rank}(\mathcal{C})=4.
 $$
 
 ---
