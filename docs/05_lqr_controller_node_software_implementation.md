@@ -270,7 +270,7 @@ $$
 For the implemented parameters,
 
 $$
-\Delta=0.270933\ \mathrm{kg^2\,m^2}.
+\Delta=0.270933\ \mathrm{kg^2 \ m^2}
 $$
 
 The formulas in this document use $\Delta$, whereas the Python implementation uses the valid identifier `delta`.

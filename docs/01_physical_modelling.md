@@ -553,7 +553,7 @@ $$
 For the project parameters:
 
 $$
-I=\frac{1}{12}(1.0)\left(3(0.01)^2+(0.5)^2\right)=0.020858\ \mathrm{kg\,m^2}
+I=\frac{1}{12}(1.0)\left(3(0.01)^2+(0.5)^2\right)=0.020858\ \mathrm{kg \ m^2}
 $$
 
 When the rotational equation is written about the pivot, the parallel-axis theorem gives:
@@ -565,7 +565,7 @@ $$
 Therefore:
 
 $$
-I_{\mathrm{pivot}}=0.020858+(1.0)(0.25)^2=0.083358\ \mathrm{kg\,m^2}
+I_{\mathrm{pivot}}=0.020858+(1.0)(0.25)^2=0.083358\ \mathrm{kg \ m^2}
 $$
 
 The $3r^2$ contribution distinguishes the rigid-cylinder model from the slender-rod approximation. Although the contribution is small for this narrow pendulum, retaining it keeps the analytical model consistent with the URDF inertia tensor and the Gazebo rigid-body simulation.
