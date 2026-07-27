@@ -482,7 +482,7 @@ $$
 \left(l+\frac{I}{ml}\right)\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
 $$
 
-Throughout this project, the pendulum is intentionally modelled as a point mass, allowing the separate rotational inertia term \(I\) to be neglected. Consequently, the rotational equation simplifies to
+Throughout this project, the pendulum is intentionally modelled as a point mass, allowing the separate rotational inertia term $I$ to be neglected. Consequently, the rotational equation simplifies to
 
 $$
 l\ddot{\theta}+\ddot{x}\cos\theta-g\sin\theta=0
@@ -1043,11 +1043,17 @@ The Gazebo simulation may include additional numerical and rigid-body effects th
 
 The URDF pendulum is represented as a rigid body with an inertia tensor.
 
-The simplified controller model treats the pendulum as a point mass concentrated at its centre of mass.
+For clarity, the analytical derivation presented in this project models the pendulum as a point mass concentrated at its centre of mass. This simplification is widely adopted for introductory controller development and forms the basis of the equations of motion, linearization, and LQR design presented in the following sections.
 
-This difference should be recognised when comparing analytical predictions with simulation behaviour.
+Consequently, minor differences may exist between the analytical model and the physics simulation, where the pendulum is treated as a rigid body.
 
-For a higher-fidelity controller model, the inertia term $I$ can be retained.
+For higher-fidelity controller implementations, the pendulum's rotational inertia can be retained. Applying the same modelling procedure leads to the rigid-body equations of motion, in which the total rotational inertia about the pivot is
+
+$$
+J = I + ml^2
+$$
+
+using the Parallel Axis Theorem. This extended formulation is discussed later in the software implementation chapter.
 
 ### Rail Limits
 
