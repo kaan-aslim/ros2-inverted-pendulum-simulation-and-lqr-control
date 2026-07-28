@@ -320,17 +320,17 @@ $$
 A=\begin{bmatrix}0&1&0&0\\
 0&0&-\dfrac{m^2gl^2}{\Delta}&0\\
 0&0&0&1\\
-0&0&\dfrac{mgl(M+m)}{\Delta}&0\end{bmatrix}.
+0&0&\dfrac{mgl(M+m)}{\Delta}&0\end{bmatrix}
 $$
 
 The rows correspond to:
 
 $$
-\dot{x}_1=x_2,
+\dot{x}_1=x_2
 $$
 
 $$
-\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3+\frac{J}{\Delta}u,
+\dot{x}_2=-\frac{m^2gl^2}{\Delta}x_3+\frac{J}{\Delta}u
 $$
 
 $$
@@ -338,7 +338,7 @@ $$
 $$
 
 $$
-\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3-\frac{ml}{\Delta}u.
+\dot{x}_4=\frac{mgl(M+m)}{\Delta}x_3-\frac{ml}{\Delta}u
 $$
 
 The first and third rows are kinematic relationships. The second and fourth rows contain the coupled rigid-body dynamics.
@@ -362,13 +362,13 @@ $$
 B=\begin{bmatrix}0\\
 \dfrac{J}{\Delta}\\
 0\\
--\dfrac{ml}{\Delta}\end{bmatrix}.
+-\dfrac{ml}{\Delta}\end{bmatrix}
 $$
 
 Since $J=I+ml^2$, the second element is equivalent to
 
 $$
-\frac{J}{\Delta}=\frac{I+ml^2}{\Delta}.
+\frac{J}{\Delta}=\frac{I+ml^2}{\Delta}
 $$
 
 The zero elements show that the applied force does not directly change either position state. The nonzero second and fourth elements describe how the cart force changes the cart acceleration and, through dynamic coupling, the pendulum angular acceleration.
@@ -401,13 +401,13 @@ $$
 Q=\begin{bmatrix}10&0&0&0\\
 0&1&0&0\\
 0&0&100&0\\
-0&0&0&1\end{bmatrix}.
+0&0&0&1\end{bmatrix}
 $$
 
 The input-weighting matrix is
 
 $$
-R=\begin{bmatrix}0.1\end{bmatrix}.
+R=\begin{bmatrix}0.1\end{bmatrix}
 $$
 
 The diagonal elements of $Q$ correspond to the state ordering used by the code:
@@ -424,7 +424,7 @@ The relatively large angle weight reflects the main objective of maintaining the
 For this scalar-input system, the implemented cost function can be written as
 
 $$
-\mathcal{J}=\int_0^\infty\left(\mathbf{x}^TQ\mathbf{x}+ru^2\right)\,dt,
+\mathcal{J}=\int_0^\infty\left(\mathbf{x}^TQ\mathbf{x}+ru^2\right) \ dt
 $$
 
 where $r=0.1$. The symbol $\mathcal{J}$ denotes the LQR cost and must not be confused with the pivot moment of inertia $J$ used in the rigid-body model.
@@ -443,7 +443,7 @@ P = solve_continuous_are(A, B, Q, R)
 The equation solved by SciPy is
 
 $$
-A^TP+PA-PBR^{-1}B^TP+Q=0.
+A^TP+PA-PBR^{-1}B^TP+Q=0
 $$
 
 The solution $P$ is then used to calculate the state-feedback gain:
@@ -456,13 +456,13 @@ self.K = np.linalg.inv(R) @ B.T @ P
 This line directly implements
 
 $$
-K=R^{-1}B^TP.
+K=R^{-1}B^TP
 $$
 
 The `@` operator performs matrix multiplication, and `B.T` is the transpose of $B$. The result is a $1\times4$ row matrix:
 
 $$
-K=\begin{bmatrix}k_1&k_2&k_3&k_4\end{bmatrix}.
+K=\begin{bmatrix}k_1&k_2&k_3&k_4\end{bmatrix}
 $$
 
 The controller logs the calculated gain:
@@ -552,7 +552,7 @@ $$
 \mathbf{x}=\begin{bmatrix}x\\
 \dot{x}\\
 \theta\\
-\dot{\theta}\end{bmatrix}.
+\dot{\theta}\end{bmatrix}
 $$
 
 Its shape is $4\times1$. The ordering must remain identical to the ordering used when constructing $A$, $Q$, and $K$. Changing the state order without changing the matrices would associate each gain with the wrong physical variable.
@@ -571,13 +571,13 @@ force = -self.K @ state
 This implements the scalar control law
 
 $$
-u=-K\mathbf{x}.
+u=-K\mathbf{x}
 $$
 
 Expanded by state,
 
 $$
-u=-\left(k_1x+k_2\dot{x}+k_3\theta+k_4\dot{\theta}\right).
+u=-\left(k_1x+k_2\dot{x}+k_3\theta+k_4\dot{\theta}\right)
 $$
 
 Since `self.K` has shape $1\times4$ and `state` has shape $4\times1$, `force` is a $1\times1$ NumPy array.
@@ -815,7 +815,7 @@ The controller node implements the same rigid-body model derived in the precedin
 During initialization, the node constructs $A$, $B$, $Q$, and $R$, solves the CARE, and stores the LQR gain $K$. For every `JointState` callback, it constructs the measured state vector and calculates
 
 $$
-u=-K\mathbf{x}.
+u=-K\mathbf{x}
 $$
 
 The scalar result is published as a `Float64` message through `/cart_force_cmd`. This implementation therefore connects the rigid-body mathematical model, optimal controller design, ROS 2 state measurements, and Gazebo force actuation in one feedback loop.
