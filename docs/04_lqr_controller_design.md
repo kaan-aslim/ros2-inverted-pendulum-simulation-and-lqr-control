@@ -101,14 +101,14 @@ $$
 \Delta=I(M+m)+Mml^2
 $$
 
-The symbol $\Delta$ is the same quantity denoted by $p$ in some derivations. Therefore, the implementation
+Therefore, the implementation
 
 ```python
 J = I + m * l**2
 delta = (M + m) * J - (m * l)**2
 ```
 
-is consistent with the rigid-body equations.
+will be used in the next chapter.
 
 For the state vector $\mathbf{x}=\begin{bmatrix}x&\dot{x}&\theta&\dot{\theta}\end{bmatrix}^T$ and the scalar input $u=F$, the linearised model about the upright equilibrium is
 
