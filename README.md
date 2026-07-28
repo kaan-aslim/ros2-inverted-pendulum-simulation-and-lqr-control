@@ -1020,7 +1020,6 @@ The mathematical derivations and implementation details are intentionally separa
 | 04 | LQR Controller Design |
 | 05 | LQR Controller Node Software Implementation |
 | 06 | ROS2 and Gazebo Software Architecture |
-| 07 | Simulation Results |
 
 Each document explains the engineering methodology used during the corresponding stage of the project.
 
