@@ -954,7 +954,7 @@ std_msgs/msg/Float64 \
 "{data: 0.09}"
 ```
 
-The disturbance remains active until another command is sent.
+Even when the torque command is published with `--once`, Gazebo retains the most recently received joint-effort command and applies it at every simulation step until a different value is received. Continuously publishing the same value therefore produces the same behavior; it refreshes the command rather than accumulating additional torque. In response to this constant disturbance, the LQR controller moves the cart until the system reaches a displaced closed-loop equilibrium at which the controller action balances the applied torque. Within the linear operating region, this steady-state displacement is approximately proportional to the disturbance magnitude. The torque remains active after the cart settles and must be replaced by another command, such as `0.0`, to remove the disturbance.
 
 To remove the disturbance:
 
