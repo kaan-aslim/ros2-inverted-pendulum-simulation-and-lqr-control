@@ -140,7 +140,9 @@ This repository demonstrates the complete development of a modern control system
 >
 > This repository focuses on the modeling, simulation, and control of an inverted pendulum as a robotics control problem.
 >
-> The objective is not to design a manufacturable mechanical product, but to develop a complete robotics engineering workflow—from dynamic modeling and controller design to software implementation and closed-loop simulation using ROS2.
+> The objective is not to design a manufacturable mechanical product, but to develop a complete robotics engineering workflow—from dynamic modeling and controller design to software implementation and closed-loop simulation using ROS 2.
+>
+> ROS 2, URDF/Xacro, RViz, and Gazebo are each extensive subjects that require separate, dedicated training. Therefore, this repository does not attempt to explain these technologies in full detail. Instead, it focuses on how they are applied and integrated to implement, visualize, simulate, and control the inverted-pendulum system.
 
 ---
 
