@@ -547,7 +547,7 @@ Defining the common denominator as
 <p align="center">
 
 $$
-p=I(M+m)+Mml^{2}
+\Delta=I(M+m)+Mml^{2}
 $$
 
 </p>
@@ -559,18 +559,18 @@ the rigid-body state-space matrices are
 $$
 A=\begin{bmatrix}
 0&1&0&0\\
-0&0&-\frac{m^{2}gl^{2}}{p}&0\\
+0&0&-\frac{m^{2}gl^{2}}{\Delta}&0\\
 0&0&0&1\\
-0&0&\frac{mgl(M+m)}{p}&0
+0&0&\frac{mgl(M+m)}{\Delta}&0
 \end{bmatrix}
 $$
 
 $$
 B=\begin{bmatrix}
 0\\
-\frac{I+ml^{2}}{p}\\
+\frac{I+ml^{2}}{\Delta}\\
 0\\
--\frac{ml}{p}
+-\frac{ml}{\Delta}
 \end{bmatrix}
 $$
 
