@@ -110,7 +110,7 @@ delta = (M + m) * J - (m * l)**2
 
 will be used in the next chapter.
 
-For the state vector $\mathbf{x}=\begin{bmatrix}x&\dot{x}&\theta&\dot{\theta}\end{bmatrix}^T$ and the scalar input $u=F$, the linearised model about the upright equilibrium is
+For the state vector $\mathbf{x}=\left[x,\ \dot{x},\ \theta,\ \dot{\theta}\right]^{\mathrm{T}}$ and the scalar input $u=F$, the linearised model about the upright equilibrium is
 
 $$
 \dot{\mathbf{x}}=A\mathbf{x}+Bu
