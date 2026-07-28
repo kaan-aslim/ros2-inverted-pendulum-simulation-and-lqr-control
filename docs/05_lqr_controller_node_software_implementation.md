@@ -41,7 +41,7 @@ Here, $u=F$ is the scalar horizontal force applied to the cart. The controller r
 The overall controller architecture is illustrated below.
 
 <p align="center">
-    <img src="images/lqr_controller_architecture.png" alt="LQR Controller Architecture" width="900">
+    <img src="images/lqr_controller_architecture.png" alt="LQR Controller Architecture" width="1000">
 </p>
 
 The node does not use a separate timer. Its control calculation is event-driven: `joint_state_callback()` runs once for every received `JointState` message. Consequently, the effective controller update rate is determined by the publication rate of `/joint_states` and the ROS 2 communication path.
