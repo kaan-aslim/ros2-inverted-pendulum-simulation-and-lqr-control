@@ -20,55 +20,67 @@ ROS 2, URDF/Xacro, RViz, and Gazebo are extensive subjects that each require sep
 
 ---
 
-## 2. Workspace Overview
+## 2. Workspace and Source Structure
 
-The project is organized as a ROS 2 workspace named `inverted_pendulum_workspace`.
+The project is developed in a ROS 2 workspace named `inverted_pendulum_workspace`.
+
+A ROS 2 workspace stores its source packages under the `src/` directory. After the workspace is built with `colcon`, ROS 2 automatically generates the `build/`, `install/`, and `log/` directories. The workspace may also contain project-level documentation and other auxiliary files created by the developer.
 
 ```text
 inverted_pendulum_workspace/
-└── src/
-    ├── inverted_pendulum_bringup/
-    │   ├── config/
-    │   │   └── gazebo_bridge.yaml
-    │   ├── launch/
-    │   │   └── inverted_pendulum.launch.xml
-    │   ├── CMakeLists.txt
-    │   └── package.xml
-    │
-    ├── inverted_pendulum_control/
-    │   ├── inverted_pendulum_control/
-    │   │   ├── __init__.py
-    │   │   ├── control_node.py
-    │   │   └── disturbance_test.py
-    │   ├── resource/
-    │   │   └── inverted_pendulum_control
-    │   ├── package.xml
-    │   ├── setup.cfg
-    │   └── setup.py
-    │
-    ├── inverted_pendulum_description/
-    │   ├── launch/
-    │   │   └── display.launch.xml
-    │   ├── rviz/
-    │   │   └── urdf_config.rviz
-    │   ├── urdf/
-    │   │   ├── inverted_pendulum_common.xacro
-    │   │   ├── inverted_pendulum_gazebo.xacro
-    │   │   ├── inverted_pendulum_model.xacro
-    │   │   └── inverted_pendulum_urdf.xacro
-    │   ├── CMakeLists.txt
-    │   └── package.xml
-    │
-    └── inverted_pendulum_gazebo/
-        ├── launch/
-        │   └── gazebo.launch.xml
-        ├── worlds/
-        │   └── inverted_pendulum_world.sdf
-        ├── CMakeLists.txt
-        └── package.xml
+├── build/       # Generated intermediate build files
+├── install/     # Generated packages and environment files
+├── log/         # Generated build and execution logs
+├── src/         # ROS 2 source packages developed for the project
+└── ...          # Project documentation and other auxiliary files
 ```
 
-The workspace is divided into four packages. Each package has a separate responsibility:
+Therefore, this document focuses primarily on the contents of the src/ directory.
+
+```text
+src/
+├── inverted_pendulum_bringup/
+│   ├── config/
+│   │   └── gazebo_bridge.yaml
+│   ├── launch/
+│   │   └── inverted_pendulum.launch.xml
+│   ├── CMakeLists.txt
+│   └── package.xml
+│
+├── inverted_pendulum_control/
+│   ├── inverted_pendulum_control/
+│   │   ├── __init__.py
+│   │   ├── control_node.py
+│   │   └── disturbance_test.py
+│   ├── resource/
+│   │   └── inverted_pendulum_control
+│   ├── package.xml
+│   ├── setup.cfg
+│   └── setup.py
+│
+├── inverted_pendulum_description/
+│   ├── launch/
+│   │   └── display.launch.xml
+│   ├── rviz/
+│   │   └── urdf_config.rviz
+│   ├── urdf/
+│   │   ├── inverted_pendulum_common.xacro
+│   │   ├── inverted_pendulum_gazebo.xacro
+│   │   ├── inverted_pendulum_model.xacro
+│   │   └── inverted_pendulum_urdf.xacro
+│   ├── CMakeLists.txt
+│   └── package.xml
+│
+└── inverted_pendulum_gazebo/
+    ├── launch/
+    │   └── gazebo.launch.xml
+    ├── worlds/
+    │   └── inverted_pendulum_world.sdf
+    ├── CMakeLists.txt
+    └── package.xml
+```
+
+The src/ directory contains the four source packages that define and operate the project:
 
 | Package | Primary responsibility |
 |---|---|
