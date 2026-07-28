@@ -784,7 +784,6 @@ ros2-inverted-pendulum-simulation-and-lqr-control/
 │   ├── 04_lqr_controller_design.md
 │   ├── 05_lqr_controller_node_software_implementation.md
 │   ├── 06_ros2_and_gazebo_software_architecture.md
-│   ├── 07_simulation_results.md
 │
 ├── images/
 │
