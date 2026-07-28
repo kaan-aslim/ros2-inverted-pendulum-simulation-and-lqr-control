@@ -142,7 +142,7 @@ Its primary responsibilities are:
 
 The model is divided into multiple Xacro files to avoid placing every definition in one large file.
 
-#### Xacro File Structure
+### Xacro File Structure
 
 ```mermaid
 flowchart TD
@@ -175,7 +175,7 @@ This parameter is then used by components such as:
 - RViz,
 - and the Gazebo model-spawning process.
 
-#### Description Files
+### Description Files
 
 | File | General role |
 |---|---|
@@ -188,8 +188,6 @@ This parameter is then used by components such as:
 
 The mathematical controller model and the simulated model use the same rigid-body interpretation of the pendulum. In particular, the controller includes the pendulum’s distributed mass and rotational inertia instead of treating it as a point mass.
 
----
-
 ### 4.2. `inverted_pendulum_gazebo`
 
 The Gazebo package contains the simulation environment.
@@ -201,7 +199,7 @@ Its primary responsibilities are:
 - spawning the inverted-pendulum model,
 - and connecting the robot description to the physics simulation.
 
-#### Gazebo World
+### Gazebo World
 
 The file
 
@@ -213,7 +211,7 @@ defines the simulated environment in which the inverted pendulum operates.
 
 The world file is separate from the robot model because the environment and the robot are independent entities. This makes it possible to change the world without modifying the URDF/Xacro description.
 
-#### Gazebo Launch File
+### Gazebo Launch File
 
 The file
 
@@ -232,15 +230,13 @@ Its role is to coordinate operations such as:
 
 Gazebo then becomes responsible for numerically integrating the system dynamics, enforcing joint constraints, detecting collisions, and applying the control force to the cart.
 
----
-
 ### 4.3. `inverted_pendulum_control`
 
 The control package is an `ament_python` ROS 2 package.
 
 It contains the executable Python nodes used to control and test the system.
 
-#### `control_node.py`
+### `control_node.py`
 
 The file
 
@@ -275,7 +271,7 @@ During runtime, the node:
 
 The controller is event-driven. It does not use a separate timer. A new control calculation is performed whenever a new `JointState` message is received.
 
-#### `disturbance_test.py`
+### `disturbance_test.py`
 
 The file
 
@@ -289,7 +285,7 @@ It is not part of the normal LQR feedback loop. Its purpose is to apply a contro
 
 This separation prevents test behavior from being embedded directly in the production controller.
 
-#### Python Package Files
+### Python Package Files
 
 | File | General role |
 |---|---|
@@ -298,8 +294,6 @@ This separation prevents test behavior from being embedded directly in the produ
 | `setup.cfg` | Configures Python package installation behavior |
 | `package.xml` | Declares ROS 2 package metadata and dependencies |
 | `resource/inverted_pendulum_control` | Registers the package in the ROS 2 ament index |
-
----
 
 ### 4.4. `inverted_pendulum_bringup`
 
@@ -316,7 +310,7 @@ Its primary responsibilities are:
 - starting the LQR control node,
 - and creating the complete runtime system from a single launch command.
 
-#### Main Launch File
+### Main Launch File
 
 The primary launch file is:
 
@@ -336,7 +330,7 @@ Conceptually, it starts or includes:
 
 The individual ROS 2 processes may start concurrently, so the launch file should be understood as system orchestration rather than a strictly sequential program.
 
-#### Bridge Configuration
+### Bridge Configuration
 
 The file
 
