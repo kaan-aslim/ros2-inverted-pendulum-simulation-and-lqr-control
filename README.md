@@ -151,7 +151,7 @@ The simulated physical system consists of a cart moving along a horizontal rail 
 The cart is actuated by an external horizontal force, while the pendulum is free to rotate under the influence of gravity. By appropriately controlling the cart motion, the pendulum can be stabilized around its naturally unstable upright equilibrium.
 
 <p align="center">
-    <img src="images/system_model_concept.png" alt="3D Concept System Model" width="1000">
+    <img src="images/system_model_concept.png" alt="3D Concept Physical System Model" width="1000">
 </p>
 
 Although mechanically simple, this configuration captures the essential dynamics required to study nonlinear modeling, state-space control, and feedback stabilization.
